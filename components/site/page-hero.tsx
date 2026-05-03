@@ -41,7 +41,7 @@ export function PageHero({
       >
         v
       </div>
-      <div className="container-velora pt-16 md:pt-24 pb-16 md:pb-24 relative">
+      <div className="container-velora pt-28 sm:pt-32 md:pt-40 pb-14 sm:pb-16 md:pb-24 relative">
         <div className="grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-8">
             {eyebrow && (
@@ -50,9 +50,9 @@ export function PageHero({
             <h1
               className={cn(
                 'mt-4 font-display leading-[1.02] tracking-[-0.018em]',
-                'text-[44px] sm:text-[58px] lg:text-[78px]',
                 inverted ? 'text-cream' : 'text-ink',
               )}
+              style={{ fontSize: 'clamp(2.125rem, 6.5vw, 4.875rem)' }}
             >
               {title}
             </h1>

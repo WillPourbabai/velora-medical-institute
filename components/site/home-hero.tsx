@@ -1,112 +1,171 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowRight, Calendar, Monitor, ClipboardCheck, UserRound, ShieldCheck } from 'lucide-react'
+import { VeloraMark } from './logo'
 
 export function HomeHero() {
   return (
-    <section className="relative overflow-hidden bg-cream">
-      {/* Background art — soft gradient + serif glyph */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-bone to-transparent" />
-        <div className="absolute -right-20 top-10 font-display italic text-[480px] leading-none text-ink/[0.04] select-none">
-          v
-        </div>
-        <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-[1400px] h-[600px] rounded-[50%] bg-sage-soft/40 blur-3xl" />
+    <section className="relative overflow-hidden bg-ink text-cream">
+      {/* Photo — full bleed; fades into ink on the left */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-telehealth.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right"
+        />
+        {/* Gradient: solid ink left → fully transparent past the midpoint so the photo reads */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink from-30% via-ink/85 via-50% to-ink/0 to-70%" />
+        {/* Subtle bottom fade so the bottom utility row stays legible */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-ink to-transparent" />
       </div>
 
-      <div className="container-velora relative pt-12 lg:pt-16 pb-20 lg:pb-28">
-        {/* Top label row */}
-        <div className="flex items-center gap-3 mb-10">
-          <span className="size-1.5 rounded-full bg-gold" />
-          <span className="eyebrow">Velora Medical Institute</span>
-          <span className="hidden md:inline-block h-px flex-1 max-w-[200px] bg-line" />
-          <span className="hidden md:inline text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
-            Internal Medicine · Obesity Medicine
-          </span>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
-          <div className="lg:col-span-8">
-            <h1 className="font-display text-[48px] sm:text-[68px] lg:text-[92px] leading-[0.98] tracking-[-0.022em] text-ink">
-              Optimize your
-              <br />
-              metabolism.{' '}
-              <span className="italic text-sage">Feel like</span>
-              <br />
-              <span className="italic text-sage">yourself again.</span>
-            </h1>
-
-            <p className="mt-9 text-[17px] md:text-[19px] leading-relaxed text-ink-soft max-w-2xl">
-              Personalized, evidence-based care focused on metabolic health, weight management, and
-              hormone optimization. Care is directed by{' '}
-              <em className="not-italic font-medium text-ink">double board-certified physicians</em>{' '}
-              in Internal Medicine and Obesity Medicine — tailored to your clinical profile and
-              long-term health goals.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link href="/book?type=weight" className="btn-primary">
-                Book Weight Management
-                <ArrowUpRight className="size-3.5" />
-              </Link>
-              <Link href="/book?type=hormone" className="btn-secondary">
-                Start Hormone Therapy
-              </Link>
-            </div>
+      <div className="relative container-velora pt-24 sm:pt-28 lg:pt-24 pb-14 lg:pb-14 min-h-[640px] sm:min-h-[720px] lg:min-h-[820px] flex flex-col">
+        {/* Brand mark stack */}
+        <div className="flex flex-col items-start">
+          <VeloraMark size={48} className="text-gold" />
+          <div className="mt-3 font-display tracking-[0.32em] sm:tracking-[0.42em] text-[28px] sm:text-[40px] lg:text-[44px] text-cream leading-none">
+            VELORA
           </div>
-
-          {/* Right meta panel */}
-          <aside className="lg:col-span-4 lg:pl-6 lg:border-l border-line">
-            <div className="space-y-6">
-              <MetaRow
-                no="01"
-                label="Physician-Directed"
-                value="Double board-certified care"
-              />
-              <MetaRow
-                no="02"
-                label="Telemedicine"
-                value="Secure, convenient visits"
-              />
-              <MetaRow
-                no="03"
-                label="Direct-Pay"
-                value="Transparent investment"
-              />
-              <MetaRow
-                no="04"
-                label="Long-Term"
-                value="Continuous monitoring"
-              />
-            </div>
-          </aside>
+          <div className="mt-2 font-sans tracking-[0.32em] sm:tracking-[0.42em] text-[10px] sm:text-[10.5px] text-gold leading-none uppercase">
+            Medical Institute
+          </div>
         </div>
 
-        {/* Bottom marquee strip */}
-        <div className="mt-16 lg:mt-24 pt-8 border-t border-line flex flex-wrap items-center gap-x-10 gap-y-3 text-[11.5px] tracking-[0.18em] uppercase text-muted-foreground">
-          <span className="text-sage font-medium">As Practiced By</span>
-          <span>Internal Medicine</span>
-          <span className="text-line">·</span>
+        {/* Categories eyebrow */}
+        <div className="mt-10 sm:mt-12 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.34em] uppercase text-cream font-medium">
+          <span>Telemedicine Care</span>
+          <span className="text-gold">•</span>
           <span>Obesity Medicine</span>
-          <span className="text-line">·</span>
-          <span>Bioidentical Hormone Therapy</span>
-          <span className="text-line">·</span>
-          <span>GLP-1 Therapeutics</span>
-          <span className="text-line">·</span>
-          <span>Metabolic Optimization</span>
+          <span className="text-gold">•</span>
+          <span>Hormone Therapy</span>
+        </div>
+
+        {/* Headline — fluid clamp keeps it from cramping at 320px and growing past 88px */}
+        <h1
+          className="mt-6 sm:mt-7 font-display leading-[1.0] sm:leading-[0.98] tracking-[-0.022em] text-cream max-w-3xl"
+          style={{ fontSize: 'clamp(2.25rem, 7.5vw, 5.5rem)' }}
+        >
+          Physician-Guided
+          <br />
+          <span className="text-gold">Weight Loss &amp;</span>
+          <br />
+          <span className="text-gold">Hormone Optimization</span>
+        </h1>
+
+        {/* Short gold underline accent */}
+        <div className="mt-7 w-24 h-px bg-gold" />
+
+        {/* Body copy */}
+        <p className="mt-7 max-w-md text-[15.5px] leading-[1.7] text-cream/75">
+          Personalized telemedicine care for metabolic health,
+          weight management, and hormone balance &mdash;
+          guided by physicians and refined over time
+          to support lasting results.
+        </p>
+
+        {/* CTAs */}
+        <div className="mt-9 flex flex-wrap gap-3">
+          <Link
+            href="/book"
+            className="inline-flex items-center gap-2.5 bg-gold text-ink px-5 sm:px-7 py-3.5 sm:py-4 text-[11px] sm:text-[12px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold hover:bg-cream transition-colors rounded-md"
+          >
+            <Calendar className="size-4" strokeWidth={1.8} />
+            Book Consultation
+          </Link>
+          <Link
+            href="/programs"
+            className="inline-flex items-center gap-2.5 border border-gold/60 text-gold px-5 sm:px-7 py-3.5 sm:py-4 text-[11px] sm:text-[12px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold hover:bg-gold hover:text-ink transition-colors rounded-md"
+          >
+            View Programs
+            <ArrowRight className="size-4" strokeWidth={1.8} />
+          </Link>
+        </div>
+
+        {/* Spacer pushes feature row + utility strip to bottom */}
+        <div className="flex-1 min-h-[40px]" />
+
+        {/* Three feature items */}
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-5 max-w-2xl">
+          <FeatureItem
+            icon={<Monitor className="size-5" strokeWidth={1.4} />}
+            title="Telemedicine Visits"
+            body="Private. Convenient. Secure."
+          />
+          <FeatureItem
+            icon={<UserRound className="size-5" strokeWidth={1.4} />}
+            title="Physician-Led Care"
+            body="Expert guidance every step."
+          />
+          <FeatureItem
+            icon={<ClipboardCheck className="size-5" strokeWidth={1.4} />}
+            title="Personalized Plans"
+            body="Tailored to your biology and your goals."
+          />
+        </div>
+
+        {/* Bottom utility row */}
+        <div className="mt-10 pt-6 border-t border-cream/15 flex flex-wrap items-center gap-x-6 sm:gap-x-8 gap-y-3 text-[10px] sm:text-[10.5px] tracking-[0.28em] sm:tracking-[0.32em] uppercase">
+          <span className="flex items-center gap-2 text-cream">
+            <ShieldCheck className="size-3.5 text-gold" strokeWidth={1.6} />
+            Physician-Led
+          </span>
+          <span className="text-gold">•</span>
+          <span className="text-cream">Evidence-Based</span>
+          <span className="text-gold">•</span>
+          <span className="text-cream">Results-Driven</span>
+          <span className="basis-full md:basis-auto md:ml-auto flex items-center gap-3 text-cream/70 normal-case tracking-[0.18em] sm:tracking-[0.22em] text-[11px] sm:text-[10.5px]">
+            <DnaGlyph className="text-gold shrink-0" />
+            <span>
+              Optimize your health. Elevate <span className="text-gold">your life.</span>
+            </span>
+          </span>
         </div>
       </div>
     </section>
   )
 }
 
-function MetaRow({ no, label, value }: { no: string; label: string; value: string }) {
+function FeatureItem({
+  icon,
+  title,
+  body,
+}: {
+  icon: React.ReactNode
+  title: string
+  body: string
+}) {
   return (
-    <div className="flex items-baseline gap-5 group">
-      <span className="font-display italic text-gold text-[14px] w-7">{no}</span>
-      <div className="flex-1 border-b border-line/80 pb-3">
-        <p className="text-[10.5px] tracking-[0.22em] uppercase text-sage">{label}</p>
-        <p className="mt-1 text-[15px] text-ink">{value}</p>
+    <div className="flex items-start gap-3">
+      <span className="text-gold/85 mt-0.5 shrink-0">{icon}</span>
+      <div className="border-l border-gold/25 pl-3 -ml-1">
+        <p className="text-[10px] tracking-[0.26em] uppercase text-cream font-semibold">
+          {title}
+        </p>
+        <p className="mt-1.5 text-[12px] text-cream/65 leading-[1.5]">{body}</p>
       </div>
     </div>
+  )
+}
+
+function DnaGlyph({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      className={`size-4 ${className ?? ''}`}
+      aria-hidden
+    >
+      <path d="M5 3 C 14 5, 14 11, 5 13 C 14 15, 14 21, 5 23" />
+      <path d="M19 3 C 10 5, 10 11, 19 13 C 10 15, 10 21, 19 23" />
+      <path d="M7 7 H 17" strokeWidth="1" />
+      <path d="M7 12 H 17" strokeWidth="1" />
+      <path d="M7 17 H 17" strokeWidth="1" />
+    </svg>
   )
 }

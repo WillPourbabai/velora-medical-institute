@@ -54,9 +54,10 @@ export function SectionHeading({
       )}
       <h2
         className={cn(
-          'font-display text-[34px] sm:text-[44px] lg:text-[52px] leading-[1.05] tracking-[-0.015em]',
+          'font-display leading-[1.05] tracking-[-0.015em]',
           inverted ? 'text-cream' : 'text-ink',
         )}
+        style={{ fontSize: 'clamp(1.75rem, 4.5vw, 3.25rem)' }}
       >
         {title}
       </h2>
