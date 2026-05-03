@@ -139,7 +139,10 @@ export function BookingClient() {
       <section className="bg-cream border-b border-line">
         <div className="container-velora pt-14 md:pt-20 pb-12">
           <p className="eyebrow">Schedule Your Consultation</p>
-          <h1 className="mt-4 font-display text-[42px] md:text-[58px] lg:text-[68px] leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl">
+          <h1
+            className="mt-4 font-display leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 4.25rem)' }}
+          >
             Begin physician-guided care in <em className="not-italic text-sage">three steps</em>.
           </h1>
           <p className="mt-6 text-[16.5px] text-ink-soft max-w-2xl leading-relaxed">
@@ -459,23 +462,23 @@ export function BookingClient() {
 function Stepper({ step }: { step: number }) {
   const labels = ['Consultation', 'Date & Time', 'Your Info']
   return (
-    <ol className="mt-12 flex items-center gap-4 text-[13px]">
+    <ol className="mt-10 sm:mt-12 flex flex-wrap items-center gap-x-3 gap-y-3 text-[12px] sm:text-[13px]">
       {labels.map((l, i) => {
         const n = i + 1
         const active = step === n
         const done = step > n
         return (
-          <li key={l} className="flex items-center gap-3">
+          <li key={l} className="flex items-center gap-2.5 sm:gap-3">
             <span className={cn(
-              'size-7 rounded-full flex items-center justify-center text-[12px] font-medium border transition-colors',
+              'size-7 rounded-full flex items-center justify-center text-[12px] font-medium border transition-colors shrink-0',
               done && 'bg-sage border-sage text-cream',
               active && 'bg-ink border-ink text-cream',
               !done && !active && 'bg-paper border-line text-muted-foreground',
             )}>
               {done ? <Check className="size-3.5" /> : n.toString().padStart(2, '0').slice(-2)}
             </span>
-            <span className={cn('font-medium', active ? 'text-ink' : 'text-muted-foreground')}>{l}</span>
-            {i < labels.length - 1 && <span className="w-10 h-px bg-line ml-2" />}
+            <span className={cn('font-medium whitespace-nowrap', active ? 'text-ink' : 'text-muted-foreground')}>{l}</span>
+            {i < labels.length - 1 && <span className="hidden sm:block w-8 sm:w-10 h-px bg-line ml-1 sm:ml-2" />}
           </li>
         )
       })}
@@ -523,7 +526,10 @@ function ConfirmationView({
           <Check className="size-7" />
         </span>
         <p className="eyebrow mt-7">Request Received</p>
-        <h1 className="mt-5 font-display text-[42px] md:text-[58px] leading-[1.04] tracking-[-0.018em] text-ink">
+        <h1
+          className="mt-5 font-display leading-[1.04] tracking-[-0.018em] text-ink"
+          style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+        >
           Thank you, {contact.firstName} — your <em className="not-italic text-sage">consultation request</em> is in.
         </h1>
         <p className="mt-7 text-[16.5px] text-ink-soft leading-relaxed max-w-xl mx-auto">

@@ -115,7 +115,10 @@ export function IntakeForm() {
             <Check className="size-7" />
           </span>
           <p className="eyebrow mt-7">Intake Submitted</p>
-          <h2 className="mt-5 font-display text-[42px] md:text-[58px] leading-[1.04] tracking-[-0.018em] text-ink">
+          <h2
+            className="mt-5 font-display leading-[1.04] tracking-[-0.018em] text-ink"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+          >
             Thank you — your <em className="not-italic text-sage">intake is complete</em>.
           </h2>
           <p className="mt-7 text-[16.5px] text-ink-soft leading-relaxed max-w-xl mx-auto">

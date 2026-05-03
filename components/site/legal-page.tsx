@@ -19,7 +19,10 @@ export function LegalPage({
       <section className="bg-cream border-b border-line">
         <div className="container-velora pt-14 md:pt-20 pb-12">
           <p className="eyebrow">{eyebrow}</p>
-          <h1 className="mt-4 font-display text-[42px] md:text-[58px] leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl">
+          <h1
+            className="mt-4 font-display leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+          >
             {title}
           </h1>
           <p className="mt-5 text-[12px] tracking-[0.18em] uppercase text-sage">Last updated · {lastUpdated}</p>

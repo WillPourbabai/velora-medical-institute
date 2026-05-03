@@ -135,7 +135,10 @@ export default function AboutPage() {
       <section className="bg-cream">
         <div className="container-velora py-24 md:py-28 text-center">
           <span className="eyebrow">Begin Your Care</span>
-          <h2 className="mt-6 font-display text-[40px] md:text-[58px] leading-[1.04] tracking-[-0.02em] text-ink max-w-3xl mx-auto">
+          <h2
+            className="mt-6 font-display leading-[1.04] tracking-[-0.02em] text-ink max-w-3xl mx-auto"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+          >
             Ready to begin <em className="not-italic text-sage">physician-guided</em> care?
           </h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

@@ -301,7 +301,10 @@ export default function WeightManagementPage() {
         <div className="container-velora py-24 md:py-28 grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7">
             <span className="eyebrow text-gold">Start Your Care</span>
-            <h2 className="mt-5 font-display text-[40px] md:text-[58px] leading-[1.04] tracking-[-0.018em] text-cream">
+            <h2
+              className="mt-5 font-display leading-[1.04] tracking-[-0.018em] text-cream"
+              style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+            >
               Begin physician-guided <em className="not-italic text-gold">weight management</em>.
             </h2>
           </div>

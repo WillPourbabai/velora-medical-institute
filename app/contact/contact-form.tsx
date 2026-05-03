@@ -46,7 +46,10 @@ export function ContactForm() {
           <Check className="size-6" />
         </span>
         <p className="eyebrow mt-7">Message Received</p>
-        <h2 className="mt-5 font-display text-[32px] md:text-[40px] leading-tight tracking-[-0.012em] text-ink">
+        <h2
+          className="mt-5 font-display leading-tight tracking-[-0.012em] text-ink"
+          style={{ fontSize: 'clamp(1.625rem, 3.5vw, 2.5rem)' }}
+        >
           Thank you, {data.name.split(' ')[0]}.
         </h2>
         <p className="mt-5 text-[15px] text-ink-soft leading-relaxed max-w-xl mx-auto">

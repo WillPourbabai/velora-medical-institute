@@ -164,7 +164,10 @@ export default function ProgramsPage() {
       <section className="bg-ink text-cream">
         <div className="container-velora py-24 md:py-28 text-center">
           <span className="eyebrow text-gold">Ready to Begin</span>
-          <h2 className="mt-6 font-display text-[40px] md:text-[60px] leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto">
+          <h2
+            className="mt-6 font-display leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 3.75rem)' }}
+          >
             Start with a comprehensive <em className="not-italic text-gold">initial consultation</em>.
           </h2>
           <p className="mt-7 text-[16.5px] text-cream/70 max-w-xl mx-auto leading-relaxed">

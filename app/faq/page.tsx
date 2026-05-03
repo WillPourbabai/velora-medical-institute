@@ -104,7 +104,10 @@ export default function FaqPage() {
       <section className="bg-ink text-cream">
         <div className="container-velora py-24 md:py-28 text-center">
           <span className="eyebrow text-gold">Still Have Questions?</span>
-          <h2 className="mt-6 font-display text-[40px] md:text-[58px] leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto">
+          <h2
+            className="mt-6 font-display leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+          >
             Schedule a <em className="not-italic text-gold">comprehensive evaluation</em> with a physician.
           </h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

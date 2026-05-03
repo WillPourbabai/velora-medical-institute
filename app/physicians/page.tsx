@@ -78,7 +78,10 @@ export default function PhysiciansPage() {
       <section className="bg-ink text-cream">
         <div className="container-velora py-24 md:py-28 text-center">
           <span className="eyebrow text-gold">Begin Your Care</span>
-          <h2 className="mt-6 font-display text-[40px] md:text-[58px] leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto">
+          <h2
+            className="mt-6 font-display leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+          >
             Schedule your <em className="not-italic text-gold">initial consultation</em>.
           </h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -112,7 +115,7 @@ function PhysicianProfile({
       {/* Portrait */}
       <div className={`lg:col-span-5 ${reverse ? 'lg:order-2' : ''}`}>
         <div className="aspect-[4/5] bg-paper border border-line relative overflow-hidden flex items-center justify-center">
-          <span className="font-display text-[180px] text-sage/20 leading-none select-none">{initials}</span>
+          <span className="font-display text-[120px] sm:text-[160px] lg:text-[180px] text-sage/20 leading-none select-none">{initials}</span>
           <div className="absolute inset-0 bg-gradient-to-tr from-sage/5 via-transparent to-gold/10" />
           <div className="absolute bottom-0 left-0 right-0 px-6 py-5 bg-gradient-to-t from-ink/80 to-transparent">
             <p className="text-[10.5px] tracking-[0.22em] uppercase text-cream/80">Velora Medical Institute</p>
@@ -134,7 +137,10 @@ function PhysicianProfile({
       {/* Bio */}
       <div className={`lg:col-span-7 ${reverse ? 'lg:order-1' : ''}`}>
         <p className="eyebrow">{credentials}</p>
-        <h2 className="mt-4 font-display text-[40px] md:text-[52px] leading-[1.04] tracking-[-0.018em] text-ink">
+        <h2
+          className="mt-4 font-display leading-[1.04] tracking-[-0.018em] text-ink break-words"
+          style={{ fontSize: 'clamp(1.875rem, 4.5vw, 3.25rem)' }}
+        >
           {name}
         </h2>
         <div className="mt-7 space-y-5 text-[16px] leading-relaxed text-ink-soft max-w-prose">

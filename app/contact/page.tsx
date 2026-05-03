@@ -15,7 +15,10 @@ export default function ContactPage() {
       <section className="bg-cream border-b border-line">
         <div className="container-velora pt-14 md:pt-20 pb-12">
           <p className="eyebrow">Contact</p>
-          <h1 className="mt-4 font-display text-[42px] md:text-[58px] lg:text-[68px] leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl">
+          <h1
+            className="mt-4 font-display leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl"
+            style={{ fontSize: 'clamp(2rem, 5.5vw, 4.25rem)' }}
+          >
             We&rsquo;re here to <em className="not-italic text-sage">help you start</em>.
           </h1>
           <p className="mt-6 text-[16.5px] text-ink-soft max-w-2xl leading-relaxed">
