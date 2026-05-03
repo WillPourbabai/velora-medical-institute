@@ -1,18 +1,37 @@
 import type { Config } from 'tailwindcss'
 
-// all in fixtures is set to tailwind v3 as interims solutions
-
 const config: Config = {
-  darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    '*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
+        // Velora palette
+        bone: 'hsl(var(--bone))',
+        cream: 'hsl(var(--cream))',
+        paper: 'hsl(var(--paper))',
+        ink: {
+          DEFAULT: 'hsl(var(--ink))',
+          soft: 'hsl(var(--ink-soft))',
+        },
+        sage: {
+          DEFAULT: 'hsl(var(--sage))',
+          deep: 'hsl(var(--sage-deep))',
+          soft: 'hsl(var(--sage-soft))',
+        },
+        gold: {
+          DEFAULT: 'hsl(var(--gold))',
+          soft: 'hsl(var(--gold-soft))',
+        },
+        line: {
+          DEFAULT: 'hsl(var(--line))',
+          soft: 'hsl(var(--line-soft))',
+        },
+
+        // shadcn token bindings
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -46,50 +65,49 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
-        },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
-        },
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-fraunces)', 'ui-serif', 'Georgia', 'serif'],
+        serif: ['var(--font-fraunces)', 'ui-serif', 'Georgia', 'serif'],
+      },
+      fontSize: {
+        '2xs': ['0.6875rem', { lineHeight: '1rem' }],
+      },
+      letterSpacing: {
+        widest: '0.22em',
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 1px)',
+        sm: 'calc(var(--radius) - 2px)',
+      },
+      maxWidth: {
+        prose: '68ch',
       },
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(12px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-up': 'fade-up 0.7s ease-out forwards',
+        'fade-in': 'fade-in 0.7s ease-out forwards',
       },
     },
   },

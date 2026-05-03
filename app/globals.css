@@ -6,79 +6,50 @@
   .text-balance {
     text-wrap: balance;
   }
+  .text-pretty {
+    text-wrap: pretty;
+  }
 }
 
 @layer base {
   :root {
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
+    /* Velora palette — premium clinical wellness */
+    --bone:        38 30% 95%;      /* #F4EFE6 — page background */
+    --cream:       38 38% 97%;      /* #FAF6EE — surfaces */
+    --paper:       0 0% 100%;       /* pure white for cards */
+    --ink:         160 18% 11%;     /* #181F1B — deep forest ink */
+    --ink-soft:    160 12% 22%;     /* secondary ink */
+    --sage:        148 14% 38%;     /* #54675A — sage primary */
+    --sage-deep:   150 18% 22%;     /* hover */
+    --sage-soft:   140 16% 88%;     /* tinted backgrounds */
+    --gold:        36 38% 56%;      /* #B89968 — accent */
+    --gold-soft:   36 60% 92%;
+    --line:        38 18% 86%;      /* #DCD4C5 — borders */
+    --line-soft:   38 18% 92%;
+    --muted:       38 8% 42%;
+    --muted-soft:  38 6% 60%;
+
+    /* shadcn token mapping (kept light for any radix bits we use) */
+    --background:  var(--bone);
+    --foreground:  var(--ink);
+    --card:        var(--paper);
+    --card-foreground: var(--ink);
+    --popover:     var(--paper);
+    --popover-foreground: var(--ink);
+    --primary:     var(--ink);
+    --primary-foreground: var(--cream);
+    --secondary:   var(--sage-soft);
+    --secondary-foreground: var(--ink);
+    --muted:       var(--sage-soft);
+    --muted-foreground: 38 8% 42%;
+    --accent:      var(--gold-soft);
+    --accent-foreground: var(--ink);
+    --destructive: 0 60% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border:      var(--line);
+    --input:       var(--line);
+    --ring:        var(--sage);
+    --radius: 0.25rem;
   }
 }
 
@@ -86,7 +57,118 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-bone text-ink antialiased;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background-color: hsl(var(--gold) / 0.25);
+    color: hsl(var(--ink));
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    color: hsl(var(--ink));
+    text-wrap: balance;
+  }
+
+  /* Editorial display tweaks */
+  .font-display {
+    font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+    font-feature-settings: "ss01";
+  }
+  .font-mono-uppercase {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+  }
+}
+
+@layer components {
+  /* Container — generous editorial gutters */
+  .container-velora {
+    @apply mx-auto w-full px-6 sm:px-8 lg:px-12;
+    max-width: 80rem; /* 1280 */
+  }
+  .container-narrow {
+    @apply mx-auto w-full px-6 sm:px-8 lg:px-12;
+    max-width: 56rem;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply text-[11px] tracking-[0.22em] uppercase text-sage font-medium;
+  }
+
+  /* Hairline divider */
+  .hairline {
+    height: 1px;
+    background: hsl(var(--line));
+    width: 100%;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm
+           text-[14px] font-medium transition-all duration-200 ease-out
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2
+           focus-visible:ring-offset-bone disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-ink text-cream hover:bg-sage-deep px-6 py-3.5;
+  }
+  .btn-secondary {
+    @apply btn bg-transparent text-ink border border-ink/80 hover:bg-ink hover:text-cream px-6 py-3.5;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink hover:text-sage px-2 py-2;
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-1.5 text-ink hover:text-sage transition-colors text-[14px]
+           font-medium border-b border-ink/30 hover:border-sage pb-0.5;
+  }
+
+  /* Cards */
+  .card-bordered {
+    @apply bg-paper border border-line rounded-sm;
+  }
+
+  /* Chip */
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-soft text-sage-deep
+           text-[11px] tracking-[0.18em] uppercase font-medium;
+  }
+
+  /* Form inputs */
+  .input {
+    @apply w-full bg-cream border border-line text-ink placeholder:text-muted-foreground
+           rounded-sm px-4 py-3 text-[15px] leading-tight transition-colors
+           focus-visible:outline-none focus-visible:border-sage focus-visible:bg-paper
+           focus-visible:ring-2 focus-visible:ring-sage/20;
+  }
+  textarea.input {
+    @apply leading-relaxed py-3.5;
+  }
+  select.input {
+    @apply appearance-none bg-cream pr-10
+           bg-[url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2354675A%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpolyline%20points%3D%276%209%2012%2015%2018%209%27%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E")]
+           bg-no-repeat bg-[right_1rem_center];
+  }
+
+  .checkbox-row {
+    @apply flex items-start gap-3 py-2.5 px-3 rounded-sm hover:bg-cream/50 transition-colors cursor-pointer text-[14px] text-ink;
+  }
+  .checkbox-row input[type="checkbox"] {
+    @apply mt-1 size-4 accent-sage shrink-0;
   }
 }

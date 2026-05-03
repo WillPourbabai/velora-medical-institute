@@ -1,12 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    unoptimized: true,
-  },
-  experimental: {
-    serverActions: {
-      bodySizeLimit: '100mb',
-    },
+    formats: ['image/avif', 'image/webp'],
   },
 }
 
