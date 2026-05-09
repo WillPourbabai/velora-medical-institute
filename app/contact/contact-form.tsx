@@ -64,7 +64,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="bg-paper border border-line p-7 md:p-10">
       <p className="eyebrow">Send a Message</p>
       <h2 className="mt-3 font-display text-[28px] md:text-[34px] leading-tight tracking-[-0.012em] text-ink">
-        Tell us how we can help
+        One business day, written reply
       </h2>
 
       <div className="mt-9 grid sm:grid-cols-2 gap-5">

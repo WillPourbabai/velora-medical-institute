@@ -26,6 +26,11 @@ const config: Config = {
           DEFAULT: 'hsl(var(--gold))',
           soft: 'hsl(var(--gold-soft))',
         },
+        brown: {
+          DEFAULT: 'hsl(var(--brown))',
+          deep: 'hsl(var(--brown-deep))',
+          soft: 'hsl(var(--brown-soft))',
+        },
         line: {
           DEFAULT: 'hsl(var(--line))',
           soft: 'hsl(var(--line-soft))',

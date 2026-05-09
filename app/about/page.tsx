@@ -16,7 +16,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Velora"
         title={<>Sustained improvement, <em className="not-italic text-sage">measured one</em> visit at a time.</>}
-        subtitle="Velora Medical Institute is a physician-directed, direct-pay telemedicine practice focused on metabolic health, weight management, and hormone optimization. Our work is built around a single principle: the right care, applied consistently."
+        subtitle="Velora Medical Institute is a physician-directed, direct-pay telemedicine practice focused on metabolic health, weight management, and hormone optimization. Two double board-certified physicians; no insurance, no fixed protocols, no rotating provider on every visit."
         primary={{ href: '/book', label: 'Book Initial Consultation' }}
         secondary={{ href: '/physicians', label: 'Meet Our Physicians' }}
       />

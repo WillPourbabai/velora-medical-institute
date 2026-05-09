@@ -1,301 +1,181 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
-import { ArrowUpRight, ArrowRight, Brain, Calendar, Droplet, FlaskConical, HeartPulse, Moon, Scale, Sparkles, Zap, ShieldCheck } from 'lucide-react'
-import { Section, SectionHeading, NumberedTag } from '@/components/site/section'
-import { FaqAccordion } from '@/components/site/faq-accordion'
+import {
+  Calendar,
+  ArrowRight,
+  HeartPulse,
+  Brain,
+  Moon,
+  Zap,
+  Sparkles,
+  ShieldCheck,
+  FlaskConical,
+  Activity,
+  Stethoscope,
+  Monitor,
+} from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Hormone Therapy (BHRT)',
+  title: 'Hormone Optimization',
   description:
-    'Physician-guided evaluation and management of hormone-related conditions in men and women. Bioidentical hormone therapy tailored to your physiology, symptoms, and long-term health goals.',
+    'Personalized hormone therapy for men and women. Restore balance, improve energy, and support overall wellbeing — guided by double board-certified physicians.',
 }
 
 export default function HormoneTherapyPage() {
   return (
     <>
-      <HormoneHero />
-
-      {/* Overview */}
-      <Section bg="bone">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          <div className="lg:col-span-5">
-            <SectionHeading
-              eyebrow="Overview"
-              title={<>Evidence-led, <em className="not-italic text-sage">individually tuned</em>.</>}
-            />
-          </div>
-          <div className="lg:col-span-7 space-y-7 text-[16.5px] leading-relaxed text-ink-soft">
-            <p>
-              Hormone therapy at Velora Medical Institute is based on structured, physician-directed
-              evaluation and ongoing management — rather than isolated or protocol-based treatment.
-            </p>
-            <p>
-              Care begins with a detailed assessment of symptoms, medical history, and relevant
-              laboratory data to identify potential hormonal imbalances. Based on this evaluation, an
-              individualized treatment plan is developed, which may include hormone therapy when
-              appropriate, along with continuous monitoring and adjustment.
-            </p>
-            <p>
-              The focus is on optimizing clinical response while maintaining safety through regular
-              follow-up and reassessment over time.
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* What's Included */}
-      <Section bg="cream">
-        <SectionHeading
-          eyebrow="What's Included"
-          title={<>A complete <em className="not-italic text-sage">evaluation framework</em>.</>}
-        />
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line">
-          {[
-            { icon: <HeartPulse className="size-5" />, title: 'Comprehensive Physician Evaluation', body: 'Assessment of symptoms, medical history, and treatment goals.' },
-            { icon: <FlaskConical className="size-5" />, title: 'Laboratory Evaluation', body: 'Used to assess hormone levels and guide treatment decisions.' },
-            { icon: <Sparkles className="size-5" />, title: 'Personalized Treatment Plan', body: 'Based on clinical findings and laboratory results.' },
-            { icon: <Droplet className="size-5" />, title: 'Medication Management', body: 'When appropriate — including hormone therapy guided by medical evaluation.' },
-            { icon: <Zap className="size-5" />, title: 'Ongoing Monitoring & Follow-Up', body: 'Regular visits to assess response and adjust treatment.' },
-            { icon: <ShieldCheck className="size-5" />, title: 'Safety-Focused Care', body: 'Monitoring for effectiveness and potential risks over time.' },
-          ].map((f) => (
-            <div key={f.title} className="bg-cream p-7 lg:p-8">
-              <span className="size-10 rounded-full bg-sage-soft text-sage flex items-center justify-center">
-                {f.icon}
-              </span>
-              <h3 className="mt-6 font-display text-[20px] leading-tight">{f.title}</h3>
-              <p className="mt-3 text-[14.5px] text-ink-soft leading-relaxed">{f.body}</p>
+      {/* HERO — F85A00FB */}
+      <section className="relative bg-bone overflow-hidden">
+        <div className="container-velora py-12 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+                Hormone Optimization
+              </p>
+              <h1
+                className="mt-5 font-display leading-[1.04] tracking-[-0.018em] text-ink"
+                style={{ fontSize: 'clamp(2rem, 4.4vw, 3.5rem)' }}
+              >
+                Personalized Therapy
+                <br />
+                for <span className="text-brown">Men and Women.</span>
+              </h1>
+              <div className="mt-5 w-16 h-px bg-gold" />
+              <p className="mt-6 text-[15px] text-ink-soft leading-[1.65] max-w-md">
+                Restore balance, improve energy, enhance mood, and support overall hormonal
+                health. Bioidentical therapy guided by lab work and physician oversight.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  href="/book?type=hormone"
+                  className="inline-flex items-center gap-2 bg-brown text-cream hover:bg-brown-deep px-6 py-3.5 rounded-md text-[11px] tracking-[0.24em] uppercase font-semibold transition-colors"
+                >
+                  <Calendar className="size-4" strokeWidth={2} />
+                  Schedule Consultation
+                </Link>
+                <Link
+                  href="#symptoms"
+                  className="inline-flex items-center gap-2 border border-ink text-ink hover:bg-ink hover:text-cream px-6 py-3.5 rounded-md text-[11px] tracking-[0.24em] uppercase font-semibold transition-colors"
+                >
+                  Learn More
+                  <ArrowRight className="size-3.5" />
+                </Link>
+              </div>
             </div>
-          ))}
-        </div>
-        <p className="mt-8 text-[13px] text-muted-foreground italic">
-          Treatment is individualized and not based on fixed protocols.
-        </p>
-      </Section>
-
-      {/* What We Evaluate */}
-      <Section bg="ink">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
-            <SectionHeading
-              eyebrow="What We Evaluate"
-              inverted
-              title={<>Symptoms that often warrant <em className="not-italic text-gold">evaluation</em>.</>}
-              intro="Patients may benefit from a comprehensive, physician-guided evaluation if experiencing any of the following — guided by both clinical assessment and laboratory data."
-            />
-          </div>
-          <div className="lg:col-span-7">
-            <ul className="grid sm:grid-cols-2 gap-px bg-cream/10 border border-cream/10">
-              {[
-                { icon: <Zap className="size-4" />, label: 'Persistent fatigue or low energy' },
-                { icon: <HeartPulse className="size-4" />, label: 'Decreased libido' },
-                { icon: <Scale className="size-4" />, label: 'Weight gain or difficulty losing weight' },
-                { icon: <Sparkles className="size-4" />, label: 'Perimenopause / menopause symptoms' },
-                { icon: <Brain className="size-4" />, label: 'Brain fog or reduced concentration' },
-                { icon: <Droplet className="size-4" />, label: 'Mood changes or irritability' },
-                { icon: <Moon className="size-4" />, label: 'Poor sleep or insomnia' },
-                { icon: <FlaskConical className="size-4" />, label: 'Symptoms suggestive of low testosterone' },
-              ].map((s) => (
-                <li key={s.label} className="bg-ink p-5 flex items-center gap-3 text-[14.5px] text-cream">
-                  <span className="size-8 rounded-full bg-cream/5 text-gold flex items-center justify-center">
-                    {s.icon}
-                  </span>
-                  {s.label}
-                </li>
-              ))}
-            </ul>
+            <div className="relative aspect-[4/3] rounded-md overflow-hidden">
+              <Image
+                src="/photos/hormone-hero.png"
+                alt="A smiling couple with the Velora Hormone Optimization product on a table"
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Care Options */}
-      <Section bg="bone">
-        <SectionHeading
-          eyebrow="Care Options"
-          title={<>Two ways to begin, <em className="not-italic text-sage">one standard of care</em>.</>}
-        />
-        <div className="mt-14 grid lg:grid-cols-2 gap-6">
-          <div className="bg-paper border border-line p-8 lg:p-10">
-            <p className="eyebrow">Individual Visits</p>
-            <h3 className="mt-3 font-display text-[28px] leading-tight">Physician visits, paid per session</h3>
-            <p className="mt-4 text-[14.5px] text-ink-soft leading-relaxed">
-              Suitable for patients who prefer flexibility or wish to begin care without a long-term
-              program commitment.
+      {/* OVERVIEW + 4 PILLARS */}
+      <section className="bg-paper">
+        <div className="container-velora py-14 lg:py-16">
+          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-14 items-start">
+            <div>
+              <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+                Why Hormone Optimization
+              </p>
+              <h2
+                className="mt-4 font-display leading-[1.05] tracking-[-0.018em] text-ink"
+                style={{ fontSize: 'clamp(1.625rem, 3.2vw, 2.25rem)' }}
+              >
+                Hormones drive how you feel.
+              </h2>
+              <div className="mt-5 w-12 h-px bg-gold" />
+              <p className="mt-6 text-[15px] text-ink-soft leading-[1.7]">
+                Your hormones regulate metabolism, sleep, mood, focus, and energy. When they shift
+                out of range, the symptoms show up everywhere &mdash; even when standard labs read
+                &ldquo;normal.&rdquo;
+              </p>
+              <p className="mt-4 text-[15px] text-ink-soft leading-[1.7]">
+                Treatment begins with a full clinical assessment and laboratory panel. From there,
+                a physician designs a bioidentical hormone protocol tuned to your physiology and
+                refined visit by visit.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Pillar icon={<HeartPulse className="size-5" strokeWidth={1.6} />} title="Restore Balance" body="Bioidentical therapy matched to your lab values." />
+              <Pillar icon={<Zap className="size-5" strokeWidth={1.6} />} title="Renewed Energy" body="Address fatigue and the underlying causes." />
+              <Pillar icon={<Brain className="size-5" strokeWidth={1.6} />} title="Sharper Mood" body="Mood, focus, and stress resilience." />
+              <Pillar icon={<Moon className="size-5" strokeWidth={1.6} />} title="Better Sleep" body="Recovery quality is where everything else begins." />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SYMPTOMS GRID */}
+      <section id="symptoms" className="bg-bone">
+        <div className="container-velora py-14 lg:py-16">
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+              What We Evaluate
             </p>
-            <dl className="mt-8 divide-y divide-line border-y border-line">
-              <div className="flex items-baseline justify-between py-5">
-                <dt className="text-[14px] text-ink-soft">Initial Consultation</dt>
-                <dd className="font-display text-[24px]">$295</dd>
-              </div>
-              <div className="flex items-baseline justify-between py-5">
-                <dt className="text-[14px] text-ink-soft">Follow-Up Visit</dt>
-                <dd className="font-display text-[24px]">$195</dd>
-              </div>
-            </dl>
-            <Link href="/book?type=hormone" className="btn-primary mt-8 w-full">
-              Book Individual Visit
-              <ArrowUpRight className="size-3.5" />
-            </Link>
-          </div>
-
-          <div className="bg-ink text-cream border border-gold p-8 lg:p-10 relative">
-            <span className="absolute -top-3 left-8 chip bg-gold text-ink">Recommended</span>
-            <p className="eyebrow text-gold">Hormone Therapy Program</p>
-            <h3 className="mt-3 font-display text-[28px] text-cream leading-tight">5 physician visits</h3>
-            <p className="mt-4 text-[14.5px] text-cream/70 leading-relaxed">
-              Focused evaluation, laboratory review, and ongoing optimization across five
-              physician visits.
-            </p>
-            <dl className="mt-8 divide-y divide-cream/10 border-y border-cream/10">
-              <div className="flex items-baseline justify-between py-5">
-                <dt className="text-[14px] text-cream/80">Per-Visit Investment</dt>
-                <dd className="font-display text-[24px] text-cream">$145</dd>
-              </div>
-              <div className="flex items-baseline justify-between py-5">
-                <dt className="text-[14px] text-cream/80">Total Program</dt>
-                <dd className="font-display text-[24px] text-cream">$725</dd>
-              </div>
-              <div className="flex items-baseline justify-between py-5">
-                <dt className="text-[14px] text-cream/80">vs. Individual Visit Total</dt>
-                <dd className="font-display text-[18px] text-gold">~$250 less</dd>
-              </div>
-            </dl>
-            <Link href="/programs#hormone" className="btn mt-8 bg-cream text-ink hover:bg-gold px-6 py-3.5 w-full">
-              Start Hormone Therapy Program
-              <ArrowUpRight className="size-3.5" />
-            </Link>
-          </div>
-        </div>
-      </Section>
-
-      {/* Treatment Journey */}
-      <Section bg="cream">
-        <SectionHeading
-          eyebrow="Your Treatment Journey"
-          title={<>Care structured for safe, effective <em className="not-italic text-sage">optimization</em>.</>}
-        />
-        <ol className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
-          {[
-            { n: '01', title: 'Initial Consultation', body: 'Comprehensive evaluation of symptoms, medical history, and laboratory strategy.' },
-            { n: '02', title: 'Early Follow-Up', body: '~2 weeks — assessment of initial response and early treatment adjustment.' },
-            { n: '03', title: 'Ongoing Management', body: 'Follow-up at 4–8 weeks and approximately 3 months, with continued monitoring.' },
-            { n: '04', title: 'Maintenance Phase', body: 'Long-term follow-up focused on sustaining symptom improvement and safety.' },
-          ].map((s) => (
-            <li key={s.n} className="bg-cream p-7 lg:p-8 flex flex-col">
-              <NumberedTag n={s.n} />
-              <h3 className="font-display text-[22px] leading-tight mt-5">{s.title}</h3>
-              <p className="mt-3 text-[14.5px] text-ink-soft leading-relaxed">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      {/* Why */}
-      <Section bg="bone">
-        <div className="grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5">
-            <SectionHeading
-              eyebrow="Why Physician-Guided Care"
-              title={<>Hormone therapy requires <em className="not-italic text-sage">careful oversight</em>.</>}
-              intro="At Velora, care is directed by physicians trained in Internal Medicine and Obesity Medicine — supporting precise, evidence-based hormone optimization."
-            />
-          </div>
-          <div className="lg:col-span-7">
-            <ul className="divide-y divide-line border-y border-line">
-              {[
-                { title: 'Comprehensive medical assessment', body: 'Whole-person evaluation rather than narrow protocol-driven care.' },
-                { title: 'Safe, appropriate use of hormone therapy', body: 'Dosing tailored to your physiology and clinical context.' },
-                { title: 'Individualized treatment based on response', body: 'Plans evolve as your data, symptoms, and outcomes inform the next step.' },
-                { title: 'Ongoing monitoring for effectiveness and safety', body: 'Continuous follow-up with timely refinements.' },
-              ].map((row) => (
-                <li key={row.title} className="py-6">
-                  <h3 className="font-display text-[20px] leading-tight">{row.title}</h3>
-                  <p className="mt-2 text-[15px] text-ink-soft leading-relaxed">{row.body}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      {/* Important Information */}
-      <Section bg="cream">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
-            <SectionHeading
-              eyebrow="Important Information"
-              title={<>Practical details, <em className="not-italic text-sage">stated up front</em>.</>}
-            />
-          </div>
-          <div className="lg:col-span-7">
-            <ul className="space-y-5 text-[15px] text-ink-soft leading-relaxed">
-              <li className="flex gap-4 pb-5 border-b border-line">
-                <ShieldCheck className="size-5 text-sage shrink-0 mt-0.5" />
-                <span><strong className="text-ink font-medium">Hormone therapy is not appropriate for all patients.</strong> Eligibility is determined through clinical evaluation.</span>
-              </li>
-              <li className="flex gap-4 pb-5 border-b border-line">
-                <FlaskConical className="size-5 text-sage shrink-0 mt-0.5" />
-                <span><strong className="text-ink font-medium">Laboratory testing is typically required</strong> prior to initiating treatment.</span>
-              </li>
-              <li className="flex gap-4 pb-5 border-b border-line">
-                <Droplet className="size-5 text-sage shrink-0 mt-0.5" />
-                <span><strong className="text-ink font-medium">Medication costs are not included</strong> in visit fees.</span>
-              </li>
-              <li className="flex gap-4 pb-5 border-b border-line">
-                <Sparkles className="size-5 text-sage shrink-0 mt-0.5" />
-                <span><strong className="text-ink font-medium">Treatment plans are individualized</strong> based on clinical evaluation and response.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      {/* FAQ */}
-      <Section bg="bone">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-4 lg:sticky lg:top-32">
-            <SectionHeading
-              eyebrow="Common Questions"
-              title={<>Hormone therapy <em className="not-italic text-sage">questions</em>, answered.</>}
-            />
-          </div>
-          <div className="lg:col-span-8">
-            <FaqAccordion
-              defaultOpen={0}
-              items={[
-                { q: 'What is bioidentical hormone therapy (BHRT)?', a: 'Bioidentical hormone therapy uses hormones that are chemically identical to those naturally produced by the body. Treatment is designed to restore hormonal balance and improve symptoms associated with hormonal changes.' },
-                { q: 'Who may benefit from hormone therapy?', a: 'Hormone therapy may be appropriate for individuals experiencing symptoms such as fatigue, low energy, sleep disturbances, changes in metabolism, decreased libido, mood changes, or menopause-related symptoms.' },
-                { q: 'How is it determined whether my symptoms are hormone-related?', a: 'Your physician will review your symptoms, medical history, and overall health. Laboratory testing may be recommended to evaluate hormone levels and guide treatment decisions.' },
-                { q: 'Is hormone therapy safe?', a: 'When prescribed appropriately and monitored by a qualified physician, hormone therapy can be a safe and effective treatment option. Treatment is individualized and adjusted over time based on clinical response and safety considerations.' },
-                { q: 'What types of hormone therapy are available?', a: 'Treatment may include estrogen, progesterone, testosterone, or other therapies depending on individual needs. These may be delivered through various forms, including topical, injectable, or oral options.' },
-                { q: 'Can women use testosterone?', a: 'In select cases, low-dose testosterone may be used off-label for symptoms such as low libido. Treatment is carefully individualized and monitored to ensure safety and effectiveness.' },
-                { q: 'How long does it take to notice improvement?', a: 'Some patients begin to notice improvement within several weeks. Full benefits may take a few months as hormone levels are optimized and treatment is adjusted over time.' },
-              ]}
-            />
-          </div>
-        </div>
-      </Section>
-
-      {/* Final CTA */}
-      <section className="bg-ink text-cream">
-        <div className="container-velora py-24 md:py-28 grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7">
-            <span className="eyebrow text-gold">Start Your Care</span>
             <h2
-              className="mt-5 font-display leading-[1.04] tracking-[-0.018em] text-cream"
-              style={{ fontSize: 'clamp(2rem, 5.5vw, 3.625rem)' }}
+              className="mt-4 font-display leading-[1.05] tracking-[-0.018em] text-ink"
+              style={{ fontSize: 'clamp(1.5rem, 3vw, 2.125rem)' }}
             >
-              Begin physician-guided <em className="not-italic text-gold">hormone therapy</em>.
+              Symptoms that often point to hormonal imbalance
             </h2>
           </div>
-          <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3">
-            <Link href="/book?type=hormone" className="btn bg-cream text-ink hover:bg-gold px-6 py-4 flex-1">
-              Book Initial Consultation
-              <ArrowUpRight className="size-3.5" />
-            </Link>
-            <Link href="/programs#hormone" className="btn bg-transparent border border-cream/30 text-cream hover:bg-cream hover:text-ink px-6 py-4 flex-1">
-              Start Hormone Therapy Program
-            </Link>
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: <Zap className="size-4" />, label: 'Persistent fatigue or low energy' },
+              { icon: <HeartPulse className="size-4" />, label: 'Decreased libido' },
+              { icon: <Activity className="size-4" />, label: 'Weight gain or trouble losing weight' },
+              { icon: <Sparkles className="size-4" />, label: 'Perimenopause or menopause symptoms' },
+              { icon: <Brain className="size-4" />, label: 'Brain fog or reduced concentration' },
+              { icon: <FlaskConical className="size-4" />, label: 'Mood changes or irritability' },
+              { icon: <Moon className="size-4" />, label: 'Poor sleep or insomnia' },
+              { icon: <Stethoscope className="size-4" />, label: 'Symptoms suggestive of low testosterone' },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="bg-paper border border-line/60 rounded-md p-4 flex items-start gap-3"
+              >
+                <span className="mt-0.5 size-7 rounded-full bg-bone border border-brown/30 text-brown flex items-center justify-center shrink-0">
+                  {s.icon}
+                </span>
+                <p className="text-[13px] text-ink leading-[1.45]">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DARK FOOTER STRIP */}
+      <section className="bg-brown text-cream">
+        <div className="container-velora py-12 lg:py-14">
+          <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center">
+            <div className="grid sm:grid-cols-3 gap-x-6 gap-y-5">
+              <FooterStrip icon={<Stethoscope className="size-4" />} title="Physician-Led Care" body="Board-certified medical oversight." />
+              <FooterStrip icon={<ShieldCheck className="size-4" />} title="Safe & Effective" body="Lab-driven, individually tuned therapy." />
+              <FooterStrip icon={<Monitor className="size-4" />} title="Telemedicine Convenience" body="Care from home, on your schedule." />
+            </div>
+            <div className="text-right">
+              <p className="font-display text-[18px] leading-[1.3] text-cream max-w-[260px] ml-auto">
+                Restore. <span className="text-gold">Renew.</span>
+                <br />
+                Revitalize.
+              </p>
+              <Link
+                href="/book?type=hormone"
+                className="mt-4 inline-flex items-center gap-2 bg-cream text-brown hover:bg-paper px-5 py-3 rounded-md text-[10.5px] tracking-[0.24em] uppercase font-semibold transition-colors"
+              >
+                <Calendar className="size-4" />
+                Schedule
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -303,103 +183,28 @@ export default function HormoneTherapyPage() {
   )
 }
 
-/* ──────────────────────────────────────────────
-   Hormone Therapy hero — product-led, design 1
-   ────────────────────────────────────────────── */
-function HormoneHero() {
+function Pillar({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
-    <section className="relative overflow-hidden bg-ink text-cream">
-      {/* Warm background — espresso + gold light beam, matches product photo lighting */}
-      <div className="absolute inset-0 bg-[linear-gradient(115deg,#1A140E_0%,#2A1F14_55%,#3A2C1B_100%)]" />
-      <div
-        className="absolute -top-32 -left-20 w-[1100px] h-[700px] -z-0 rotate-[18deg] opacity-50 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(100deg, rgba(255,220,160,0.55) 0%, rgba(255,200,130,0.25) 35%, rgba(255,200,130,0) 70%)',
-          filter: 'blur(60px)',
-        }}
-        aria-hidden
-      />
-
-      <div className="relative container-velora pt-28 sm:pt-32 lg:pt-40 pb-14 sm:pb-16 lg:pb-24">
-        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
-          {/* Copy */}
-          <div>
-            <p className="text-[11px] tracking-[0.32em] sm:tracking-[0.36em] uppercase text-gold font-semibold">
-              Hormone Therapy · BHRT
-            </p>
-
-            <h1
-              className="mt-6 font-display leading-[1.0] tracking-[-0.02em] text-cream"
-              style={{ fontSize: 'clamp(2.125rem, 6.5vw, 4.75rem)' }}
-            >
-              Restore <span className="text-gold">balance.</span>
-              <br />
-              Reclaim <span className="text-gold">energy.</span>
-            </h1>
-
-            <div className="mt-7 w-24 h-px bg-gold" />
-
-            <p className="mt-7 max-w-xl text-[15.5px] leading-[1.7] text-cream/75">
-              Physician-guided evaluation and management of hormone-related conditions in both men and
-              women, focused on improving energy, mood, metabolic function, and overall well-being.
-              Care is grounded in clinical assessment and laboratory data.
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link
-                href="/book?type=hormone"
-                className="inline-flex items-center gap-2.5 bg-gold text-ink px-5 sm:px-7 py-3.5 sm:py-4 text-[11px] sm:text-[12px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold hover:bg-cream transition-colors rounded-md"
-              >
-                <Calendar className="size-4" strokeWidth={1.8} />
-                Book Initial Consultation
-              </Link>
-              <Link
-                href="/programs#hormone"
-                className="inline-flex items-center gap-2.5 border border-gold/60 text-gold px-5 sm:px-7 py-3.5 sm:py-4 text-[11px] sm:text-[12px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold hover:bg-gold hover:text-ink transition-colors rounded-md"
-              >
-                Hormone Therapy Program
-                <ArrowRight className="size-4" strokeWidth={1.8} />
-              </Link>
-            </div>
-
-            {/* Pricing strip */}
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-4 pt-7 border-t border-cream/15">
-              <PriceTag label="Initial Consult" value="$295" />
-              <PriceTag label="Follow-Up" value="$195" />
-              <PriceTag label="Program Total" value="$725" />
-              <PriceTag label="Per Visit (Program)" value="$145" />
-            </div>
-          </div>
-
-          {/* Product photo */}
-          <div className="relative">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
-              <Image
-                src="/hormone-therapy-product.png"
-                alt="Velora Hormone Therapy — personalized hormone care kit"
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            {/* Caption */}
-            <p className="mt-5 text-center text-[10.5px] tracking-[0.28em] uppercase text-gold/80">
-              Personalized · Physician-Directed · Long-Term
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div className="bg-bone border border-line/60 rounded-md p-5">
+      <span className="size-9 rounded-full bg-paper border border-brown/30 text-brown flex items-center justify-center">
+        {icon}
+      </span>
+      <h3 className="mt-4 font-display text-[16px] leading-tight text-ink">{title}</h3>
+      <p className="mt-2 text-[13px] text-ink-soft leading-[1.55]">{body}</p>
+    </div>
   )
 }
 
-function PriceTag({ label, value }: { label: string; value: string }) {
+function FooterStrip({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
-    <div>
-      <p className="text-[10px] tracking-[0.22em] uppercase text-gold/80">{label}</p>
-      <p className="mt-1.5 font-display text-[22px] text-cream leading-none">{value}</p>
+    <div className="flex items-start gap-3">
+      <span className="mt-0.5 size-8 rounded-full bg-cream/15 text-gold flex items-center justify-center shrink-0">
+        {icon}
+      </span>
+      <div>
+        <p className="text-[10.5px] tracking-[0.22em] uppercase text-cream font-semibold">{title}</p>
+        <p className="mt-1 text-[12px] text-cream/75 leading-[1.5]">{body}</p>
+      </div>
     </div>
   )
 }

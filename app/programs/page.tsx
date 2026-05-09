@@ -1,187 +1,155 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
-import { ArrowUpRight, Check, Calendar, FlaskConical, Activity, Combine } from 'lucide-react'
-import { PageHero } from '@/components/site/page-hero'
-import { Section, SectionHeading } from '@/components/site/section'
+import {
+  Calendar,
+  ClipboardList,
+  Sparkles,
+  Stethoscope,
+  ShieldCheck,
+  Target,
+  TrendingUp,
+  HeartPulse,
+  Check,
+} from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Structured Programs',
   description:
-    'Continuity, accountability, and ongoing clinical oversight. Velora structured programs offer a reduced per-visit investment and consistent physician follow-up.',
+    'Physician-guided programs designed for long-term results — Medical Weight Management, Metabolic & Hormone Optimization, and Signature Longevity Program.',
 }
 
 export default function ProgramsPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Structured Programs"
-        title={<>Continuity, accountability, <em className="not-italic text-sage">and oversight</em>.</>}
-        subtitle={
-          <>
-            For patients seeking consistent care and long-term results, structured programs provide
-            continuity, accountability, and ongoing clinical oversight — at a reduced per-visit
-            investment compared to individual visits.
-          </>
-        }
-        primary={{ href: '/book', label: 'Book Initial Consultation' }}
-        secondary={{ href: '/contact', label: 'Talk to the Practice' }}
-      />
-
-      {/* Comparison */}
-      <Section bg="bone">
-        <SectionHeading
-          eyebrow="Programs at a Glance"
-          title={<>Choose the program that <em className="not-italic text-sage">fits your care</em>.</>}
-        />
-
-        <div className="mt-14 grid lg:grid-cols-3 gap-6" id="weight">
-          <ProgramTile
-            icon={<Activity className="size-5" />}
-            tagline="Weight Management"
-            title="Annual Weight Management Program"
-            visits="16"
-            duration="12 months"
-            perVisit="$145"
-            total="$2,320"
-            equivalent="$3,120"
-            difference="approximately $800"
-            href="/book?type=weight&program=true"
-            includes={[
-              'Regular physician follow-up',
-              'Medication monitoring and adjustment',
-              'Ongoing assessment of response',
-              'Structured, long-term management approach',
-            ]}
-            cadence="Bi-weekly initially, transitioning to monthly"
-          />
-          <ProgramTile
-            icon={<FlaskConical className="size-5" />}
-            tagline="Hormone Therapy"
-            title="Hormone Therapy Program"
-            visits="5"
-            duration="6 months"
-            perVisit="$145"
-            total="$725"
-            equivalent="$975"
-            difference="approximately $250"
-            href="/book?type=hormone&program=true"
-            featured
-            id="hormone"
-            includes={[
-              'Laboratory review and interpretation',
-              'Ongoing assessment of symptoms and response',
-              'Treatment adjustment based on clinical findings',
-              'Structured follow-up for optimization and safety',
-            ]}
-            cadence="2-week, 4–8-week, 3-month, then maintenance"
-          />
-          <ProgramTile
-            icon={<Combine className="size-5" />}
-            tagline="Combined Care"
-            title="Integrated Combined Program"
-            visits="16"
-            duration="12 months"
-            perVisit="$180"
-            total="$2,880"
-            equivalent="—"
-            difference="includes 5 extended visits"
-            href="/book?type=combined&program=true"
-            id="combined"
-            includes={[
-              'Standard follow-up visits (30 min)',
-              '5 extended visits (40 min)',
-              'Integrated metabolic + hormone management',
-              'Coordinated treatment and ongoing refinement',
-            ]}
-            cadence="Coordinated metabolic + hormone cadence"
-          />
-        </div>
-
-        <p className="mt-10 text-[13px] text-muted-foreground italic max-w-3xl">
-          Structured programs provide a reduced per-visit investment while supporting more consistent
-          follow-up and improved outcomes. Per-visit pricing reflects program enrollment.
-        </p>
-      </Section>
-
-      {/* Why programs */}
-      <Section bg="cream">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          <div className="lg:col-span-5">
-            <SectionHeading
-              eyebrow="Why Structured Programs"
-              title={<>The case for <em className="not-italic text-sage">continuity</em>.</>}
-            />
-          </div>
-          <div className="lg:col-span-7 space-y-7 text-[16.5px] leading-relaxed text-ink-soft">
-            <p>
-              Long-term results in metabolic and hormonal medicine depend on more than the right
-              prescription. They depend on the consistency of follow-up, the quality of monitoring,
-              and the ability to adjust therapy as your physiology responds.
-            </p>
-            <p>
-              Structured programs are designed to deliver exactly that: a defined cadence of
-              physician visits, scheduled labs and reassessments, and a single clinician guiding
-              the arc of your care.
-            </p>
-            <ul className="grid sm:grid-cols-2 gap-3 mt-2">
-              {['Consistent follow-up', 'Safe, medically supervised treatment', 'Long-term clinical improvement', 'Reduced per-visit investment'].map((b) => (
-                <li key={b} className="flex items-start gap-3 text-[14.5px] text-ink py-3 border-b border-line/60">
-                  <Check className="size-4 text-sage shrink-0 mt-1" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      {/* Cancellation */}
-      <Section bg="bone">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
-            <SectionHeading
-              eyebrow="Program Policy"
-              title={<>Flexibility, <em className="not-italic text-sage">stated clearly</em>.</>}
-              intro="Patients enrolled in structured programs may cancel at any time. Early termination fees reflect the reduced per-visit investment associated with program-based care."
-            />
-          </div>
-          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
-            <div className="bg-paper border border-line p-7">
-              <p className="eyebrow">Weight Management</p>
-              <h3 className="font-display text-[28px] mt-3 leading-tight">$400</h3>
-              <p className="text-[13.5px] text-ink-soft mt-2">Early termination fee</p>
+      {/* HERO — E2CD6435 */}
+      <section className="relative bg-bone overflow-hidden">
+        <div className="container-velora py-12 lg:py-16">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+                Structured Programs · Lasting Results
+              </p>
+              <h1
+                className="mt-5 font-display leading-[1.04] tracking-[-0.018em] text-ink"
+                style={{ fontSize: 'clamp(2rem, 4.2vw, 3.25rem)' }}
+              >
+                Physician-Guided Programs
+                <br />
+                Designed for Long-Term Results
+              </h1>
+              <div className="mt-5 w-16 h-px bg-gold" />
+              <p className="mt-6 text-[15px] text-ink-soft leading-[1.65] max-w-md">
+                Comprehensive programs for weight management, hormone optimization,
+                and longevity-focused health.
+              </p>
             </div>
-            <div className="bg-paper border border-line p-7">
-              <p className="eyebrow">Hormone Therapy</p>
-              <h3 className="font-display text-[28px] mt-3 leading-tight">$250</h3>
-              <p className="text-[13.5px] text-ink-soft mt-2">Early termination fee</p>
+            <div className="relative">
+              <div className="relative aspect-[4/3] rounded-md overflow-hidden">
+                <Image
+                  src="/photos/programs-hikers.png"
+                  alt="A patient and his physician hiking — one helping the other up the mountain at sunset"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute -top-2 right-4 lg:right-6 max-w-[210px] text-right bg-bone/85 backdrop-blur-sm rounded-md px-4 py-3 hidden lg:block">
+                <p className="font-display text-[15px] leading-[1.4] text-ink italic">
+                  &ldquo;You don&rsquo;t have to climb alone. We guide you every step of the way.&rdquo;
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Final CTA */}
-      <section className="bg-ink text-cream">
-        <div className="container-velora py-24 md:py-28 text-center">
-          <span className="eyebrow text-gold">Ready to Begin</span>
-          <h2
-            className="mt-6 font-display leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto"
-            style={{ fontSize: 'clamp(2rem, 5.5vw, 3.75rem)' }}
-          >
-            Start with a comprehensive <em className="not-italic text-gold">initial consultation</em>.
-          </h2>
-          <p className="mt-7 text-[16.5px] text-cream/70 max-w-xl mx-auto leading-relaxed">
-            Your physician will help determine whether program-based care is the right fit for your
-            goals and clinical profile.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/book" className="btn bg-cream text-ink hover:bg-gold px-7 py-4">
-              Book Initial Consultation
-              <ArrowUpRight className="size-3.5" />
-            </Link>
-            <Link href="/contact" className="btn bg-transparent border border-cream/30 text-cream hover:bg-cream hover:text-ink px-7 py-4">
-              Speak with the Practice
-            </Link>
+      {/* TIERS */}
+      <section id="pricing" className="bg-paper">
+        <div className="container-velora py-14 lg:py-18">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+            <ProgramTier
+              icon={<ClipboardList className="size-5" strokeWidth={1.6} />}
+              title="Medical Weight Management"
+              price="$145"
+              cadenceTag="16 visits over 12 months"
+              bullets={[
+                'GLP-1 medications',
+                'Nutrition guidance',
+                'Ongoing monitoring',
+                'Physician care',
+              ]}
+              cta="Explore Program"
+              href="/weight-management"
+            />
+            <ProgramTier
+              icon={<Sparkles className="size-5" strokeWidth={1.6} />}
+              title="Metabolic & Hormone Optimization"
+              price="$180"
+              cadenceTag="5 visit program (40 min)"
+              cadenceLabel="EXTENSIVE"
+              bullets={[
+                'Weight management',
+                'Hormone optimization',
+                'Metabolic testing',
+                'Treatment plan',
+              ]}
+              cta="Start Program"
+              href="/hormone-therapy"
+              featured
+            />
+            <ProgramTier
+              icon={<Stethoscope className="size-5" strokeWidth={1.6} />}
+              title="Signature Longevity Program"
+              price="$220"
+              cadenceTag="5 visit program (60 min)"
+              cadenceLabel="EXTENSIVE"
+              bullets={[
+                'Longevity-focused care',
+                'Advanced metabolic assessment',
+                'Preventive & performance focus',
+                'Long-term health optimization',
+              ]}
+              cta="Explore Program"
+              href="/longevity"
+            />
+          </div>
+
+          <div className="mt-12 lg:mt-14 flex justify-end">
+            <div className="bg-brown text-cream rounded-2xl px-7 md:px-10 py-9 max-w-md w-full">
+              <h3
+                className="font-display leading-[1.1] tracking-[-0.012em] text-cream"
+                style={{ fontSize: 'clamp(1.5rem, 2.6vw, 1.875rem)' }}
+              >
+                Invest in Your Health.
+                <br />
+                Elevate Your Life.
+              </h3>
+              <p className="mt-4 text-[14px] text-cream/80 leading-[1.6]">
+                Our programs are designed to help you look, feel, and perform your best
+                &mdash; now and for years to come.
+              </p>
+              <Link
+                href="/book"
+                className="mt-6 inline-flex items-center gap-2 bg-cream text-brown hover:bg-paper px-5 py-3 rounded-md text-[11px] tracking-[0.24em] uppercase font-semibold transition-colors"
+              >
+                <Calendar className="size-4" strokeWidth={2} />
+                Schedule Your Consultation
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST 4-tile row */}
+      <section className="bg-bone">
+        <div className="container-velora py-12 lg:py-14">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6">
+            <TrustTile icon={<ShieldCheck className="size-5" />} title="Evidence-Based" body="Programs built on science and clinical expertise." />
+            <TrustTile icon={<Target className="size-5" />} title="Personalized" body="Tailored to your goals, biology, and lifestyle." />
+            <TrustTile icon={<TrendingUp className="size-5" />} title="Measurable Results" body="Track progress and optimize over time." />
+            <TrustTile icon={<HeartPulse className="size-5" />} title="Long-Term Approach" body="Sustainable strategies for lasting transformation." />
           </div>
         </div>
       </section>
@@ -189,96 +157,91 @@ export default function ProgramsPage() {
   )
 }
 
-function ProgramTile({
-  id, tagline, title, visits, duration, perVisit, total, equivalent, difference, href, includes, cadence, featured, icon,
+function ProgramTier({
+  icon, title, price, cadenceTag, cadenceLabel, bullets, cta, href, featured,
 }: {
-  id?: string
-  tagline: string
-  title: string
-  visits: string
-  duration: string
-  perVisit: string
-  total: string
-  equivalent: string
-  difference: string
-  href: string
-  includes: string[]
-  cadence: string
-  featured?: boolean
   icon: React.ReactNode
+  title: string
+  price: string
+  cadenceTag: string
+  cadenceLabel?: string
+  bullets: string[]
+  cta: string
+  href: string
+  featured?: boolean
 }) {
   return (
-    <article
-      id={id}
+    <div
       className={[
-        'border p-8 lg:p-10 flex flex-col scroll-mt-32',
-        featured ? 'bg-ink text-cream border-gold' : 'bg-paper border-line',
+        'relative flex flex-col p-7 lg:p-9 rounded-md transition-all',
+        featured
+          ? 'bg-paper border-2 border-brown shadow-[0_24px_60px_-20px_rgba(124,84,54,0.5)] lg:-translate-y-2'
+          : 'bg-paper border border-line/60',
       ].join(' ')}
     >
-      <div className="flex items-center justify-between">
-        <span className={`size-12 rounded-full flex items-center justify-center ${featured ? 'bg-cream/10 text-gold' : 'bg-sage-soft text-sage'}`}>
-          {icon}
+      {featured && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brown text-cream px-4 py-1 text-[9.5px] tracking-[0.28em] uppercase font-semibold rounded-md whitespace-nowrap">
+          Recommended
         </span>
-        {featured && <span className="chip bg-gold text-ink">Most Popular</span>}
-      </div>
-      <p className={`mt-7 eyebrow ${featured ? 'text-gold' : ''}`}>{tagline}</p>
-      <h3 className={`mt-3 font-display text-[26px] leading-tight ${featured ? 'text-cream' : 'text-ink'}`}>
+      )}
+
+      <span className="size-10 rounded-full bg-bone border border-brown/30 text-brown flex items-center justify-center mx-auto">
+        {icon}
+      </span>
+      <h3 className="mt-5 font-display text-[20px] md:text-[22px] leading-[1.15] text-ink text-center min-h-[56px] flex items-center justify-center">
         {title}
       </h3>
 
-      <div className={`mt-7 grid grid-cols-2 gap-3 pt-6 border-t ${featured ? 'border-cream/15' : 'border-line'}`}>
-        <Stat label="Visits" value={visits} featured={featured} />
-        <Stat label="Duration" value={duration} featured={featured} />
-        <Stat label="Per Visit" value={perVisit} featured={featured} />
-        <Stat label="Program Total" value={total} featured={featured} />
-      </div>
+      {cadenceLabel && (
+        <span className="mt-2 inline-flex self-center bg-brown text-cream px-2.5 py-1 text-[9px] tracking-[0.24em] uppercase font-semibold rounded-sm">
+          {cadenceLabel}
+        </span>
+      )}
 
-      <div className={`mt-6 pt-6 border-t ${featured ? 'border-cream/15' : 'border-line'}`}>
-        <p className={`text-[10.5px] tracking-[0.2em] uppercase ${featured ? 'text-gold' : 'text-sage'}`}>vs. Individual Visits</p>
-        <p className={`mt-2 ${featured ? 'text-cream/80' : 'text-ink-soft'} text-[13.5px]`}>
-          {equivalent !== '—' ? <>{equivalent} equivalent · <span className={featured ? 'text-gold' : 'text-sage'}>{difference} less</span></> : difference}
-        </p>
+      <div className="mt-4 text-center">
+        <span className="font-display text-[44px] leading-none text-ink">{price}</span>
+        <span className="ml-1 text-[13px] text-ink-soft italic">/ visit</span>
       </div>
+      <p className="mt-2 text-[10px] tracking-[0.24em] uppercase text-brown text-center font-semibold">
+        {cadenceTag}
+      </p>
 
-      <div className={`mt-6 pt-6 border-t ${featured ? 'border-cream/15' : 'border-line'}`}>
-        <p className={`text-[10.5px] tracking-[0.2em] uppercase ${featured ? 'text-gold' : 'text-sage'}`}>Visit Cadence</p>
-        <p className={`mt-2 ${featured ? 'text-cream/80' : 'text-ink-soft'} text-[13.5px] leading-relaxed`}>{cadence}</p>
-      </div>
+      <div className="mt-5 mx-auto w-12 h-px bg-line" />
 
-      <div className={`mt-6 pt-6 border-t ${featured ? 'border-cream/15' : 'border-line'}`}>
-        <p className={`text-[10.5px] tracking-[0.2em] uppercase ${featured ? 'text-gold' : 'text-sage'} mb-4`}>Includes</p>
-        <ul className="space-y-3">
-          {includes.map((b) => (
-            <li key={b} className={`flex items-start gap-3 text-[13.5px] ${featured ? 'text-cream/80' : 'text-ink-soft'}`}>
-              <Check className={`size-3.5 shrink-0 mt-1 ${featured ? 'text-gold' : 'text-sage'}`} />
-              {b}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className="mt-5 space-y-2.5 text-[13.5px] text-ink-soft flex-1">
+        {bullets.map((b) => (
+          <li key={b} className="flex items-start gap-2.5">
+            <Check className="size-4 mt-0.5 text-brown shrink-0" strokeWidth={2} />
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
 
-      <div className="mt-auto pt-9">
-        <Link
-          href={href}
-          className={`btn w-full px-6 py-3.5 ${
-            featured
-              ? 'bg-cream text-ink hover:bg-gold'
-              : 'bg-ink text-cream hover:bg-sage-deep'
-          }`}
-        >
-          Begin Enrollment
-          <ArrowUpRight className="size-3.5" />
-        </Link>
-      </div>
-    </article>
+      <Link
+        href={href}
+        className={[
+          'mt-7 inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-md text-[10.5px] tracking-[0.24em] uppercase font-semibold transition-colors',
+          featured
+            ? 'bg-brown text-cream hover:bg-brown-deep'
+            : 'border border-ink text-ink hover:bg-ink hover:text-cream',
+        ].join(' ')}
+      >
+        {cta}
+      </Link>
+    </div>
   )
 }
 
-function Stat({ label, value, featured }: { label: string; value: string; featured?: boolean }) {
+function TrustTile({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
-    <div>
-      <p className={`text-[10.5px] tracking-[0.2em] uppercase ${featured ? 'text-gold' : 'text-sage'}`}>{label}</p>
-      <p className={`mt-1 font-display text-[22px] ${featured ? 'text-cream' : 'text-ink'}`}>{value}</p>
+    <div className="flex items-start gap-3">
+      <span className="mt-0.5 size-9 rounded-full bg-paper border border-brown/30 text-brown flex items-center justify-center shrink-0">
+        {icon}
+      </span>
+      <div>
+        <p className="text-[10.5px] tracking-[0.24em] uppercase text-ink font-semibold">{title}</p>
+        <p className="mt-1 text-[12.5px] text-ink-soft leading-[1.5]">{body}</p>
+      </div>
     </div>
   )
 }

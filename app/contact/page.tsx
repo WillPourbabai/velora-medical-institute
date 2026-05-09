@@ -19,11 +19,12 @@ export default function ContactPage() {
             className="mt-4 font-display leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl"
             style={{ fontSize: 'clamp(2rem, 5.5vw, 4.25rem)' }}
           >
-            We&rsquo;re here to <em className="not-italic text-sage">help you start</em>.
+            Scheduling, programs, eligibility &mdash; <em className="not-italic text-sage">non-clinical questions</em>.
           </h1>
           <p className="mt-6 text-[16.5px] text-ink-soft max-w-2xl leading-relaxed">
-            For clinical questions, please book a consultation. For general inquiries, scheduling support,
-            or program information, our team responds within one business day.
+            For anything clinical, book a consultation &mdash; medical advice is not given over email.
+            For state licensure, program enrollment, billing, or rescheduling, our care team replies within
+            one business day, Monday through Friday.
           </p>
         </div>
       </section>
@@ -56,7 +57,7 @@ export default function ContactPage() {
               icon={<MapPin className="size-5" />}
               title="Location"
               value="Telemedicine practice"
-              description="Care delivered virtually in states where our physicians are licensed"
+              description="Care delivered virtually. [STATES NEEDED: list of states where physicians are licensed]"
             />
           </aside>
 

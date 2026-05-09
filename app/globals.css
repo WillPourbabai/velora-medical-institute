@@ -13,21 +13,24 @@
 
 @layer base {
   :root {
-    /* Velora palette — premium clinical wellness */
-    --bone:        38 30% 95%;      /* #F4EFE6 — page background */
-    --cream:       38 38% 97%;      /* #FAF6EE — surfaces */
-    --paper:       0 0% 100%;       /* pure white for cards */
-    --ink:         160 18% 11%;     /* #181F1B — deep forest ink */
-    --ink-soft:    160 12% 22%;     /* secondary ink */
-    --sage:        148 14% 38%;     /* #54675A — sage primary */
-    --sage-deep:   150 18% 22%;     /* hover */
-    --sage-soft:   140 16% 88%;     /* tinted backgrounds */
-    --gold:        36 38% 56%;      /* #B89968 — accent */
-    --gold-soft:   36 60% 92%;
-    --line:        38 18% 86%;      /* #DCD4C5 — borders */
-    --line-soft:   38 18% 92%;
-    --muted:       38 8% 42%;
-    --muted-soft:  38 6% 60%;
+    /* Velora palette — luxury champagne + dark luxe */
+    --bone:        36 32% 92%;      /* #F1E9D8 — warm champagne page bg */
+    --cream:       36 42% 95%;      /* #F7EFDE — elevated surface */
+    --paper:       38 50% 97%;      /* #FBF6EA — card surface */
+    --ink:         28 24% 8%;       /* #1A140E — deep espresso ink */
+    --ink-soft:    28 14% 22%;      /* secondary ink */
+    --sage:        32 28% 32%;      /* #6B5340 — warm bronze (replaces sage) */
+    --sage-deep:   28 30% 18%;      /* deep coffee hover */
+    --sage-soft:   36 36% 88%;      /* champagne tinted bg */
+    --gold:        36 52% 54%;      /* #C9A064 — luminous champagne gold */
+    --gold-soft:   36 60% 90%;
+    --brown:       28 40% 35%;      /* #7C5436 — chocolate brown CTA */
+    --brown-deep:  28 45% 22%;      /* #4F3320 — hover */
+    --brown-soft:  28 30% 88%;      /* tinted bg */
+    --line:        36 22% 82%;      /* warm champagne border */
+    --line-soft:   36 24% 90%;
+    --muted:       28 10% 38%;
+    --muted-soft:  28 8% 56%;
 
     /* shadcn token mapping (kept light for any radix bits we use) */
     --background:  var(--bone);
@@ -57,8 +60,13 @@
   * {
     @apply border-border;
   }
+  html, body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -107,7 +115,7 @@
 
   /* Eyebrow label */
   .eyebrow {
-    @apply text-[11px] tracking-[0.22em] uppercase text-sage font-medium;
+    @apply text-[11px] tracking-[0.22em] uppercase text-gold font-medium;
   }
 
   /* Hairline divider */
@@ -125,17 +133,19 @@
            focus-visible:ring-offset-bone disabled:pointer-events-none disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-ink text-cream hover:bg-sage-deep px-6 py-3.5;
+    @apply btn rounded-md bg-brown text-cream hover:bg-brown-deep px-6 py-3.5
+           tracking-[0.18em] uppercase text-[11.5px] font-semibold;
   }
   .btn-secondary {
-    @apply btn bg-transparent text-ink border border-ink/80 hover:bg-ink hover:text-cream px-6 py-3.5;
+    @apply btn rounded-md bg-transparent text-ink border border-ink/80 hover:bg-ink hover:text-cream px-6 py-3.5
+           tracking-[0.18em] uppercase text-[11.5px] font-semibold;
   }
   .btn-ghost {
-    @apply btn bg-transparent text-ink hover:text-sage px-2 py-2;
+    @apply btn bg-transparent text-ink hover:text-brown px-2 py-2;
   }
   .btn-link {
-    @apply inline-flex items-center gap-1.5 text-ink hover:text-sage transition-colors text-[14px]
-           font-medium border-b border-ink/30 hover:border-sage pb-0.5;
+    @apply inline-flex items-center gap-1.5 text-brown hover:text-brown-deep transition-colors text-[12px]
+           font-semibold tracking-[0.16em] uppercase pb-0.5;
   }
 
   /* Cards */
@@ -161,7 +171,7 @@
   }
   select.input {
     @apply appearance-none bg-cream pr-10
-           bg-[url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%2354675A%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpolyline%20points%3D%276%209%2012%2015%2018%209%27%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E")]
+           bg-[url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%236B5340%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpolyline%20points%3D%276%209%2012%2015%2018%209%27%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E")]
            bg-no-repeat bg-[right_1rem_center];
   }
 

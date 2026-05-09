@@ -543,7 +543,7 @@ function ConfirmationView({
           {[
             { n: '01', t: 'Confirmation Email', b: 'Look out for an email with payment + scheduling details.' },
             { n: '02', t: 'Complete Intake', b: 'Provide your medical history and goals before your visit.' },
-            { n: '03', t: 'Telemedicine Visit', b: 'Receive secure video link 24h prior to your appointment.' },
+            { n: '03', t: 'Telemedicine Visit', b: 'Secure video link arrives by email before your appointment. [STAT NEEDED: confirm exact lead time — 24h is a placeholder]' },
           ].map((s) => (
             <div key={s.n} className="bg-paper border border-line p-6">
               <span className="font-display italic text-gold text-[18px]">{s.n}</span>

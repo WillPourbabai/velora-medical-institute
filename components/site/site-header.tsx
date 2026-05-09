@@ -1,24 +1,35 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ArrowUpRight } from 'lucide-react'
+import { Menu, X, Calendar, ChevronDown } from 'lucide-react'
 import { Logo } from './logo'
 import { cn } from '@/lib/utils'
 
-const NAV = [
-  { href: '/weight-management', label: 'Weight Management' },
-  { href: '/hormone-therapy', label: 'Hormone Therapy' },
+const NAV: { href: string; label: string; children?: { href: string; label: string }[] }[] = [
+  { href: '/about', label: 'About' },
+  {
+    href: '#services',
+    label: 'Services',
+    children: [
+      { href: '/weight-management', label: 'Weight Management' },
+      { href: '/hormone-therapy', label: 'Hormone Optimization' },
+      { href: '/longevity', label: 'Longevity & Preventive Medicine' },
+    ],
+  },
   { href: '/programs', label: 'Programs' },
-  { href: '/physicians', label: 'Physicians' },
+  { href: '/programs#pricing', label: 'Pricing' },
   { href: '/faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -29,6 +40,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     setOpen(false)
+    setServicesOpen(false)
   }, [pathname])
 
   useEffect(() => {
@@ -37,57 +49,100 @@ export function SiteHeader() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
+  const openMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setServicesOpen(true)
+  }
+  const scheduleClose = () => {
+    closeTimer.current = setTimeout(() => setServicesOpen(false), 150)
+  }
+
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 transition-colors duration-300',
+        'sticky top-0 z-50 transition-[background,border-color,box-shadow] duration-200',
         scrolled
-          ? 'bg-bone/90 backdrop-blur-md border-b border-line'
+          ? 'bg-bone/95 backdrop-blur-md border-b border-line/60 shadow-[0_4px_20px_-12px_rgba(74,52,28,0.15)]'
           : 'bg-bone border-b border-transparent',
       )}
     >
-      {/* Utility bar */}
-      <div className="hidden md:block bg-ink text-cream/85">
-        <div className="container-velora flex items-center justify-between text-[11px] tracking-[0.16em] uppercase py-2">
-          <span className="opacity-80">Direct-Pay Practice · Physician-Directed Telemedicine</span>
-          <div className="flex items-center gap-6 opacity-80">
-            <Link href="/contact" className="hover:text-gold transition-colors">Contact</Link>
-            <Link href="/intake" className="hover:text-gold transition-colors">Patient Intake</Link>
-            <span className="text-gold">·</span>
-            <span>Mon–Fri · 8am–6pm CT</span>
-          </div>
-        </div>
-      </div>
+      <div className="container-velora flex items-center justify-between h-[78px] gap-6">
+        <Logo size="sm" />
 
-      {/* Main nav */}
-      <div className="container-velora flex items-center justify-between h-[74px]">
-        <Logo />
-
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-9">
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 xl:gap-9">
           {NAV.map((item) => {
-            const active = pathname === item.href || pathname.startsWith(item.href + '/')
+            const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+            if (item.children) {
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={openMenu}
+                  onMouseLeave={scheduleClose}
+                >
+                  <button
+                    type="button"
+                    className={cn(
+                      'inline-flex items-center gap-1 text-[11px] tracking-[0.22em] uppercase font-medium py-2 transition-colors',
+                      servicesOpen ? 'text-brown' : 'text-ink hover:text-brown',
+                    )}
+                    aria-haspopup="menu"
+                    aria-expanded={servicesOpen}
+                  >
+                    {item.label}
+                    <ChevronDown className={cn('size-3 transition-transform', servicesOpen && 'rotate-180')} />
+                    <span className={cn(
+                      'absolute left-0 right-0 -bottom-0.5 h-px bg-brown origin-center transition-transform',
+                      servicesOpen ? 'scale-x-100' : 'scale-x-0',
+                    )} />
+                  </button>
+                  {servicesOpen && (
+                    <div
+                      className="absolute left-1/2 -translate-x-1/2 top-full pt-3 min-w-[260px]"
+                      onMouseEnter={openMenu}
+                      onMouseLeave={scheduleClose}
+                    >
+                      <div className="bg-paper rounded-md border border-line/70 shadow-[0_18px_50px_-12px_rgba(74,52,28,0.25)] overflow-hidden">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="block px-5 py-3 text-[13px] text-ink hover:text-brown hover:bg-bone transition-colors"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            }
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'text-[13.5px] font-medium transition-colors relative py-1',
-                  active ? 'text-sage' : 'text-ink hover:text-sage',
+                  'relative text-[11px] tracking-[0.22em] uppercase font-medium py-2 transition-colors',
+                  active ? 'text-brown' : 'text-ink hover:text-brown',
                 )}
               >
                 {item.label}
                 {active && (
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-sage" />
+                  <span className="absolute left-0 right-0 -bottom-0.5 h-px bg-brown" />
                 )}
               </Link>
             )
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link href="/book" className="btn-primary hidden md:inline-flex">
-            Book Consultation
-            <ArrowUpRight className="size-3.5" />
+        <div className="flex items-center gap-3 shrink-0">
+          <Link
+            href="/book"
+            className="hidden md:inline-flex items-center gap-2 bg-brown text-cream hover:bg-brown-deep px-5 py-2.5 rounded-md text-[10.5px] tracking-[0.22em] uppercase font-semibold transition-colors"
+          >
+            <Calendar className="size-3.5" strokeWidth={2} />
+            Schedule Consultation
           </Link>
           <button
             type="button"
@@ -104,13 +159,13 @@ export function SiteHeader() {
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="absolute inset-0 bg-ink/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-ink/60 backdrop-blur-sm animate-fade-in"
             onClick={() => setOpen(false)}
             aria-hidden
           />
-          <div className="absolute top-0 right-0 h-full w-[88%] max-w-sm bg-bone shadow-2xl flex flex-col animate-fade-in">
-            <div className="flex items-center justify-between h-[74px] px-6 border-b border-line">
-              <Logo />
+          <div className="absolute top-0 right-0 h-full w-[88%] max-w-sm bg-bone shadow-[-20px_0_60px_-10px_rgba(0,0,0,0.4)] flex flex-col animate-fade-in">
+            <div className="flex items-center justify-between h-[78px] px-6 border-b border-line">
+              <Logo size="sm" />
               <button
                 type="button"
                 className="inline-flex items-center justify-center w-10 h-10 text-ink"
@@ -120,28 +175,42 @@ export function SiteHeader() {
                 <X className="size-6" />
               </button>
             </div>
-            <nav className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-1">
-              {NAV.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="font-display text-[28px] py-3 text-ink hover:text-sage transition-colors border-b border-line/60"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link href="/about" className="font-display text-[28px] py-3 text-ink hover:text-sage transition-colors border-b border-line/60">About</Link>
-              <Link href="/intake" className="font-display text-[28px] py-3 text-ink hover:text-sage transition-colors border-b border-line/60">Patient Intake</Link>
-              <Link href="/contact" className="font-display text-[28px] py-3 text-ink hover:text-sage transition-colors border-b border-line/60">Contact</Link>
+            <nav className="flex-1 overflow-y-auto px-6 py-6 flex flex-col">
+              {NAV.flatMap((item) =>
+                item.children
+                  ? [
+                      <p key={item.label + '-l'} className="text-[10px] tracking-[0.24em] uppercase text-ink-soft mt-4 mb-1.5">
+                        {item.label}
+                      </p>,
+                      ...item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="font-display text-[22px] py-2 text-ink hover:text-brown transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      )),
+                    ]
+                  : [
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="font-display text-[26px] py-3 text-ink hover:text-brown transition-colors border-b border-line/60"
+                      >
+                        {item.label}
+                      </Link>,
+                    ]
+              )}
             </nav>
             <div className="p-6 border-t border-line">
-              <Link href="/book" className="btn-primary w-full">
-                Book Consultation
-                <ArrowUpRight className="size-4" />
+              <Link
+                href="/book"
+                className="w-full inline-flex items-center justify-center gap-2 bg-brown text-cream hover:bg-brown-deep px-6 py-4 text-[12px] tracking-[0.24em] uppercase font-semibold rounded-md transition-colors"
+              >
+                <Calendar className="size-4" />
+                Schedule Consultation
               </Link>
-              <p className="mt-4 text-[11px] tracking-[0.16em] uppercase text-muted-foreground text-center">
-                Direct-Pay · Telemedicine
-              </p>
             </div>
           </div>
         </div>

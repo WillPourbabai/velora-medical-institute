@@ -19,7 +19,7 @@ export function Section({
     'sage-soft': 'bg-sage-soft',
   }
   return (
-    <section id={id} className={cn('py-20 md:py-28', bgs[bg], className)}>
+    <section id={id} className={cn('py-14 md:py-16 lg:py-20', bgs[bg], className)}>
       <div className="container-velora">{children}</div>
     </section>
   )
@@ -57,7 +57,7 @@ export function SectionHeading({
           'font-display leading-[1.05] tracking-[-0.015em]',
           inverted ? 'text-cream' : 'text-ink',
         )}
-        style={{ fontSize: 'clamp(1.75rem, 4.5vw, 3.25rem)' }}
+        style={{ fontSize: 'clamp(1.5rem, 3.4vw, 2.5rem)' }}
       >
         {title}
       </h2>
