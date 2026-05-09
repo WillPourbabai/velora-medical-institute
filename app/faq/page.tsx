@@ -43,18 +43,18 @@ const PRACTICE_FAQ = [
 export default function FaqPage() {
   return (
     <>
-      {/* HERO — CBACB474 mountain photo with V leaf + headline overlay */}
+      {/* HERO — clean mountain sunset, V leaf + headline overlay */}
       <section className="relative overflow-hidden">
         <div className="relative h-[70vh] min-h-[520px] max-h-[720px]">
           <Image
-            src="/photos/faq-mountain.png"
-            alt="A patient and his physician sitting on a mountain at sunset"
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80"
+            alt="Mountain sunset"
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/65" />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
             <VeloraMark size={64} />

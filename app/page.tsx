@@ -62,21 +62,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* LONGEVITY — 5CCFF3EA section */}
-      <section className="relative">
-        <div className="relative">
-          <Image
-            src="/photos/longevity-full.png"
-            alt="A couple relaxing on an outdoor terrace at sunset with the Velora longevity care framework overlaid"
-            width={1448}
-            height={1086}
-            sizes="100vw"
-            className="w-full h-auto"
-          />
-        </div>
-        <div className="bg-bone">
-          <div className="container-velora py-14 lg:py-16">
-            <div className="text-center max-w-2xl mx-auto">
+      {/* LONGEVITY — split: photo left, copy + 6-pillar cards right */}
+      <section className="bg-bone">
+        <div className="container-velora py-14 lg:py-18">
+          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-14 items-start">
+            <div className="relative aspect-[4/5] rounded-md overflow-hidden lg:sticky lg:top-24">
+              <Image
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80"
+                alt="A couple relaxing on an outdoor terrace at sunset"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
               <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
                 Physician-Guided Longevity Care
               </p>
@@ -86,11 +85,10 @@ export default function HomePage() {
               >
                 Six pillars. One framework for living well.
               </h2>
-              <p className="mt-5 text-[15px] text-ink-soft leading-[1.65]">
+              <p className="mt-5 text-[15px] text-ink-soft leading-[1.65] max-w-md">
                 A coordinated approach that connects every system &mdash; cellular health,
                 hormones, recovery, and prevention &mdash; into one personalized longevity plan.
               </p>
-            </div>
 
             <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Pillar icon={<Dna className="size-5" strokeWidth={1.6} />} title="Cellular Health" body="Mitochondrial function, oxidative stress, biomarkers of aging." />
@@ -101,7 +99,7 @@ export default function HomePage() {
               <Pillar icon={<Sparkles className="size-5" strokeWidth={1.6} />} title="Preventive Health" body="Catching what matters early, with lab work that goes deeper." />
             </div>
 
-            <div className="mt-10 text-center">
+            <div className="mt-8">
               <Link
                 href="/longevity"
                 className="inline-flex items-center gap-2 text-brown hover:text-brown-deep text-[12px] tracking-[0.22em] uppercase font-semibold border-b border-brown/30 pb-1 transition-colors"
@@ -109,6 +107,7 @@ export default function HomePage() {
                 Explore Longevity Care
                 <ArrowRight className="size-3.5" />
               </Link>
+            </div>
             </div>
           </div>
         </div>
@@ -202,8 +201,8 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative aspect-[4/3] rounded-md overflow-hidden">
                 <Image
-                  src="/photos/carepath-step1.png"
-                  alt="Patient at a desk on a video visit with her Velora physician"
+                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1600&q=80"
+                  alt="Patient on a Velora telehealth visit at home"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"

@@ -24,18 +24,18 @@ export const metadata: Metadata = {
 export default function LongevityPage() {
   return (
     <>
-      {/* HERO — 5CCFF3EA */}
+      {/* HERO — clean outdoor sunset photo */}
       <section className="relative overflow-hidden">
         <div className="relative h-[60vh] min-h-[480px] max-h-[680px]">
           <Image
-            src="/photos/longevity-full.png"
-            alt="A couple relaxing at sunset on an outdoor terrace overlooking the ocean"
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2400&q=80"
+            alt="Mountain view at sunset"
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-bone/95 via-bone/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-bone/97 via-bone/55 to-bone/20" />
           <div className="absolute inset-0">
             <div className="container-velora h-full flex items-center">
               <div className="max-w-xl">
