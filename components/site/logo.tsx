@@ -20,10 +20,10 @@ export function Logo({
 
   const dims =
     size === 'sm'
-      ? { mono: 26, word: 'text-[15px]', sub: 'text-[8.5px]' }
+      ? { mono: 22, word: 'text-[14px]', sub: 'text-[7.5px]' }
       : size === 'lg'
-        ? { mono: 64, word: 'text-[34px]', sub: 'text-[12px]' }
-        : { mono: 36, word: 'text-[19px]', sub: 'text-[9.5px]' }
+        ? { mono: 56, word: 'text-[34px]', sub: 'text-[12px]' }
+        : { mono: 32, word: 'text-[18px]', sub: 'text-[9px]' }
 
   return (
     <Link
@@ -35,7 +35,7 @@ export function Logo({
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            'font-display tracking-[0.32em] leading-none',
+            'font-display tracking-[0.28em] leading-none',
             dims.word,
             wordColor,
           )}
@@ -44,7 +44,7 @@ export function Logo({
         </span>
         <span
           className={cn(
-            'font-sans tracking-[0.34em] leading-none mt-1.5 uppercase',
+            'font-sans tracking-[0.32em] leading-none mt-1.5 uppercase font-semibold',
             dims.sub,
             subColor,
           )}

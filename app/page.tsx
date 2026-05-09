@@ -17,25 +17,51 @@ import {
 } from 'lucide-react'
 import { HomeHero } from '@/components/site/home-hero'
 import { VeloraMark } from '@/components/site/logo'
+import { Editable } from '@/components/editor/Editable'
 
 export default function HomePage() {
   return (
     <>
       <HomeHero />
 
+      {/* PHYSICIAN-LED CARE — composite doctors + pillars */}
+      <section className="bg-bone border-t border-line/40">
+        <div className="container-velora py-12 lg:py-16">
+          <div className="relative w-full max-w-[1180px] mx-auto rounded-md overflow-hidden">
+            <Image
+              src="/physician-led-care.png"
+              alt="Drs. Tolebeyan and Amini — double board-certified in Internal Medicine and Obesity Medicine — flanking the Velora care framework: Physician-Led, Individualized Care; Physician-Directed Care; Personalized Treatment Plans; Telemedicine Visits; Direct-Pay Practice"
+              width={1568}
+              height={1045}
+              sizes="(min-width: 1200px) 1180px, 100vw"
+              className="w-full h-auto"
+              priority
+            />
+          </div>
+        </div>
+      </section>
+
       {/* SERVICE AREAS — 3 cards (07FC939F bottom row) */}
-      <section className="bg-paper">
+      <Editable id="home.services.section" kind="section" className="bg-paper">
         <div className="container-velora py-16 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
-            <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+            <Editable
+              id="home.services.eyebrow"
+              kind="paragraph"
+              className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold"
+              defaultText="Our Service Areas"
+            >
               Our Service Areas
-            </p>
-            <h2
+            </Editable>
+            <Editable
+              id="home.services.heading"
+              kind="heading"
               className="mt-4 font-display leading-[1.05] tracking-[-0.018em] text-ink"
               style={{ fontSize: 'clamp(1.625rem, 3.4vw, 2.5rem)' }}
+              defaultText="Personalized Medicine for Every Stage of Life"
             >
               Personalized Medicine for Every Stage of Life
-            </h2>
+            </Editable>
             <div className="mt-5 mx-auto w-12 h-px bg-gold" />
           </div>
 
@@ -60,7 +86,7 @@ export default function HomePage() {
             />
           </div>
         </div>
-      </section>
+      </Editable>
 
       {/* LONGEVITY — split: photo left, copy + 6-pillar cards right */}
       <section className="bg-bone">

@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { Fraunces, Inter } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
+import { EditorRoot } from '@/components/editor/EditorRoot'
 import './globals.css'
 
 const fraunces = Fraunces({
@@ -56,9 +58,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-bone text-ink font-sans antialiased flex flex-col">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <Suspense fallback={null}>
+          <EditorRoot>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </EditorRoot>
+        </Suspense>
         <Toaster position="top-center" />
       </body>
     </html>
