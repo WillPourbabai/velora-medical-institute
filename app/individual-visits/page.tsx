@@ -178,8 +178,8 @@ export default function IndividualVisitsPage() {
           <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-14 items-center">
             <div className="relative aspect-[4/3] rounded-md overflow-hidden">
               <Image
-                src="/photos/individual-books.png"
-                alt="Velora — The Longevity Plan, our written framework for ongoing care"
+                src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1600&q=80"
+                alt="A stack of books on a desk — Velora's written care framework"
                 fill
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"

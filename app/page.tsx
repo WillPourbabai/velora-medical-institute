@@ -149,8 +149,8 @@ export default function HomePage() {
             </div>
             <div className="relative aspect-[4/3] rounded-md overflow-hidden">
               <Image
-                src="/photos/telehealth-experience.png"
-                alt="Patient on a Velora telehealth visit reviewing the care framework on her laptop"
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80"
+                alt="Patient on a Velora telehealth visit"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
