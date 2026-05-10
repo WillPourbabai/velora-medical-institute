@@ -426,7 +426,7 @@ registerBlock({
     return (
       <Tag
         className="font-display leading-[1.05] tracking-[-0.018em]"
-        style={styleProps(p)}
+        style={{ whiteSpace: 'pre-line', ...styleProps(p) }}
       >
         {String(p.text ?? '')}
       </Tag>
@@ -462,7 +462,7 @@ registerBlock({
     { key: 'maxWidth', label: 'Max width', kind: 'cssLength', group: 'Layout' },
   ],
   render: (p) => (
-    <p className="leading-[1.65] text-ink-soft" style={styleProps(p)}>
+    <p className="leading-[1.65] text-ink-soft" style={{ whiteSpace: 'pre-line', ...styleProps(p) }}>
       {String(p.text ?? '')}
     </p>
   ),

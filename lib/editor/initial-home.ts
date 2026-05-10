@@ -9,21 +9,32 @@ import type { PageSchema } from './schema'
 export const initialHomeSchema: PageSchema = {
   version: 1,
   blocks: [
-    /* ---------- 1. HERO ---------- */
+    /* ---------- 1. HERO (decomposed for fine-grained editing) ---------- */
     {
       id: 'home_hero',
-      type: 'hero',
+      type: 'splitSection',
       props: {
-        eyebrow: 'Physician-Led. Personalized. Results-Driven.',
-        heading: 'Optimize Your Health.\nElevate Your Life.',
-        body: 'Physician-led telemedicine care for weight management, hormone balance, and longevity. Personalized for you. Designed for lasting results.',
-        primaryText: 'Schedule Consultation',
-        primaryHref: '/book',
-        secondaryText: 'Explore Programs',
-        secondaryHref: '/programs',
         image: '/photos/hero-telehealth.png',
+        imageAspect: '4 / 3',
+        imageSide: 'right',
         backgroundColor: '#F4EBD3',
+        paddingTop: '64px',
+        paddingBottom: '72px',
       },
+      children: [
+        { id: 'home_hero_eyebrow', type: 'text', props: { text: 'Physician-Led. Personalized. Results-Driven.', fontSize: '11px', color: '#7C5436', fontWeight: '600' } },
+        { id: 'home_hero_heading', type: 'heading', props: { text: 'Optimize Your Health.\nElevate Your Life.', level: 'h1', fontSize: 'clamp(2.125rem, 5vw, 4rem)' } },
+        { id: 'home_hero_body', type: 'text', props: { text: 'Physician-led telemedicine care for weight management, hormone balance, and longevity. Personalized for you. Designed for lasting results.', maxWidth: '32rem' } },
+        {
+          id: 'home_hero_buttons',
+          type: 'container',
+          props: { display: 'flex', gap: '12px' },
+          children: [
+            { id: 'home_hero_btn_primary', type: 'button', props: { text: 'Schedule Consultation', href: '/book', variant: 'primary', icon: 'calendar' } },
+            { id: 'home_hero_btn_secondary', type: 'button', props: { text: 'Explore Programs', href: '/programs', variant: 'outline', icon: 'arrow' } },
+          ],
+        },
+      ],
     },
 
     /* ---------- 2. PHYSICIAN-LED CARE composite ---------- */

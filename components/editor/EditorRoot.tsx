@@ -83,12 +83,15 @@ function Chrome() {
   const showChrome = ctx.mode === 'edit'
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-100" data-editor-chrome-root>
+    <div
+      className="h-screen flex flex-col bg-neutral-100 overflow-hidden"
+      data-editor-chrome-root
+    >
       {showChrome && <TopBarV2 />}
-      <div className="flex-1 flex min-h-0">
+      <div className="flex-1 flex min-h-0 min-w-0">
         {showChrome && <LeftSidebar />}
         <main
-          className="flex-1 min-w-0 overflow-y-auto bg-bone"
+          className="flex-1 min-w-0 min-h-0 overflow-y-auto overflow-x-hidden bg-bone"
           data-editor-canvas
         >
           <PageRenderer editMode />

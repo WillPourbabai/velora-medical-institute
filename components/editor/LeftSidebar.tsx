@@ -16,7 +16,7 @@ export function LeftSidebar() {
       className="w-[260px] shrink-0 border-r border-neutral-200 bg-white text-neutral-900 flex flex-col h-full overflow-hidden"
       data-editor-chrome
     >
-      <div className="border-b border-neutral-200 px-2 py-2 flex items-center gap-1">
+      <div className="border-b border-neutral-200 px-2 py-2 flex items-center gap-1 shrink-0">
         <TabButton active={tab === 'insert'} onClick={() => setTab('insert')}>
           <Plus className="size-3.5" />
           <span>Insert</span>
@@ -26,7 +26,9 @@ export function LeftSidebar() {
           <span>Layers</span>
         </TabButton>
       </div>
-      {tab === 'insert' ? <InserterShellInner /> : <LayersPanel />}
+      <div className="flex-1 min-h-0 flex flex-col">
+        {tab === 'insert' ? <InserterPanel embedded /> : <LayersPanel />}
+      </div>
     </aside>
   )
 }
@@ -52,12 +54,3 @@ function TabButton({
   )
 }
 
-/* InserterPanel currently renders its own <aside> shell; we want just its body
-   when used inside a tabbed sidebar. Re-expose without the shell. */
-function InserterShellInner() {
-  return (
-    <div className="flex-1 overflow-y-auto">
-      <InserterPanel embedded />
-    </div>
-  )
-}
