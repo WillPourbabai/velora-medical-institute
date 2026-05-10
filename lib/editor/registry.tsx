@@ -148,6 +148,7 @@ registerBlock({
   acceptsChildren: true,
   defaultProps: {
     display: 'block',
+    gridCols: '3',
     maxWidth: '',
     paddingTop: '',
     paddingBottom: '',
@@ -159,10 +160,17 @@ registerBlock({
       kind: 'select',
       group: 'Layout',
       options: [
-        { value: 'block', label: 'Stack' },
+        { value: 'block', label: 'Stack (vertical)' },
         { value: 'flex', label: 'Flex (row)' },
-        { value: 'grid', label: 'Grid (3 cols)' },
+        { value: 'grid', label: 'Grid' },
       ],
+    },
+    {
+      key: 'gridCols',
+      label: 'Columns (grid)',
+      kind: 'select',
+      group: 'Layout',
+      options: ['1', '2', '3', '4'].map((v) => ({ value: v, label: `${v} columns` })),
     },
     { key: 'gap', label: 'Gap', kind: 'cssLength', group: 'Layout' },
     { key: 'textAlign', label: 'Text align', kind: 'select', group: 'Layout',
@@ -183,6 +191,7 @@ registerBlock({
   ],
   render: (p, children) => {
     const css: CSSProperties = styleProps(p)
+    const cols = String(p.gridCols ?? '3')
     if (p.display === 'flex') {
       css.display = 'flex'
       css.flexWrap = 'wrap'
@@ -190,13 +199,191 @@ registerBlock({
       css.alignItems = 'center'
     } else if (p.display === 'grid') {
       css.display = 'grid'
-      css.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))'
+      css.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`
       css.gap = String(p.gap ?? '24px')
     }
-    if (p.maxWidth) css.marginLeft = 'auto'
-    if (p.maxWidth) css.marginRight = 'auto'
+    if (p.maxWidth) {
+      css.marginLeft = 'auto'
+      css.marginRight = 'auto'
+    }
     return <div style={css}>{children}</div>
   },
+})
+
+/* SPLIT SECTION — two columns, photo + content (or content + photo) */
+registerBlock({
+  type: 'splitSection',
+  label: 'Split Section (image + content)',
+  category: 'Sections',
+  acceptsChildren: true,
+  defaultProps: {
+    image: '/photos/hero-telehealth.png',
+    imageAspect: '4 / 5',
+    imageSide: 'right',
+    backgroundColor: '#F4EBD3',
+    paddingTop: '64px',
+    paddingBottom: '64px',
+  },
+  schema: [
+    { key: 'image', label: 'Image', kind: 'image', group: 'Media' },
+    { key: 'imageAspect', label: 'Image aspect', kind: 'select', group: 'Media',
+      options: [
+        { value: '4 / 5', label: '4:5 (portrait)' },
+        { value: '4 / 3', label: '4:3' },
+        { value: '1 / 1', label: '1:1 (square)' },
+        { value: '3 / 2', label: '3:2' },
+      ],
+    },
+    { key: 'imageSide', label: 'Image side', kind: 'select', group: 'Layout',
+      options: [
+        { value: 'right', label: 'Right' },
+        { value: 'left', label: 'Left' },
+      ],
+    },
+    { key: 'backgroundColor', label: 'Background', kind: 'color', group: 'Style' },
+    { key: 'paddingTop', label: 'Padding top', kind: 'cssLength', group: 'Spacing' },
+    { key: 'paddingBottom', label: 'Padding bottom', kind: 'cssLength', group: 'Spacing' },
+  ],
+  render: (p, children) => {
+    const imageOnRight = (p.imageSide ?? 'right') === 'right'
+    const aspect = String(p.imageAspect ?? '4 / 5')
+    return (
+      <section style={{ backgroundColor: String(p.backgroundColor ?? '#F4EBD3'), paddingTop: String(p.paddingTop ?? '64px'), paddingBottom: String(p.paddingBottom ?? '64px') }}>
+        <div className="container-velora">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            {imageOnRight ? <div className="order-2 lg:order-1">{children}</div> : null}
+            {p.image ? (
+              <div
+                className={imageOnRight ? 'order-1 lg:order-2' : ''}
+              >
+                <div
+                  className="relative overflow-hidden rounded-md bg-line/30"
+                  style={{ aspectRatio: aspect }}
+                >
+                  <Image
+                    src={String(p.image)}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            ) : null}
+            {!imageOnRight ? <div>{children}</div> : null}
+          </div>
+        </div>
+      </section>
+    )
+  },
+})
+
+/* PILLAR — small icon-style card used in pillar grids */
+registerBlock({
+  type: 'pillar',
+  label: 'Pillar',
+  category: 'Content',
+  defaultProps: {
+    icon: '◆',
+    title: 'Pillar title',
+    body: 'A short, specific description of this pillar.',
+  },
+  schema: [
+    { key: 'icon', label: 'Icon glyph', kind: 'text', group: 'Content', placeholder: '◆ or emoji' },
+    { key: 'title', label: 'Title', kind: 'text', group: 'Content' },
+    { key: 'body', label: 'Body', kind: 'textarea', group: 'Content' },
+  ],
+  render: (p) => (
+    <div className="bg-paper border border-line/60 rounded-md p-5">
+      <div className="flex items-center gap-3">
+        <span className="size-9 rounded-full bg-bone border border-brown/30 text-brown flex items-center justify-center text-[14px] font-semibold">
+          {String(p.icon ?? '◆')}
+        </span>
+        <h3 className="font-display text-[16px] text-ink leading-tight">{String(p.title ?? '')}</h3>
+      </div>
+      <p className="mt-3 text-[13px] text-ink-soft leading-[1.55]">{String(p.body ?? '')}</p>
+    </div>
+  ),
+})
+
+/* MINI PROGRAM CARD — for the home page Programs preview */
+registerBlock({
+  type: 'miniProgram',
+  label: 'Mini Program',
+  category: 'Content',
+  defaultProps: {
+    icon: '✦',
+    title: 'Program Name',
+    price: '$145',
+    cadence: '12 visits over 12 months',
+    href: '/programs',
+    featured: false,
+  },
+  schema: [
+    { key: 'icon', label: 'Icon glyph', kind: 'text', group: 'Content' },
+    { key: 'title', label: 'Title', kind: 'text', group: 'Content' },
+    { key: 'price', label: 'Price', kind: 'text', group: 'Content' },
+    { key: 'cadence', label: 'Cadence', kind: 'text', group: 'Content' },
+    { key: 'href', label: 'Link', kind: 'text', group: 'CTA' },
+    { key: 'featured', label: 'Recommended badge', kind: 'switch', group: 'Style' },
+  ],
+  render: (p) => (
+    <Link
+      href={String(p.href ?? '/programs')}
+      className={[
+        'group relative flex flex-col p-6 lg:p-7 rounded-md transition-all',
+        p.featured
+          ? 'bg-bone border-2 border-brown shadow-[0_16px_40px_-20px_rgba(124,84,54,0.45)]'
+          : 'bg-bone border border-line/60 hover:border-brown/60',
+      ].join(' ')}
+    >
+      {p.featured ? (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brown text-cream px-3 py-1 text-[9px] tracking-[0.28em] uppercase font-semibold rounded-md whitespace-nowrap">
+          Recommended
+        </span>
+      ) : null}
+      <span className="size-10 rounded-full bg-paper border border-brown/30 text-brown flex items-center justify-center font-semibold">
+        {String(p.icon ?? '✦')}
+      </span>
+      <h3 className="mt-5 font-display text-[18px] leading-tight text-ink">{String(p.title ?? '')}</h3>
+      <div className="mt-4 flex items-baseline gap-1">
+        <span className="font-display text-[34px] leading-none text-ink">{String(p.price ?? '')}</span>
+        <span className="text-[12px] text-ink-soft italic">/ visit</span>
+      </div>
+      <p className="mt-1.5 text-[10px] tracking-[0.22em] uppercase text-brown font-semibold">{String(p.cadence ?? '')}</p>
+      <span className="mt-5 inline-flex items-center gap-1.5 text-brown group-hover:text-brown-deep text-[11px] tracking-[0.22em] uppercase font-semibold">
+        Learn More <ArrowRight className="size-3.5" />
+      </span>
+    </Link>
+  ),
+})
+
+/* CARE STEP — numbered step with title + body */
+registerBlock({
+  type: 'careStep',
+  label: 'Care Step',
+  category: 'Content',
+  defaultProps: {
+    number: '01',
+    title: 'Step title',
+    body: 'A brief description of what happens at this step.',
+  },
+  schema: [
+    { key: 'number', label: 'Step number', kind: 'text', group: 'Content' },
+    { key: 'title', label: 'Title', kind: 'text', group: 'Content' },
+    { key: 'body', label: 'Body', kind: 'textarea', group: 'Content' },
+  ],
+  render: (p) => (
+    <div className="flex items-start gap-4">
+      <span className="font-display italic text-brown text-[24px] leading-none w-10 shrink-0">
+        {String(p.number ?? '01')}
+      </span>
+      <div>
+        <p className="text-[15px] text-ink font-semibold leading-tight">{String(p.title ?? '')}</p>
+        <p className="mt-1 text-[13.5px] text-ink-soft leading-[1.55]">{String(p.body ?? '')}</p>
+      </div>
+    </div>
+  ),
 })
 
 /* HEADING */

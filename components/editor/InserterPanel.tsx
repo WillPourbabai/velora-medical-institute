@@ -6,7 +6,7 @@ import { listBlockDefinitions, getBlockDefinition, type BlockDefinition } from '
 import { findBlock } from '@/lib/editor/schema'
 import { Plus, Search } from 'lucide-react'
 
-export function InserterPanel() {
+export function InserterPanel({ embedded = false }: { embedded?: boolean }) {
   const ctx = useSchema()
   const [query, setQuery] = useState('')
 
@@ -37,8 +37,8 @@ export function InserterPanel() {
     ctx!.insertOfType(type, { parentId: insertParentId })
   }
 
-  return (
-    <aside className="w-[240px] shrink-0 border-r border-neutral-200 bg-white text-neutral-900 flex flex-col h-full overflow-hidden" data-editor-chrome>
+  const inner = (
+    <>
       <header className="px-4 py-3 border-b border-neutral-200">
         <p className="text-[10px] tracking-[0.22em] uppercase text-neutral-500 font-semibold">
           Add Blocks
@@ -86,6 +86,14 @@ export function InserterPanel() {
           </section>
         ))}
       </div>
+    </>
+  )
+
+  if (embedded) return <>{inner}</>
+
+  return (
+    <aside className="w-[240px] shrink-0 border-r border-neutral-200 bg-white text-neutral-900 flex flex-col h-full overflow-hidden" data-editor-chrome>
+      {inner}
     </aside>
   )
 }

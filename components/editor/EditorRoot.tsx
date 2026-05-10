@@ -5,7 +5,7 @@ import { useSearchParams, usePathname } from 'next/navigation'
 import { SchemaProvider, useSchema } from './SchemaProvider'
 import { TopBarV2 } from './TopBarV2'
 import { InspectorV2 } from './InspectorV2'
-import { InserterPanel } from './InserterPanel'
+import { LeftSidebar } from './LeftSidebar'
 import { PageRenderer } from './PageRenderer'
 import { getDefaultSchema, pathnameToSlug } from '@/lib/editor/initial-schemas'
 
@@ -86,7 +86,7 @@ function Chrome() {
     <div className="min-h-screen flex flex-col bg-neutral-100" data-editor-chrome-root>
       {showChrome && <TopBarV2 />}
       <div className="flex-1 flex min-h-0">
-        {showChrome && <InserterPanel />}
+        {showChrome && <LeftSidebar />}
         <main
           className="flex-1 min-w-0 overflow-y-auto bg-bone"
           data-editor-canvas

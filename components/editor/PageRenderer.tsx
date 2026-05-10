@@ -1,6 +1,8 @@
 'use client'
 
 import {
+  useEffect,
+  useRef,
   useState,
   type DragEvent as ReactDragEvent,
   type ReactNode,
@@ -13,6 +15,26 @@ import {
 } from 'lucide-react'
 
 const DRAG_TYPE = 'application/x-velora-block'
+/** Block types whose primary `text`-like prop can be edited inline */
+const INLINE_EDITABLE_PROP: Record<string, string | undefined> = {
+  heading: 'text',
+  text: 'text',
+  button: 'text',
+  faqItem: 'question',
+  pillar: 'title',
+  miniProgram: 'title',
+  careStep: 'title',
+  serviceCard: 'title',
+  testimonial: 'quote',
+  ctaPanel: 'heading',
+  hero: 'heading',
+  serviceGrid: 'heading',
+  featureGrid: 'heading',
+  faqGroup: 'heading',
+  gallery: 'heading',
+  featureItem: 'title',
+  footerBlock: 'brand',
+}
 
 export function PageRenderer({ editMode = false }: { editMode?: boolean }) {
   const ctx = useSchema()
@@ -98,6 +120,14 @@ function BlockChrome({
 }) {
   const ctx = useSchema()
   const [over, setOver] = useState<'top' | 'bottom' | null>(null)
+  const [inlineEditing, setInlineEditing] = useState(false)
+  const inlineRef = useRef<HTMLDivElement | null>(null)
+  const inlinePropKey = INLINE_EDITABLE_PROP[block.type]
+
+  // Stop inline editing if selection moves to another block
+  useEffect(() => {
+    if (ctx?.selectedId !== block.id) setInlineEditing(false)
+  }, [ctx?.selectedId, block.id])
 
   if (!ctx) return <>{children}</>
 
@@ -106,6 +136,37 @@ function BlockChrome({
   function handleClick(e: React.MouseEvent) {
     e.stopPropagation()
     ctx!.select(block.id)
+  }
+  function handleDoubleClick(e: React.MouseEvent) {
+    if (!inlinePropKey) return
+    e.stopPropagation()
+    e.preventDefault()
+    ctx!.select(block.id)
+    setInlineEditing(true)
+    // Focus the first contenteditable target inside this block
+    requestAnimationFrame(() => {
+      const target = inlineRef.current?.querySelector<HTMLElement>('[data-inline-target="1"]')
+      if (target) {
+        target.focus()
+        // Move caret to end
+        const range = document.createRange()
+        range.selectNodeContents(target)
+        range.collapse(false)
+        const sel = window.getSelection()
+        sel?.removeAllRanges()
+        sel?.addRange(range)
+      }
+    })
+  }
+  function commitInline() {
+    if (!inlinePropKey || !inlineEditing) return
+    const target = inlineRef.current?.querySelector<HTMLElement>('[data-inline-target="1"]')
+    if (!target) return
+    const text = target.innerText
+    if (text !== String(block.props[inlinePropKey] ?? '')) {
+      ctx!.patchProps(block.id, { [inlinePropKey]: text })
+    }
+    setInlineEditing(false)
   }
 
   /* ---------- drag-and-drop reorder (works for any depth, within same parent) ---------- */
@@ -152,15 +213,26 @@ function BlockChrome({
 
   return (
     <div
+      ref={inlineRef}
       data-block-id={block.id}
       className={wrapClasses}
       onClick={handleClick}
-      draggable
+      onDoubleClick={handleDoubleClick}
+      draggable={!inlineEditing}
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
     >
+      {/* When inline-editing a text prop, render an absolutely-positioned editable
+          surface so user types over the block. We just toggle a flag; the runtime
+          attaches contenteditable on the first matching node via effect below. */}
+      <InlineTextEditor
+        active={inlineEditing}
+        onCommit={commitInline}
+        onCancel={() => setInlineEditing(false)}
+        rootRef={inlineRef}
+      />
       {children}
 
       {/* Floating block toolbar */}
@@ -233,4 +305,63 @@ function ChromeButton({
       {children}
     </button>
   )
+}
+
+/**
+ * Toggles contentEditable on the first text-bearing element inside the block.
+ * Pure DOM manipulation (no re-render of children) so the rendered layout is
+ * preserved while the user types directly into the canvas.
+ */
+function InlineTextEditor({
+  active, onCommit, onCancel, rootRef,
+}: {
+  active: boolean
+  onCommit: () => void
+  onCancel: () => void
+  rootRef: React.RefObject<HTMLDivElement | null>
+}) {
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+    if (!active) return
+
+    // Find the first heading / paragraph / span / button label inside the block
+    const target = (
+      root.querySelector('h1, h2, h3, h4, p, blockquote, figcaption, summary, a > span, button > span')
+    ) as HTMLElement | null
+    if (!target) return
+    target.dataset.inlineTarget = '1'
+    target.contentEditable = 'true'
+    target.style.outline = '2px dashed rgba(124,84,54,0.5)'
+    target.style.outlineOffset = '2px'
+    target.spellcheck = true
+
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault()
+        target!.blur()
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        target!.blur()
+        onCancel()
+      }
+    }
+    function onBlur() {
+      onCommit()
+    }
+    target.addEventListener('keydown', onKey)
+    target.addEventListener('blur', onBlur)
+
+    return () => {
+      target.removeEventListener('keydown', onKey)
+      target.removeEventListener('blur', onBlur)
+      target.contentEditable = 'false'
+      delete target.dataset.inlineTarget
+      target.style.outline = ''
+      target.style.outlineOffset = ''
+    }
+  }, [active, rootRef, onCommit, onCancel])
+
+  return null
 }
