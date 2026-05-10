@@ -18,7 +18,8 @@ import {
   removeBlock,
   duplicateBlock,
   insertTopLevel,
-  moveTopLevel,
+  insertInto,
+  moveBlock,
   toggleHidden,
 } from '@/lib/editor/schema'
 import { newBlockOfType } from '@/lib/editor/registry'
@@ -41,8 +42,8 @@ type Action =
   | { type: 'patchProps'; id: string; props: BlockProps }
   | { type: 'remove'; id: string }
   | { type: 'duplicate'; id: string }
-  | { type: 'move'; id: string; toIndex: number }
-  | { type: 'insertAt'; block: Block; index: number }
+  | { type: 'move'; id: string; toParentId: string | null; toIndex: number }
+  | { type: 'insertAt'; block: Block; parentId: string | null; index: number }
   | { type: 'toggleHidden'; id: string }
   | { type: 'undo' }
   | { type: 'redo' }
@@ -88,9 +89,12 @@ function reducer(state: State, action: Action): State {
       return { ...committed, selectedId: newId ?? state.selectedId }
     }
     case 'move':
-      return commit(state, moveTopLevel(state.schema, action.id, action.toIndex))
+      return commit(state, moveBlock(state.schema, action.id, action.toParentId, action.toIndex))
     case 'insertAt': {
-      const next = insertTopLevel(state.schema, action.block, action.index)
+      const next =
+        action.parentId === null
+          ? insertTopLevel(state.schema, action.block, action.index)
+          : insertInto(state.schema, action.parentId, action.block, action.index)
       const committed = commit(state, next)
       return { ...committed, selectedId: action.block.id }
     }
@@ -126,8 +130,8 @@ interface SchemaContextValue {
   patchProps: (id: string, props: BlockProps) => void
   remove: (id: string) => void
   duplicate: (id: string) => void
-  move: (id: string, toIndex: number) => void
-  insertOfType: (type: string, atIndex?: number) => void
+  move: (id: string, toParentId: string | null, toIndex: number) => void
+  insertOfType: (type: string, opts?: { parentId?: string | null; index?: number }) => void
   toggleHidden: (id: string) => void
   undo: () => void
   redo: () => void
@@ -211,12 +215,13 @@ export function SchemaProvider({
       patchProps: (id, props) => dispatch({ type: 'patchProps', id, props }),
       remove: (id) => dispatch({ type: 'remove', id }),
       duplicate: (id) => dispatch({ type: 'duplicate', id }),
-      move: (id, toIndex) => dispatch({ type: 'move', id, toIndex }),
-      insertOfType: (type, atIndex) => {
+      move: (id, toParentId, toIndex) => dispatch({ type: 'move', id, toParentId, toIndex }),
+      insertOfType: (type, opts) => {
         const block = newBlockOfType(type, () => newId(type))
         if (!block) return
-        const idx = atIndex ?? state.schema.blocks.length
-        dispatch({ type: 'insertAt', block, index: idx })
+        const parentId = opts?.parentId ?? null
+        const index = opts?.index ?? Number.MAX_SAFE_INTEGER
+        dispatch({ type: 'insertAt', block, parentId, index })
       },
       toggleHidden: (id) => dispatch({ type: 'toggleHidden', id }),
       undo: () => dispatch({ type: 'undo' }),

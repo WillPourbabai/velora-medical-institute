@@ -173,3 +173,101 @@ export function toggleHidden(schema: PageSchema, id: string): PageSchema {
     props: { hidden: !findBlock(schema, id)?.props.hidden },
   })
 }
+
+/* ---------- nested move helpers ---------- */
+
+/** Returns the parent id (or null for top-level) and the index of the block. */
+export function findParent(schema: PageSchema, id: string): { parentId: string | null; index: number } | null {
+  function walk(blocks: Block[], parentId: string | null): { parentId: string | null; index: number } | null {
+    for (let i = 0; i < blocks.length; i++) {
+      const b = blocks[i]!
+      if (b.id === id) return { parentId, index: i }
+      if (b.children) {
+        const r = walk(b.children, b.id)
+        if (r) return r
+      }
+    }
+    return null
+  }
+  return walk(schema.blocks, null)
+}
+
+/**
+ * Move `id` to be at `toIndex` inside `toParentId` (null for top-level).
+ * Cross-parent moves are supported. If toIndex is past the end, appends.
+ */
+export function moveBlock(
+  schema: PageSchema,
+  id: string,
+  toParentId: string | null,
+  toIndex: number,
+): PageSchema {
+  const found = findParent(schema, id)
+  if (!found) return schema
+
+  // Step 1: extract the block
+  let extracted: Block | null = null
+  function extract(blocks: Block[]): Block[] {
+    return blocks.flatMap((b) => {
+      if (b.id === id) {
+        extracted = b
+        return []
+      }
+      if (b.children) return [{ ...b, children: extract(b.children) }]
+      return [b]
+    })
+  }
+  const without = extract(schema.blocks)
+  if (!extracted) return schema
+
+  // Adjust toIndex if moving within the same parent and the source was earlier
+  if (found.parentId === toParentId && found.index < toIndex) {
+    toIndex -= 1
+  }
+
+  // Step 2: insert into the target
+  function insert(blocks: Block[]): Block[] {
+    if (toParentId === null) return blocks // handled at top level below
+    return blocks.map((b) => {
+      if (b.id === toParentId) {
+        const arr = [...(b.children ?? [])]
+        const i = Math.max(0, Math.min(toIndex, arr.length))
+        arr.splice(i, 0, extracted!)
+        return { ...b, children: arr }
+      }
+      if (b.children) return { ...b, children: insert(b.children) }
+      return b
+    })
+  }
+
+  if (toParentId === null) {
+    const arr = [...without]
+    const i = Math.max(0, Math.min(toIndex, arr.length))
+    arr.splice(i, 0, extracted!)
+    return { ...schema, blocks: arr }
+  }
+  return { ...schema, blocks: insert(without) }
+}
+
+/** Insert a block as a child of a parent at the given index. */
+export function insertInto(
+  schema: PageSchema,
+  parentId: string | null,
+  block: Block,
+  index: number,
+): PageSchema {
+  if (parentId === null) return insertTopLevel(schema, block, index)
+  function walk(blocks: Block[]): Block[] {
+    return blocks.map((b) => {
+      if (b.id === parentId) {
+        const arr = [...(b.children ?? [])]
+        const i = Math.max(0, Math.min(index, arr.length))
+        arr.splice(i, 0, block)
+        return { ...b, children: arr }
+      }
+      if (b.children) return { ...b, children: walk(b.children) }
+      return b
+    })
+  }
+  return { ...schema, blocks: walk(schema.blocks) }
+}

@@ -623,6 +623,217 @@ registerBlock({
   },
 })
 
+/* TESTIMONIAL — quote + name */
+registerBlock({
+  type: 'testimonial',
+  label: 'Testimonial',
+  category: 'Content',
+  defaultProps: {
+    quote: '"My energy and focus came back within a few weeks. Worth every minute."',
+    name: 'A. Verified Patient',
+    role: '',
+    backgroundColor: '#FDFAF1',
+  },
+  schema: [
+    { key: 'quote', label: 'Quote', kind: 'textarea', group: 'Content' },
+    { key: 'name', label: 'Attribution', kind: 'text', group: 'Content' },
+    { key: 'role', label: 'Role / context', kind: 'text', group: 'Content' },
+    { key: 'backgroundColor', label: 'Background', kind: 'color', group: 'Style' },
+  ],
+  render: (p) => (
+    <section style={{ backgroundColor: String(p.backgroundColor ?? '#FDFAF1') }}>
+      <div className="container-velora py-14 lg:py-18">
+        <figure className="max-w-3xl mx-auto text-center">
+          <blockquote className="font-display text-[22px] md:text-[28px] leading-[1.35] tracking-[-0.012em] text-ink italic">
+            {String(p.quote ?? '')}
+          </blockquote>
+          <figcaption className="mt-6 text-[11px] tracking-[0.24em] uppercase text-brown font-semibold">
+            {String(p.name ?? '')}
+            {p.role ? <span className="text-ink-soft font-normal normal-case ml-2">— {String(p.role)}</span> : null}
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  ),
+})
+
+/* FAQ ITEM — single Q+A (used inside an Faq Group container) */
+registerBlock({
+  type: 'faqItem',
+  label: 'FAQ Item',
+  category: 'Content',
+  defaultProps: {
+    question: 'Frequently asked question?',
+    answer: 'A clear, helpful answer that addresses the question without filler.',
+  },
+  schema: [
+    { key: 'question', label: 'Question', kind: 'text', group: 'Content' },
+    { key: 'answer', label: 'Answer', kind: 'textarea', group: 'Content' },
+  ],
+  render: (p) => (
+    <details className="border-t border-line/60 py-5 group">
+      <summary className="cursor-pointer text-[15px] font-semibold text-ink list-none flex items-center justify-between gap-4">
+        {String(p.question ?? '')}
+        <span className="text-brown text-[18px] leading-none transition-transform group-open:rotate-45">+</span>
+      </summary>
+      <p className="mt-3 text-[14px] text-ink-soft leading-[1.65]">
+        {String(p.answer ?? '')}
+      </p>
+    </details>
+  ),
+})
+
+/* FAQ GROUP — section with heading + list of FAQ items */
+registerBlock({
+  type: 'faqGroup',
+  label: 'FAQ Group',
+  category: 'Sections',
+  acceptsChildren: true,
+  defaultProps: {
+    eyebrow: 'Frequently Asked',
+    heading: 'Common questions',
+    backgroundColor: '#FDFAF1',
+  },
+  schema: [
+    { key: 'eyebrow', label: 'Eyebrow', kind: 'text', group: 'Content' },
+    { key: 'heading', label: 'Heading', kind: 'text', group: 'Content' },
+    { key: 'backgroundColor', label: 'Background', kind: 'color', group: 'Style' },
+  ],
+  render: (p, children) => (
+    <section style={{ backgroundColor: String(p.backgroundColor ?? '#FDFAF1') }}>
+      <div className="container-velora py-14 lg:py-18">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold text-center">
+            {String(p.eyebrow ?? '')}
+          </p>
+          <h2 className="mt-3 font-display text-[28px] md:text-[34px] leading-tight text-ink text-center">
+            {String(p.heading ?? '')}
+          </h2>
+          <div className="mt-8">{children}</div>
+        </div>
+      </div>
+    </section>
+  ),
+})
+
+/* FEATURE GRID — section with heading + child feature cards (3 cols) */
+registerBlock({
+  type: 'featureGrid',
+  label: 'Feature Grid',
+  category: 'Sections',
+  acceptsChildren: true,
+  defaultProps: {
+    eyebrow: 'What you get',
+    heading: 'A complete framework',
+    backgroundColor: '#F4EBD3',
+  },
+  schema: [
+    { key: 'eyebrow', label: 'Eyebrow', kind: 'text', group: 'Content' },
+    { key: 'heading', label: 'Heading', kind: 'text', group: 'Content' },
+    { key: 'backgroundColor', label: 'Background', kind: 'color', group: 'Style' },
+  ],
+  render: (p, children) => (
+    <section style={{ backgroundColor: String(p.backgroundColor ?? '#F4EBD3') }}>
+      <div className="container-velora py-14 lg:py-18">
+        <div className="text-center max-w-2xl mx-auto">
+          <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+            {String(p.eyebrow ?? '')}
+          </p>
+          <h2 className="mt-3 font-display text-[28px] md:text-[34px] leading-tight text-ink">
+            {String(p.heading ?? '')}
+          </h2>
+        </div>
+        <div className="mt-10 grid md:grid-cols-3 gap-6">{children}</div>
+      </div>
+    </section>
+  ),
+})
+
+/* FEATURE ITEM — single feature card */
+registerBlock({
+  type: 'featureItem',
+  label: 'Feature',
+  category: 'Content',
+  defaultProps: {
+    title: 'Feature title',
+    body: 'A short description of the feature, one or two lines max.',
+  },
+  schema: [
+    { key: 'title', label: 'Title', kind: 'text', group: 'Content' },
+    { key: 'body', label: 'Body', kind: 'textarea', group: 'Content' },
+  ],
+  render: (p) => (
+    <div className="bg-paper border border-line/60 rounded-md p-6">
+      <h3 className="font-display text-[18px] leading-tight text-ink">{String(p.title ?? '')}</h3>
+      <p className="mt-2 text-[13.5px] text-ink-soft leading-[1.55]">{String(p.body ?? '')}</p>
+    </div>
+  ),
+})
+
+/* GALLERY — section with image children in a 3-col grid */
+registerBlock({
+  type: 'gallery',
+  label: 'Gallery',
+  category: 'Sections',
+  acceptsChildren: true,
+  defaultProps: {
+    heading: 'Gallery',
+    backgroundColor: '#FDFAF1',
+  },
+  schema: [
+    { key: 'heading', label: 'Heading', kind: 'text', group: 'Content' },
+    { key: 'backgroundColor', label: 'Background', kind: 'color', group: 'Style' },
+  ],
+  render: (p, children) => (
+    <section style={{ backgroundColor: String(p.backgroundColor ?? '#FDFAF1') }}>
+      <div className="container-velora py-14 lg:py-18">
+        {p.heading ? (
+          <h2 className="font-display text-[24px] md:text-[28px] leading-tight text-ink text-center mb-8">
+            {String(p.heading)}
+          </h2>
+        ) : null}
+        <div className="grid md:grid-cols-3 gap-6">{children}</div>
+      </div>
+    </section>
+  ),
+})
+
+/* FOOTER (block-style) — simple multi-column footer suitable for in-page placement */
+registerBlock({
+  type: 'footerBlock',
+  label: 'Footer Block',
+  category: 'Sections',
+  defaultProps: {
+    brand: 'Velora Medical Institute',
+    tagline: 'Physician-directed telemedicine practice. Direct-pay.',
+    copyright: '© Velora Medical Institute · All rights reserved',
+    backgroundColor: '#1A140E',
+    color: '#F9F1DC',
+  },
+  schema: [
+    { key: 'brand', label: 'Brand', kind: 'text', group: 'Content' },
+    { key: 'tagline', label: 'Tagline', kind: 'textarea', group: 'Content' },
+    { key: 'copyright', label: 'Copyright', kind: 'text', group: 'Content' },
+    { key: 'backgroundColor', label: 'Background', kind: 'color', group: 'Style' },
+    { key: 'color', label: 'Text color', kind: 'color', group: 'Style' },
+  ],
+  render: (p) => (
+    <footer style={{ backgroundColor: String(p.backgroundColor ?? '#1A140E'), color: String(p.color ?? '#F9F1DC') }}>
+      <div className="container-velora py-12 text-center">
+        <p className="font-display text-[20px] tracking-[0.32em] uppercase">
+          {String(p.brand ?? '')}
+        </p>
+        <p className="mt-3 text-[13px] opacity-75 max-w-md mx-auto">
+          {String(p.tagline ?? '')}
+        </p>
+        <p className="mt-8 text-[10.5px] tracking-[0.18em] uppercase opacity-50">
+          {String(p.copyright ?? '')}
+        </p>
+      </div>
+    </footer>
+  ),
+})
+
 /* SERVICE GRID — three service cards in a row */
 registerBlock({
   type: 'serviceGrid',

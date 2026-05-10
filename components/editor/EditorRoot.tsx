@@ -1,31 +1,36 @@
 'use client'
 
 import { useEffect, type ReactNode } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, usePathname } from 'next/navigation'
 import { SchemaProvider, useSchema } from './SchemaProvider'
 import { TopBarV2 } from './TopBarV2'
 import { InspectorV2 } from './InspectorV2'
 import { InserterPanel } from './InserterPanel'
 import { PageRenderer } from './PageRenderer'
-import { initialHomeSchema } from '@/lib/editor/initial-home'
+import { getDefaultSchema, pathnameToSlug } from '@/lib/editor/initial-schemas'
 
 /**
  * Mounts the schema-driven visual builder when `?edit=1` is in the URL.
- * Renders the homepage schema in place of normal `children`.
- *
- * For now, only the home page (`/`) is editable — `?edit=1` on any other
- * route renders the underlying source children unchanged with a small badge.
+ * - In production, also requires NEXT_PUBLIC_EDITOR_ENABLED=1 to gate access.
+ * - Reads the current pathname → slug → loads that page's schema.
+ * - When edit mode is off, renders children unchanged (zero overhead for visitors).
  */
 export function EditorRoot({ children }: { children: ReactNode }) {
   const params = useSearchParams()
-  const isEditing = params.get('edit') === '1' || params.get('edit') === 'true'
+  const pathname = usePathname() || '/'
+  const wantsEdit = params.get('edit') === '1' || params.get('edit') === 'true'
 
-  if (!isEditing) return <>{children}</>
+  const isDev = process.env.NODE_ENV !== 'production'
+  const flagOn = process.env.NEXT_PUBLIC_EDITOR_ENABLED === '1'
+  const editAllowed = isDev || flagOn
 
-  // For the MVP we treat all `?edit=1` pages as the homepage editor.
-  // (In the future, route-aware schema selection goes here.)
+  if (!wantsEdit || !editAllowed) return <>{children}</>
+
+  const slug = pathnameToSlug(pathname)
+  const initialSchema = getDefaultSchema(slug)
+
   return (
-    <SchemaProvider initialSchema={initialHomeSchema} pageSlug="home">
+    <SchemaProvider initialSchema={initialSchema} pageSlug={slug}>
       <Chrome />
     </SchemaProvider>
   )
@@ -59,31 +64,16 @@ function Chrome() {
       const meta = e.metaKey || e.ctrlKey
       const key = e.key.toLowerCase()
 
-      // Undo / redo always
-      if (meta && key === 'z' && !e.shiftKey) {
-        e.preventDefault(); ctx.undo(); return
-      }
-      if (meta && (key === 'y' || (key === 'z' && e.shiftKey))) {
-        e.preventDefault(); ctx.redo(); return
-      }
-      if (meta && key === 's') {
-        e.preventDefault(); void ctx.save(); return
-      }
+      if (meta && key === 'z' && !e.shiftKey) { e.preventDefault(); ctx.undo(); return }
+      if (meta && (key === 'y' || (key === 'z' && e.shiftKey))) { e.preventDefault(); ctx.redo(); return }
+      if (meta && key === 's') { e.preventDefault(); void ctx.save(); return }
 
       if (typing) return
 
-      if (meta && key === 'd' && ctx.selectedId) {
-        e.preventDefault(); ctx.duplicate(ctx.selectedId); return
-      }
-      if ((key === 'delete' || key === 'backspace') && ctx.selectedId) {
-        e.preventDefault(); ctx.remove(ctx.selectedId); return
-      }
-      if (key === 'escape') {
-        ctx.select(null); return
-      }
-      if (key === 'e' && !meta) {
-        ctx.setMode(ctx.mode === 'preview' ? 'edit' : 'preview'); return
-      }
+      if (meta && key === 'd' && ctx.selectedId) { e.preventDefault(); ctx.duplicate(ctx.selectedId); return }
+      if ((key === 'delete' || key === 'backspace') && ctx.selectedId) { e.preventDefault(); ctx.remove(ctx.selectedId); return }
+      if (key === 'escape') { ctx.select(null); return }
+      if (key === 'e' && !meta) { ctx.setMode(ctx.mode === 'preview' ? 'edit' : 'preview'); return }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

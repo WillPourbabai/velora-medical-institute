@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from 'react'
 import { useSchema } from './SchemaProvider'
-import { listBlockDefinitions, type BlockDefinition } from '@/lib/editor/registry'
+import { listBlockDefinitions, getBlockDefinition, type BlockDefinition } from '@/lib/editor/registry'
+import { findBlock } from '@/lib/editor/schema'
 import { Plus, Search } from 'lucide-react'
 
 export function InserterPanel() {
@@ -24,12 +25,25 @@ export function InserterPanel() {
 
   if (!ctx) return null
 
+  // Determine where new blocks go: into selected container, or root
+  const selected = ctx.selectedId ? findBlock(ctx.schema, ctx.selectedId) : null
+  const selectedDef = selected ? getBlockDefinition(selected.type) : null
+  const insertParentId =
+    selectedDef?.acceptsChildren ? selected!.id : null
+  const insertTargetLabel =
+    insertParentId ? `Inside ${selectedDef!.label}` : 'At end of page'
+
+  function handleInsert(type: string) {
+    ctx!.insertOfType(type, { parentId: insertParentId })
+  }
+
   return (
     <aside className="w-[240px] shrink-0 border-r border-neutral-200 bg-white text-neutral-900 flex flex-col h-full overflow-hidden" data-editor-chrome>
       <header className="px-4 py-3 border-b border-neutral-200">
         <p className="text-[10px] tracking-[0.22em] uppercase text-neutral-500 font-semibold">
           Add Blocks
         </p>
+        <p className="text-[10.5px] text-neutral-400 mt-1">{insertTargetLabel}</p>
         <div className="mt-2 relative">
           <Search className="size-3.5 text-neutral-400 absolute left-2 top-1/2 -translate-y-1/2" />
           <input
@@ -53,7 +67,7 @@ export function InserterPanel() {
                 <button
                   key={def.type}
                   type="button"
-                  onClick={() => ctx.insertOfType(def.type)}
+                  onClick={() => handleInsert(def.type)}
                   className="w-full text-left flex items-center gap-2 px-2.5 py-2 rounded hover:bg-neutral-100 group transition-colors"
                   title={`Add ${def.label}`}
                 >
