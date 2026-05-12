@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 interface LogoProps {
@@ -8,60 +9,36 @@ interface LogoProps {
   size?: 'sm' | 'md' | 'lg'
 }
 
+/**
+ * Site logo — renders the branded velora-logo.png lockup (monogram + wordmark).
+ * The image already contains "VELORA · MEDICAL INSTITUTE" so no adjacent text needed.
+ */
 export function Logo({
   className,
-  variant = 'ink',
-  withTagline = false,
   size = 'md',
 }: LogoProps) {
-  const isLight = variant === 'cream'
-  const wordColor = isLight ? 'text-cream' : 'text-ink'
-  const subColor = 'text-gold'
-
   const dims =
     size === 'sm'
-      ? { mono: 22, word: 'text-[14px]', sub: 'text-[7.5px]' }
+      ? { h: 76, w: 114 }
       : size === 'lg'
-        ? { mono: 56, word: 'text-[34px]', sub: 'text-[12px]' }
-        : { mono: 32, word: 'text-[18px]', sub: 'text-[9px]' }
+        ? { h: 160, w: 240 }
+        : { h: 100, w: 150 }
 
   return (
     <Link
       href="/"
-      className={cn('inline-flex items-center gap-3 group', className)}
+      className={cn('inline-flex items-center group shrink-0', className)}
       aria-label="Velora Medical Institute — Home"
     >
-      <VeloraMark size={dims.mono} />
-      <span className="flex flex-col leading-none">
-        <span
-          className={cn(
-            'font-display tracking-[0.28em] leading-none',
-            dims.word,
-            wordColor,
-          )}
-        >
-          VELORA
-        </span>
-        <span
-          className={cn(
-            'font-sans tracking-[0.32em] leading-none mt-1.5 uppercase font-semibold',
-            dims.sub,
-            subColor,
-          )}
-        >
-          Medical Institute
-        </span>
-      </span>
-      {withTagline && (
-        <span
-          className={cn(
-            'hidden lg:inline-block ml-3 pl-3 border-l border-current/30 text-[11px] tracking-[0.18em] uppercase',
-            wordColor,
-          )}
-        >
-          Est. Care
-        </span>
-      )}
+      <Image
+        src="/velora-logo.png"
+        alt="Velora Medical Institute"
+        width={dims.w * 2}
+        height={dims.h * 2}
+        priority
+        style={{ height: dims.h, width: 'auto' }}
+        className="object-contain"
+      />
     </Link>
   )
 }
@@ -69,10 +46,7 @@ export function Logo({
 /**
  * Velora monogram — two leaves splaying outward from a central stem,
  * forming a botanical V. Gold strokes with optional teal fill.
- *
- * The original gold-only `className` prop is honored for backwards
- * compatibility; pass `monochrome` to render the mark in a single
- * `currentColor` (useful for tiny sizes / favicons).
+ * Kept for inline accents and small spots where only the mark is needed.
  */
 export function VeloraMark({
   size = 36,
@@ -98,52 +72,23 @@ export function VeloraMark({
       className={className}
       aria-hidden
     >
-      {/* LEFT leaf */}
       <path
-        d="M32 36
-           C 22 32, 14 22, 14 12
-           C 22 14, 30 22, 32 36 Z"
+        d="M32 36 C 22 32, 14 22, 14 12 C 22 14, 30 22, 32 36 Z"
         fill={fill}
         stroke={stroke}
         strokeWidth="1.6"
         strokeLinejoin="round"
       />
-      {/* LEFT leaf vein */}
+      <path d="M16 14 L 31 35" stroke={stroke} strokeWidth="0.8" strokeLinecap="round" opacity="0.7" />
       <path
-        d="M16 14 L 31 35"
-        stroke={stroke}
-        strokeWidth="0.8"
-        strokeLinecap="round"
-        opacity="0.7"
-      />
-
-      {/* RIGHT leaf */}
-      <path
-        d="M32 36
-           C 42 32, 50 22, 50 12
-           C 42 14, 34 22, 32 36 Z"
+        d="M32 36 C 42 32, 50 22, 50 12 C 42 14, 34 22, 32 36 Z"
         fill={fill}
         stroke={stroke}
         strokeWidth="1.6"
         strokeLinejoin="round"
       />
-      {/* RIGHT leaf vein */}
-      <path
-        d="M48 14 L 33 35"
-        stroke={stroke}
-        strokeWidth="0.8"
-        strokeLinecap="round"
-        opacity="0.7"
-      />
-
-      {/* STEM coming down to a point — the V */}
-      <path
-        d="M32 35 L 32 54"
-        stroke={stroke}
-        strokeWidth="2.0"
-        strokeLinecap="round"
-      />
-      {/* Tiny terminus */}
+      <path d="M48 14 L 33 35" stroke={stroke} strokeWidth="0.8" strokeLinecap="round" opacity="0.7" />
+      <path d="M32 35 L 32 54" stroke={stroke} strokeWidth="2.0" strokeLinecap="round" />
       <circle cx="32" cy="55" r="1" fill={stroke} />
     </svg>
   )

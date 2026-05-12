@@ -1,99 +1,407 @@
-import type { Metadata } from 'next'
-import { Mail, Phone, Clock, MapPin } from 'lucide-react'
-import { ContactForm } from './contact-form'
-import { Section } from '@/components/site/section'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Contact Velora Medical Institute',
-  description:
-    'Reach the Velora Medical Institute care team. Telemedicine practice serving select states. Email, phone, and a contact form.',
-}
+import { useState } from 'react'
+import Link from 'next/link'
+import {
+  ArrowRight,
+  Mail,
+  Phone,
+  Clock,
+  MapPin,
+  Check,
+  AlertCircle,
+  Calendar,
+} from 'lucide-react'
+
+const SUBJECTS = [
+  'General Question',
+  'Book a Consultation',
+  'Pricing',
+  'Other',
+]
+
+type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<Status>('idle')
+  const [errorMsg, setErrorMsg] = useState<string>('')
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStatus('submitting')
+    setErrorMsg('')
+
+    const fd = new FormData(e.currentTarget)
+    const payload = {
+      name: String(fd.get('name') ?? '').trim(),
+      email: String(fd.get('email') ?? '').trim(),
+      phone: String(fd.get('phone') ?? '').trim(),
+      topic: String(fd.get('topic') ?? 'General Question'),
+      message: String(fd.get('message') ?? '').trim(),
+      submittedAt: new Date().toISOString(),
+    }
+
+    if (!payload.name || !payload.email || !payload.message) {
+      setStatus('error')
+      setErrorMsg('Please complete name, email, and message.')
+      return
+    }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) throw new Error('Request failed')
+      setStatus('success')
+    } catch {
+      setStatus('error')
+      setErrorMsg('Could not send your message. Please try again or email info@velora-medical.com.')
+    }
+  }
+
   return (
     <>
-      <section className="bg-cream border-b border-line">
-        <div className="container-velora pt-14 md:pt-20 pb-12">
-          <p className="eyebrow">Contact</p>
-          <h1
-            className="mt-4 font-display leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl"
-            style={{ fontSize: 'clamp(2rem, 5.5vw, 4.25rem)' }}
-          >
-            Scheduling, programs, eligibility &mdash; <em className="not-italic text-brown">non-clinical questions</em>.
-          </h1>
-          <p className="mt-6 text-[16.5px] text-ink-soft max-w-2xl leading-relaxed">
-            For anything clinical, book a consultation &mdash; medical advice is not given over email.
-            For state licensure, program enrollment, billing, or rescheduling, our care team replies within
-            one business day, Monday through Friday.
-          </p>
+      {/* ===== CONTACT — single focused section, form-first ===== */}
+      <section className="bg-bone">
+        <div className="container-velora pt-12 lg:pt-16 pb-20 lg:pb-24">
+
+          {/* Header */}
+          <div className="max-w-3xl">
+            <p className="text-[10.5px] tracking-[0.42em] uppercase text-brown font-semibold">
+              Contact
+            </p>
+            <h1
+              className="mt-5 font-display text-ink leading-[0.98] tracking-[-0.022em]"
+              style={{ fontSize: 'clamp(2rem, 4.6vw, 3.75rem)' }}
+            >
+              Reach a physician.
+              <br />
+              <em className="italic font-display text-brown">Directly.</em>
+            </h1>
+            <div className="mt-6 w-12 h-px bg-gold/80" />
+            <p className="mt-6 text-[15px] text-ink-soft leading-[1.75] max-w-[640px]">
+              Messages are read and answered by a Velora physician &mdash; not a call center,
+              not an automated reply. Use the form below for scheduling, pricing, or fit
+              questions. For clinical concerns, please book a consultation.
+            </p>
+          </div>
+
+          {/* Two-column grid: contact details left, form right */}
+          <div className="mt-14 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16 items-start">
+
+            {/* LEFT — contact details, stacked */}
+            <div className="lg:sticky lg:top-24 lg:self-start">
+              <p className="text-[10.5px] tracking-[0.32em] uppercase text-ink font-semibold">
+                Direct Channels
+              </p>
+              <div className="mt-5 w-8 h-px bg-gold/80" />
+
+              <dl className="mt-6 divide-y divide-line/70 border-y border-line/70">
+                <ContactRow
+                  icon={<Mail className="size-4" strokeWidth={1.8} />}
+                  label="Email"
+                  value="info@velora-medical.com"
+                  href="mailto:info@velora-medical.com"
+                />
+                <ContactRow
+                  icon={<Phone className="size-4" strokeWidth={1.8} />}
+                  label="Phone"
+                  value="(833) 583-5672"
+                  href="tel:+18335835672"
+                />
+                <ContactRow
+                  icon={<Clock className="size-4" strokeWidth={1.8} />}
+                  label="Hours"
+                  value="Mon – Fri · 8a – 5p PT"
+                />
+                <ContactRow
+                  icon={<MapPin className="size-4" strokeWidth={1.8} />}
+                  label="Service Area"
+                  value="California telemedicine"
+                />
+              </dl>
+
+              <p className="mt-7 text-[13px] text-ink-soft/85 leading-[1.7] italic font-display max-w-[360px]">
+                Velora is a direct-pay practice. Transparent pricing, no insurance billed.
+                Replies typically within one business day.
+              </p>
+
+              <Link
+                href="/faq"
+                className="mt-7 inline-flex items-center gap-2 text-[10.5px] tracking-[0.28em] uppercase text-brown hover:text-brown-deep font-semibold border-b border-brown/40 hover:border-brown pb-1 transition-colors"
+              >
+                Have a common question? View the FAQ
+                <ArrowRight className="size-3.5" />
+              </Link>
+            </div>
+
+            {/* RIGHT — the form */}
+            <div className="bg-cream rounded-2xl border border-line/60 p-7 lg:p-10 shadow-[0_28px_60px_-30px_rgba(74,52,28,0.4)]">
+              {status === 'success' ? (
+                <SuccessPanel />
+              ) : (
+                <form onSubmit={handleSubmit} noValidate>
+                  <p className="text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+                    Send a Message
+                  </p>
+                  <h2
+                    className="mt-3 font-display text-ink leading-[1.1] tracking-[-0.012em]"
+                    style={{ fontSize: 'clamp(1.375rem, 2.6vw, 1.875rem)' }}
+                  >
+                    Write to us. <em className="italic font-display text-brown">A physician will respond.</em>
+                  </h2>
+                  <div className="mt-7 w-10 h-px bg-gold/80" />
+
+                  <div className="mt-7 grid sm:grid-cols-2 gap-5">
+                    <FormField label="Name" required htmlFor="contact-name">
+                      <input
+                        id="contact-name"
+                        name="name"
+                        type="text"
+                        required
+                        autoComplete="name"
+                        className="velora-input"
+                      />
+                    </FormField>
+                    <FormField label="Email" required htmlFor="contact-email">
+                      <input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        required
+                        autoComplete="email"
+                        className="velora-input"
+                      />
+                    </FormField>
+                    <FormField label="Phone (optional)" htmlFor="contact-phone">
+                      <input
+                        id="contact-phone"
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel"
+                        className="velora-input"
+                      />
+                    </FormField>
+                    <FormField label="Subject" required htmlFor="contact-topic">
+                      <select
+                        id="contact-topic"
+                        name="topic"
+                        required
+                        defaultValue="General Question"
+                        className="velora-input"
+                      >
+                        {SUBJECTS.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                      </select>
+                    </FormField>
+                    <FormField
+                      label="Message"
+                      required
+                      htmlFor="contact-message"
+                      className="sm:col-span-2"
+                    >
+                      <textarea
+                        id="contact-message"
+                        name="message"
+                        rows={6}
+                        required
+                        className="velora-input resize-none"
+                      />
+                    </FormField>
+                  </div>
+
+                  {status === 'error' && (
+                    <div
+                      role="alert"
+                      className="mt-6 flex items-start gap-3 rounded-md border border-brown/30 bg-brown/5 px-4 py-3 text-[13px] text-brown-deep leading-[1.55]"
+                    >
+                      <AlertCircle className="size-4 shrink-0 mt-0.5" strokeWidth={1.8} />
+                      <span>{errorMsg || 'Something went wrong. Please try again.'}</span>
+                    </div>
+                  )}
+
+                  <div className="mt-8 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-5">
+                    <p className="text-[12px] text-ink-soft/85 leading-[1.55] max-w-md">
+                      Please don&rsquo;t include detailed medical information. For clinical
+                      questions, book a consultation.
+                    </p>
+                    <button
+                      type="submit"
+                      disabled={status === 'submitting'}
+                      className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep disabled:opacity-60 disabled:cursor-not-allowed px-7 py-3.5 rounded-md text-[11px] tracking-[0.28em] uppercase font-semibold transition-colors shrink-0"
+                    >
+                      {status === 'submitting' ? 'Sending…' : 'Send Message'}
+                      <ArrowRight className="size-4" strokeWidth={2} />
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
         </div>
       </section>
 
-      <Section bg="bone">
-        <div className="grid lg:grid-cols-12 gap-10">
-          {/* Contact info */}
-          <aside className="lg:col-span-4 space-y-4">
-            <ContactCard
-              icon={<Mail className="size-5" />}
-              title="Email"
-              value="care@veloramedical.com"
-              href="mailto:care@veloramedical.com"
-              description="General inquiries and scheduling support"
-            />
-            <ContactCard
-              icon={<Phone className="size-5" />}
-              title="Phone"
-              value="(833) 583-5672"
-              href="tel:+18335835672"
-              description="Mon–Fri · 8am–6pm Central"
-            />
-            <ContactCard
-              icon={<Clock className="size-5" />}
-              title="Hours"
-              value="Mon–Fri · 8am–6pm CT"
-              description="Telemedicine consultations by appointment"
-            />
-            <ContactCard
-              icon={<MapPin className="size-5" />}
-              title="Location"
-              value="Telemedicine practice"
-              description="Care delivered virtually to patients across the United States."
-            />
-          </aside>
-
-          {/* Form */}
-          <div className="lg:col-span-8">
-            <ContactForm />
+      {/* ===== Tight brown closer — single decisive action ===== */}
+      <section className="bg-brown text-cream">
+        <div className="container-velora py-12 lg:py-14">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-8">
+            <div className="text-center md:text-left">
+              <h2
+                className="font-display leading-[1.06] tracking-[-0.012em]"
+                style={{ fontSize: 'clamp(1.375rem, 2.4vw, 1.875rem)' }}
+              >
+                Prefer to book directly?
+              </h2>
+              <p className="mt-2 text-[12.5px] tracking-[0.18em] uppercase text-cream/70">
+                60-minute physician visit &middot; written plan &middot;{' '}
+                <span className="text-cream font-semibold">$295</span>
+              </p>
+            </div>
+            <Link
+              href="/book"
+              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-3.5 rounded-md text-[11px] tracking-[0.3em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
+            >
+              <Calendar className="size-4" strokeWidth={2} />
+              Schedule Consultation
+            </Link>
           </div>
         </div>
-      </Section>
+      </section>
+
+      {/* Local input styling */}
+      <style jsx global>{`
+        .velora-input {
+          width: 100%;
+          background-color: var(--velora-cream, #f7f1e6);
+          border: 1px solid rgba(74, 52, 28, 0.18);
+          border-radius: 0.375rem;
+          padding: 0.75rem 0.9rem;
+          font-size: 14.5px;
+          line-height: 1.5;
+          color: inherit;
+          transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+          font-family: inherit;
+        }
+        .velora-input:hover {
+          border-color: rgba(74, 52, 28, 0.32);
+        }
+        .velora-input:focus {
+          outline: none;
+          border-color: rgba(74, 52, 28, 0.55);
+          box-shadow: 0 0 0 3px rgba(74, 52, 28, 0.12);
+          background-color: #fffaf1;
+        }
+        .velora-input::placeholder {
+          color: rgba(74, 52, 28, 0.45);
+        }
+        select.velora-input {
+          appearance: none;
+          background-image: linear-gradient(45deg, transparent 50%, rgba(74,52,28,0.55) 50%),
+                            linear-gradient(135deg, rgba(74,52,28,0.55) 50%, transparent 50%);
+          background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%;
+          background-size: 5px 5px, 5px 5px;
+          background-repeat: no-repeat;
+          padding-right: 2.25rem;
+        }
+      `}</style>
     </>
   )
 }
 
-function ContactCard({
-  icon, title, value, description, href,
+/* ----- Helpers ----- */
+
+function ContactRow({
+  icon,
+  label,
+  value,
+  href,
 }: {
-  icon: React.ReactNode; title: string; value: string; description: string; href?: string
+  icon: React.ReactNode
+  label: string
+  value: string
+  href?: string
 }) {
-  const content = (
-    <>
-      <span className="size-10 rounded-full bg-brown-soft text-brown flex items-center justify-center">
+  const inner = (
+    <div className="flex items-center gap-4 py-4">
+      <span className="size-9 rounded-full bg-brown/10 text-brown flex items-center justify-center shrink-0">
         {icon}
       </span>
-      <div className="mt-5">
-        <p className="eyebrow">{title}</p>
-        <p className="mt-2 font-display text-[22px] leading-tight text-ink">{value}</p>
-        <p className="mt-2 text-[13.5px] text-ink-soft leading-relaxed">{description}</p>
+      <div className="flex-1 min-w-0">
+        <p className="text-[9.5px] tracking-[0.32em] uppercase text-ink-soft font-semibold">
+          {label}
+        </p>
+        <p className="mt-1 font-display text-ink text-[16px] md:text-[17px] leading-[1.25] truncate">
+          {value}
+        </p>
       </div>
-    </>
+    </div>
   )
   if (href) {
     return (
-      <a href={href} className="block bg-paper border border-line p-7 hover:border-brown transition-colors">
-        {content}
+      <a
+        href={href}
+        className="block group hover:bg-cream/60 transition-colors -mx-2 px-2 rounded-md"
+      >
+        {inner}
       </a>
     )
   }
-  return <div className="bg-paper border border-line p-7">{content}</div>
+  return <div>{inner}</div>
+}
+
+function FormField({
+  label,
+  required,
+  htmlFor,
+  className,
+  children,
+}: {
+  label: string
+  required?: boolean
+  htmlFor: string
+  className?: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className={className ?? ''}>
+      <label
+        htmlFor={htmlFor}
+        className="block text-[10.5px] tracking-[0.28em] uppercase text-brown/85 font-semibold"
+      >
+        {label}
+        {required && <span className="text-gold ml-1.5">*</span>}
+      </label>
+      <div className="mt-2.5">{children}</div>
+    </div>
+  )
+}
+
+function SuccessPanel() {
+  return (
+    <div className="text-center py-6">
+      <span className="size-12 rounded-full bg-brown/10 text-brown flex items-center justify-center mx-auto">
+        <Check className="size-6" strokeWidth={1.8} />
+      </span>
+      <p className="mt-7 text-[10.5px] tracking-[0.32em] uppercase text-brown font-semibold">
+        Message Received
+      </p>
+      <h3
+        className="mt-4 font-display text-ink leading-[1.1] tracking-[-0.012em]"
+        style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
+      >
+        Thank you &mdash;{' '}
+        <em className="italic font-display text-brown">a physician will respond shortly.</em>
+      </h3>
+      <div className="mt-7 mx-auto w-10 h-px bg-gold/70" />
+      <p className="mt-7 text-[14px] text-ink-soft leading-[1.75] max-w-md mx-auto">
+        Replies are written personally and typically arrive within one business day. If your
+        inquiry is time-sensitive, you may also call (833) 583-5672.
+      </p>
+    </div>
+  )
 }

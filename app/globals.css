@@ -105,12 +105,16 @@
 @layer components {
   /* Container — generous editorial gutters */
   .container-velora {
-    @apply mx-auto w-full px-6 sm:px-8 lg:px-12;
-    max-width: 80rem; /* 1280 */
+    @apply mx-auto w-full px-6 sm:px-8 lg:px-12 xl:px-16;
+    max-width: 115rem; /* 1840 */
   }
   .container-narrow {
     @apply mx-auto w-full px-6 sm:px-8 lg:px-12;
     max-width: 56rem;
+  }
+  .container-wide {
+    @apply mx-auto w-full px-6 sm:px-8 lg:px-12 xl:px-20;
+    max-width: 110rem; /* 1760 — for sections that want to spread further on wide displays */
   }
 
   /* Eyebrow label */
