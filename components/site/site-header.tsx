@@ -82,8 +82,9 @@ export function SiteHeader() {
           : 'bg-bone',
       )}
     >
-      <div className="container-velora flex items-center justify-between h-[78px] gap-6">
-        <Logo size="sm" />
+      <div className="container-velora flex items-center justify-between h-[92px] lg:h-[110px] gap-6">
+        <Logo size="sm" className="lg:hidden" />
+        <Logo size="md" className="hidden lg:inline-flex" />
 
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 xl:gap-9">
           {NAV.map((item) => {
@@ -219,29 +220,37 @@ export function SiteHeader() {
             aria-hidden
           />
           <div className="absolute top-0 right-0 h-full w-[88%] max-w-sm bg-bone shadow-[-20px_0_60px_-10px_rgba(0,0,0,0.4)] flex flex-col animate-fade-in">
-            <div className="flex items-center justify-between h-[78px] px-6 border-b border-line">
+            <div className="flex items-center justify-between h-[92px] px-6 border-b border-line">
               <Logo size="sm" />
               <button
                 type="button"
-                className="inline-flex items-center justify-center w-10 h-10 text-ink"
+                className="inline-flex items-center justify-center w-11 h-11 text-ink"
                 onClick={() => setOpen(false)}
                 aria-label="Close menu"
               >
-                <X className="size-6" />
+                <X className="size-7" />
               </button>
             </div>
             <nav className="flex-1 overflow-y-auto px-6 py-6 flex flex-col">
+              {/* Home — always first on mobile */}
+              <Link
+                key="/"
+                href="/"
+                className="font-display text-[28px] py-3 text-ink hover:text-brown transition-colors border-b border-line/60"
+              >
+                Home
+              </Link>
               {NAV.flatMap((item) =>
                 item.children
                   ? [
-                      <p key={item.label + '-l'} className="text-[10px] tracking-[0.24em] uppercase text-ink-soft mt-4 mb-1.5">
+                      <p key={item.label + '-l'} className="text-[11px] tracking-[0.26em] uppercase text-ink-soft mt-5 mb-2">
                         {item.label}
                       </p>,
                       ...item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="font-display text-[22px] py-2 text-ink hover:text-brown transition-colors"
+                          className="font-display text-[24px] py-2.5 text-ink hover:text-brown transition-colors"
                         >
                           {child.label}
                         </Link>
@@ -251,7 +260,7 @@ export function SiteHeader() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="font-display text-[26px] py-3 text-ink hover:text-brown transition-colors border-b border-line/60"
+                        className="font-display text-[28px] py-3 text-ink hover:text-brown transition-colors border-b border-line/60"
                       >
                         {item.label}
                       </Link>,
@@ -261,9 +270,9 @@ export function SiteHeader() {
             <div className="p-6 border-t border-line">
               <Link
                 href="/book"
-                className="w-full inline-flex items-center justify-center gap-2 bg-brown text-cream hover:bg-brown-deep px-6 py-4 text-[12px] tracking-[0.24em] uppercase font-semibold rounded-md transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-6 py-4 text-[13px] tracking-[0.26em] uppercase font-semibold rounded-md transition-colors"
               >
-                <Calendar className="size-4" />
+                <Calendar className="size-5" />
                 Schedule Consultation
               </Link>
             </div>

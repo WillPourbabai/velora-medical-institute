@@ -23,7 +23,7 @@ export default function HomePage() {
         <div className="container-velora pt-10 lg:pt-14 pb-2 text-center">
           <ChapterEyebrow number="01" label="Our Approach" />
         </div>
-        <div className="relative w-full aspect-[16/9] max-h-[calc(100vh-78px)] overflow-hidden">
+        <div className="relative w-full aspect-[16/9] lg:max-h-[calc(100vh-110px)] overflow-hidden">
           <Image
             src="/physician-led-care.png"
             alt="Drs. Tolebeyan and Amini — double board-certified in Internal Medicine and Obesity Medicine — flanking the Velora care framework: Physician-Led Individualized Care; Physician-Directed Care; Personalized Treatment Plans; Telemedicine Visits; Direct-Pay Practice"
@@ -109,7 +109,7 @@ export default function HomePage() {
               <div className="mt-8">
                 <Link
                   href="/book"
-                  className="inline-flex items-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-6 py-3.5 rounded-md text-[11px] tracking-[0.26em] uppercase font-semibold transition-colors"
+                  className="inline-flex items-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-6 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.24em] sm:tracking-[0.26em] uppercase font-semibold transition-colors"
                 >
                   <Calendar className="size-4" strokeWidth={2} />
                   Book Initial Consultation
@@ -128,8 +128,8 @@ export default function HomePage() {
                   className="object-cover"
                 />
               </div>
-              {/* "1 · Initial Consultation" callout — top-left, slightly outside photo for layered look */}
-              <div className="absolute top-5 left-5 md:top-7 md:left-7 w-[260px] md:w-[300px] bg-cream rounded-xl px-5 py-4 shadow-[0_24px_50px_-22px_rgba(74,52,28,0.55)] ring-1 ring-line/50">
+              {/* "1 · Initial Consultation" callout — overlay on md+, hidden on mobile (photo isn't wide enough) */}
+              <div className="hidden md:block absolute top-5 left-5 md:top-7 md:left-7 w-[260px] md:w-[300px] bg-cream rounded-xl px-5 py-4 shadow-[0_24px_50px_-22px_rgba(74,52,28,0.55)] ring-1 ring-line/50">
                 <div className="flex items-center gap-3">
                   <span className="size-9 rounded-full bg-brown text-cream flex items-center justify-center font-display text-[15px] shrink-0">
                     1
@@ -152,16 +152,16 @@ export default function HomePage() {
 
       {/* ===== YOUR PATH — Step 2: Choose your care path (forked road) ===== */}
       <section className="bg-bone">
-        <div className="container-velora text-center" style={{ paddingTop: 'calc(1rem - 15px)' }}>
+        <div className="container-velora text-center pt-12 sm:pt-16 lg:pt-4">
           <div className="inline-flex items-center gap-3.5">
             <span className="size-11 rounded-full bg-brown text-cream flex items-center justify-center font-display text-[18px]">
               2
             </span>
-            <span className="text-[11px] tracking-[0.36em] uppercase text-ink font-semibold">
+            <span className="text-[12px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.36em] uppercase text-ink font-semibold">
               Choose Your Care Path
             </span>
           </div>
-          <p className="mt-5 mx-auto max-w-xl text-[14px] text-ink-soft leading-[1.65]">
+          <p className="mt-5 mx-auto max-w-xl text-[14.5px] sm:text-[14px] text-ink-soft leading-[1.65] px-2">
             After your consultation, we&rsquo;ll recommend the best path forward for you.
           </p>
         </div>
@@ -195,10 +195,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Floating Path Cards — overlap bottom of image */}
-          <div className="absolute inset-x-0 bottom-4 md:bottom-6">
+          {/* Path Cards — flow below image on mobile, float over image bottom on md+ */}
+          <div className="md:absolute md:inset-x-0 md:bottom-6 mt-6 md:mt-0">
             <div className="container-velora">
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_minmax(0,0.4fr)_1fr] gap-4 md:gap-3 items-end">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_minmax(0,0.4fr)_1fr] gap-5 md:gap-3 items-end">
                 <PathCard
                   letter="A"
                   title="Individual Follow-Up Visits"
@@ -360,7 +360,7 @@ export default function HomePage() {
 
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-3.5 rounded-md text-[11px] tracking-[0.3em] uppercase font-semibold transition-colors shrink-0"
+              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.26em] sm:tracking-[0.3em] uppercase font-semibold transition-colors shrink-0"
             >
               <Calendar className="size-4" strokeWidth={2} />
               Schedule Consultation
@@ -411,7 +411,7 @@ function ServiceCard({
       <p className="mt-5 text-[14px] text-ink-soft leading-[1.7] flex-1">
         {body}
       </p>
-      <span className="mt-8 inline-flex items-center gap-2 text-brown group-hover:text-brown-deep text-[10.5px] tracking-[0.28em] uppercase font-semibold transition-colors">
+      <span className="mt-8 inline-flex items-center gap-2 text-brown group-hover:text-brown-deep text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors">
         Learn more
         <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
       </span>
@@ -491,7 +491,7 @@ function PathCard({
           {letter}
         </span>
         <div className="leading-tight pt-1.5">
-          <p className="text-[10.5px] tracking-[0.32em] uppercase text-ink font-semibold leading-[1.35]">
+          <p className="text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.32em] uppercase text-ink font-semibold leading-[1.35]">
             {title}
           </p>
         </div>
@@ -518,7 +518,7 @@ function PathCard({
       <Link
         href={ctaHref}
         className={[
-          'group/cta mt-6 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md text-[10.5px] tracking-[0.28em] uppercase font-semibold transition-colors',
+          'group/cta mt-6 inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-md text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors',
           recommended
             ? 'bg-brown text-cream hover:bg-brown-deep'
             : 'border border-brown text-brown hover:bg-brown hover:text-cream',

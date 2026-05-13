@@ -27,7 +27,7 @@ export default function HormoneTherapyPage() {
       {/* ===== HERO — split: editorial copy left, product photo right ===== */}
       <section className="relative bg-bone overflow-hidden">
         <div className="container-velora pt-12 lg:pt-16 pb-16 lg:pb-20">
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-16 xl:gap-20 items-center min-h-[calc(100vh-78px-160px)]">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-16 xl:gap-20 items-center lg:min-h-[calc(100vh-110px-160px)]">
             {/* LEFT — editorial copy */}
             <div className="max-w-[560px]">
               <p className="text-[10px] sm:text-[10.5px] tracking-[0.46em] uppercase text-brown font-semibold">

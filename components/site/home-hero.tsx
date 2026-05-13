@@ -44,7 +44,7 @@ export function HomeHero() {
         aria-hidden
       />
 
-      <div className="relative container-velora pt-10 sm:pt-14 lg:pt-20 pb-12 sm:pb-16 lg:pb-24 lg:min-h-[calc(100vh-78px)] lg:flex lg:flex-col lg:justify-center">
+      <div className="relative container-velora pt-10 sm:pt-14 lg:pt-20 pb-12 sm:pb-16 lg:pb-24 lg:min-h-[calc(100vh-110px)] lg:flex lg:flex-col lg:justify-center">
         <div className="max-w-2xl xl:max-w-3xl">
           <p className="text-[10px] sm:text-[10.5px] tracking-[0.42em] uppercase text-brown font-semibold">
             Telemedicine · California
@@ -72,14 +72,14 @@ export function HomeHero() {
           <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap gap-3">
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-6 py-3.5 rounded-md text-[11px] tracking-[0.24em] uppercase font-semibold transition-colors"
+              className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-6 py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.22em] sm:tracking-[0.24em] uppercase font-semibold transition-colors"
             >
               <Calendar className="size-4" strokeWidth={2} />
               Book Consultation
             </Link>
             <Link
               href="/programs"
-              className="inline-flex items-center justify-center gap-2.5 border border-ink/80 text-ink hover:bg-ink hover:text-cream px-6 py-3.5 rounded-md text-[11px] tracking-[0.24em] uppercase font-semibold transition-colors"
+              className="inline-flex items-center justify-center gap-2.5 border border-ink/80 text-ink hover:bg-ink hover:text-cream px-6 py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.22em] sm:tracking-[0.24em] uppercase font-semibold transition-colors"
             >
               View Programs
               <ArrowRight className="size-4" strokeWidth={2} />

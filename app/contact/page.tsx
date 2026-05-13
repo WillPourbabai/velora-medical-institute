@@ -233,7 +233,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep disabled:opacity-60 disabled:cursor-not-allowed px-7 py-3.5 rounded-md text-[11px] tracking-[0.28em] uppercase font-semibold transition-colors shrink-0"
+                      className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep disabled:opacity-60 disabled:cursor-not-allowed px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors shrink-0 w-full sm:w-auto"
                     >
                       {status === 'submitting' ? 'Sending…' : 'Send Message'}
                       <ArrowRight className="size-4" strokeWidth={2} />
@@ -264,7 +264,7 @@ export default function ContactPage() {
             </div>
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-3.5 rounded-md text-[11px] tracking-[0.3em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
+              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.26em] sm:tracking-[0.3em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
             >
               <Calendar className="size-4" strokeWidth={2} />
               Schedule Consultation

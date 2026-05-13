@@ -94,7 +94,7 @@ export default function ProgramsPage() {
               {/* CTA */}
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-7 py-3.5 rounded-md text-[11px] tracking-[0.28em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
+                className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
               >
                 <Calendar className="size-4" strokeWidth={2} />
                 Book Consultation
@@ -282,7 +282,7 @@ export default function ProgramsPage() {
             </div>
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-3.5 rounded-md text-[11px] tracking-[0.3em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
+              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.26em] sm:tracking-[0.3em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
             >
               <Calendar className="size-4" strokeWidth={2} />
               Schedule Consultation
@@ -399,7 +399,7 @@ function ProgramTier({
       <Link
         href={href}
         className={[
-          'group/cta mt-8 inline-flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-md text-[10.5px] tracking-[0.28em] uppercase font-semibold transition-colors',
+          'group/cta mt-8 inline-flex items-center justify-center gap-2 w-full px-5 py-4 sm:py-3.5 rounded-md text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors',
           featured
             ? 'bg-cream text-ink hover:bg-paper'
             : 'border border-brown text-brown hover:bg-brown hover:text-cream',
