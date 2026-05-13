@@ -1,104 +1,226 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, ArrowRight } from 'lucide-react'
+import {
+  Calendar,
+  ArrowRight,
+  Monitor,
+  UserRound,
+  ClipboardList,
+  ShieldCheck,
+  Dna,
+} from 'lucide-react'
 
 /**
- * Homepage hero — clean responsive design.
- * Mobile: copy + contained photo stacked.
- * Desktop: copy left, full-bleed photo right with cream feather.
+ * Homepage hero — refined dark editorial.
+ * Near-black bg, Fraunces serif wordmark, telehealth photo full-bleed
+ * on desktop with a clean (not feathered) edge and subtle vignette,
+ * contained card on mobile.
  */
 export function HomeHero() {
   return (
-    <section className="relative bg-bone overflow-hidden">
-      {/* Desktop-only: full-bleed photo on the right, feathered into cream */}
+    <section className="relative bg-[#0B0907] text-cream overflow-hidden">
+      {/* Desktop photo right */}
       <div
-        className="hidden lg:block absolute inset-y-0 right-0 w-[56%] xl:w-[54%]"
+        className="hidden lg:block absolute inset-y-0 right-0 w-[55%] xl:w-[54%]"
         style={{
           backgroundImage: 'url(/photos/hero-telehealth.png)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          WebkitMaskImage:
-            'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,1) 42%)',
-          maskImage:
-            'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,1) 42%)',
+          backgroundPosition: 'center 35%',
         }}
         aria-hidden
       />
-      {/* Desktop cream wash over the feathered edge */}
+      {/* Soft left-edge fade — narrow, polished */}
       <div
-        className="hidden lg:block absolute inset-0 pointer-events-none"
+        className="hidden lg:block absolute inset-y-0 right-0 w-[55%] xl:w-[54%] pointer-events-none"
         style={{
           background:
-            'linear-gradient(to right, rgb(244 235 211) 0%, rgb(244 235 211) 36%, rgba(244,235,211,0.6) 50%, rgba(244,235,211,0) 66%)',
+            'linear-gradient(to right, #0B0907 0%, rgba(11,9,7,0.45) 5%, rgba(11,9,7,0) 12%)',
         }}
+        aria-hidden
       />
-
-      {/* Warm gold corner light — desktop only, decorative */}
+      {/* Top + bottom vignettes on photo for depth */}
       <div
-        className="hidden lg:block absolute -top-32 -left-32 w-[700px] h-[520px] -rotate-[18deg] opacity-50 pointer-events-none"
+        className="hidden lg:block absolute top-0 right-0 w-[55%] xl:w-[54%] h-40 pointer-events-none"
         style={{
           background:
-            'linear-gradient(100deg, rgba(255,235,200,0.85) 0%, rgba(255,225,180,0.35) 35%, rgba(255,225,180,0) 70%)',
-          filter: 'blur(56px)',
+            'linear-gradient(to bottom, rgba(11,9,7,0.55) 0%, rgba(11,9,7,0) 100%)',
+        }}
+        aria-hidden
+      />
+      {/* Subtle warm key light top-left */}
+      <div
+        className="hidden lg:block absolute -top-40 -left-32 w-[700px] h-[560px] opacity-30 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(closest-side, rgba(201,160,100,0.5), rgba(201,160,100,0) 70%)',
+          filter: 'blur(70px)',
         }}
         aria-hidden
       />
 
-      <div className="relative container-velora pt-10 sm:pt-14 lg:pt-20 pb-12 sm:pb-16 lg:pb-24 lg:min-h-[calc(100vh-110px)] lg:flex lg:flex-col lg:justify-center">
-        <div className="max-w-2xl xl:max-w-3xl">
-          <p className="text-[10px] sm:text-[10.5px] tracking-[0.42em] uppercase text-brown font-semibold">
-            Telemedicine · California
+      <div className="relative container-velora pt-12 sm:pt-16 lg:pt-24 pb-10 sm:pb-14 lg:pb-14 lg:min-h-[calc(100vh-110px)] lg:flex lg:flex-col lg:justify-between">
+        {/* Main editorial column */}
+        <div className="max-w-[560px]">
+
+          {/* Brand lockup — refined V monogram + Fraunces wordmark */}
+          <div className="flex flex-col items-start">
+            <VMonogram className="text-gold" />
+            <p
+              className="mt-3 font-display text-cream leading-none tracking-[0.08em]"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 3.75rem)', fontWeight: 400 }}
+            >
+              VELORA
+            </p>
+            <p className="mt-3 text-[10px] sm:text-[11px] tracking-[0.46em] uppercase text-gold font-semibold">
+              Medical Institute
+            </p>
+          </div>
+
+          {/* Italic tagline — "Feel Like Yourself Again" */}
+          <p
+            className="mt-10 sm:mt-12 font-display italic text-gold leading-none"
+            style={{ fontSize: 'clamp(1.125rem, 1.6vw, 1.375rem)' }}
+          >
+            Feel Like Yourself Again
           </p>
 
+          {/* Main headline */}
           <h1
-            className="mt-5 sm:mt-6 font-display leading-[1.02] sm:leading-[0.98] tracking-[-0.022em] text-ink"
-            style={{ fontSize: 'clamp(1.875rem, 8.5vw, 4.5rem)' }}
+            className="mt-4 sm:mt-5 font-display leading-[1.04] tracking-[-0.022em] text-cream"
+            style={{ fontSize: 'clamp(1.875rem, 5.4vw, 4rem)' }}
           >
-            Physician-Guided
-            <br />
-            <em className="italic font-display text-brown">Weight Loss &amp;</em>
-            <br />
-            <em className="italic font-display text-brown">Hormone Optimization.</em>
+            Physician-Guided{' '}
+            <em className="italic font-display text-gold">Weight Management</em>
+            {' '}&amp;{' '}
+            <em className="italic font-display text-gold">Hormone Therapy</em>
           </h1>
 
-          <div className="mt-6 sm:mt-7 w-12 sm:w-14 h-px bg-gold" />
+          <div className="mt-7 w-14 h-px bg-gold" />
 
-          <p className="mt-5 sm:mt-7 max-w-md text-[14px] sm:text-[14.5px] leading-[1.7] text-ink-soft">
-            Personalized telemedicine care for metabolic health, weight management,
-            and hormone balance &mdash; guided by physicians, refined over time
-            to support lasting results.
+          {/* Body — new copy */}
+          <p className="mt-6 sm:mt-7 text-[14px] sm:text-[15px] leading-[1.75] text-cream/80">
+            Personalized, evidence-based care focused on metabolic health, weight
+            management, and hormone optimization.
+          </p>
+          <p className="mt-3 text-[13.5px] sm:text-[14px] leading-[1.7] text-cream/65">
+            Care is directed by double board-certified physicians in Internal Medicine
+            &amp; Obesity Medicine, with treatment tailored to your clinical profile
+            and long-term health goals.
           </p>
 
-          <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap gap-3">
+          {/* CTAs — new labels */}
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
-              href="/book"
-              className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-6 py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.22em] sm:tracking-[0.24em] uppercase font-semibold transition-colors"
+              href="/book?path=weight-management"
+              className="inline-flex items-center justify-center gap-2.5 bg-gold text-ink hover:bg-gold/90 px-6 py-4 rounded-md text-[12px] sm:text-[12px] tracking-[0.22em] uppercase font-semibold transition-colors"
             >
               <Calendar className="size-4" strokeWidth={2} />
-              Book Consultation
+              Book Weight Management
             </Link>
             <Link
-              href="/programs"
-              className="inline-flex items-center justify-center gap-2.5 border border-ink/80 text-ink hover:bg-ink hover:text-cream px-6 py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.22em] sm:tracking-[0.24em] uppercase font-semibold transition-colors"
+              href="/book?path=hormone-therapy"
+              className="inline-flex items-center justify-center gap-2.5 border border-gold/55 text-gold hover:bg-gold hover:text-ink px-6 py-4 rounded-md text-[12px] sm:text-[12px] tracking-[0.22em] uppercase font-semibold transition-colors"
             >
-              View Programs
+              Start Hormone Therapy
               <ArrowRight className="size-4" strokeWidth={2} />
             </Link>
           </div>
-        </div>
 
-        {/* Mobile/tablet: contained photo BELOW copy (replaces broken full-bleed) */}
-        <div className="lg:hidden mt-10 sm:mt-12 relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_30px_60px_-26px_rgba(74,52,28,0.5)]">
-          <Image
-            src="/photos/hero-telehealth.png"
-            alt="A Velora patient meeting with a physician by telemedicine"
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
+          {/* Mobile photo */}
+          <div className="lg:hidden mt-10 relative aspect-[4/3] sm:aspect-[16/10] rounded-xl overflow-hidden ring-1 ring-gold/15">
+            <Image
+              src="/photos/hero-telehealth.png"
+              alt="A Velora patient meeting with a physician by telemedicine"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+
+          {/* Trust row */}
+          <div className="mt-14 lg:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-6 max-w-2xl">
+            <TrustItem icon={<Monitor className="size-5" strokeWidth={1.4} />} title="Telemedicine Visits" body="Private. Convenient. Secure." />
+            <TrustItem icon={<UserRound className="size-5" strokeWidth={1.4} />} title="Physician-Led Care" body="Expert guidance every step." />
+            <TrustItem icon={<ClipboardList className="size-5" strokeWidth={1.4} />} title="Personalized Plans" body="Tailored to your biology and goals." />
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom utility strip */}
+      <div className="relative border-t border-gold/15">
+        <div className="container-velora py-4 sm:py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div className="flex items-center gap-3 text-[10px] sm:text-[11px] tracking-[0.32em] uppercase text-cream/80 font-semibold">
+            <ShieldCheck className="size-4 text-gold shrink-0" strokeWidth={1.6} />
+            <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span>Physician-Led</span>
+              <span className="text-gold">·</span>
+              <span>Evidence-Based</span>
+              <span className="text-gold">·</span>
+              <span>Results-Driven</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-3 text-[10px] sm:text-[11px] tracking-[0.32em] uppercase text-cream/85 font-semibold">
+            <Dna className="size-4 text-gold shrink-0" strokeWidth={1.6} />
+            <p>
+              Optimize Your Health.{' '}
+              <span className="text-gold">Elevate Your Life.</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
+  )
+}
+
+/**
+ * Refined V monogram — clean Roman V with horizontal crossbar at top.
+ * Strokes use currentColor so caller controls via text-gold.
+ */
+function VMonogram({ className }: { className?: string }) {
+  return (
+    <svg
+      width="86"
+      height="98"
+      viewBox="0 0 86 98"
+      fill="none"
+      className={className}
+      aria-hidden
+    >
+      {/* Horizontal crossbar */}
+      <path
+        d="M8 9 L78 9"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+      {/* V — slightly tapered, confident strokes */}
+      <path
+        d="M16 17 L43 87 L70 17"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  )
+}
+
+function TrustItem({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
+  return (
+    <div className="flex items-start gap-3.5">
+      <span className="mt-0.5 text-gold shrink-0">
+        {icon}
+      </span>
+      <div>
+        <p className="text-[10.5px] sm:text-[11px] tracking-[0.28em] uppercase text-cream font-semibold">
+          {title}
+        </p>
+        <p className="mt-1.5 text-[12.5px] text-cream/65 leading-[1.5]">
+          {body}
+        </p>
+      </div>
+    </div>
   )
 }

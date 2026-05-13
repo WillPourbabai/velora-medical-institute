@@ -39,35 +39,31 @@ export default function HomePage() {
       <section className="bg-paper">
         <div className="container-velora py-16 lg:py-20">
           <div className="text-center max-w-3xl mx-auto">
-            <ChapterEyebrow number="02" label="Personalized for Every Stage" />
+            <ChapterEyebrow number="02" label="Our Services" />
             <h2
               className="mt-6 font-display leading-[1.04] tracking-[-0.018em] text-ink"
               style={{ fontSize: 'clamp(1.625rem, 3.4vw, 2.375rem)' }}
             >
-              Personalized medicine for
+              A physician-guided approach to
               <br />
-              <em className="italic font-display text-brown">every stage of life.</em>
+              <em className="italic font-display text-brown">metabolic &amp; hormonal health.</em>
             </h2>
           </div>
 
-          <div className="mt-14 grid md:grid-cols-3 gap-px bg-line/40 border-y border-line/40">
+          <div className="mt-14 grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
             <ServiceCard
               href="/weight-management"
+              image="/photos/card-weight.png"
               numeral="01"
-              title="Weight Management"
-              body="Physician-guided GLP-1 therapy and metabolic optimization for sustained, lasting results."
+              title="Medical Weight Management"
+              body="Comprehensive, physician-guided care focused on safe, effective, and sustainable weight management — including detailed medical evaluation, evidence-based medication options when appropriate, and ongoing monitoring."
             />
             <ServiceCard
               href="/hormone-therapy"
+              image="/photos/card-hormone.png"
               numeral="02"
-              title="Hormone Optimization"
-              body="Bioidentical hormone therapy for men and women, guided by lab data and clinical assessment."
-            />
-            <ServiceCard
-              href="/longevity"
-              numeral="03"
-              title="Longevity Medicine"
-              body="Proactive, personalized strategies to optimize health and support long-term vitality."
+              title="Hormone Therapy (BHRT)"
+              body="Physician-directed evaluation and management of hormone-related conditions impacting energy, metabolic function, hormonal balance, and well-being — grounded in clinical assessment and laboratory data."
             />
           </div>
         </div>
@@ -388,33 +384,44 @@ function ChapterEyebrow({ number, label }: { number: string; label: string }) {
 }
 
 function ServiceCard({
-  href, numeral, title, body,
-}: { href: string; numeral: string; title: string; body: string }) {
+  href, image, numeral, title, body,
+}: { href: string; image: string; numeral: string; title: string; body: string }) {
   return (
     <Link
       href={href}
-      className="group bg-paper flex flex-col px-7 py-10 lg:px-9 lg:py-12 transition-colors hover:bg-cream"
+      className="group flex flex-col bg-paper rounded-2xl overflow-hidden border border-line/60 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.35)] hover:shadow-[0_36px_70px_-30px_rgba(74,52,28,0.5)] transition-shadow"
     >
-      <p
-        className="font-display italic text-brown/65 leading-none tracking-[-0.02em]"
-        style={{ fontSize: 'clamp(2.5rem, 4vw, 3.25rem)' }}
-      >
-        {numeral}
-      </p>
-      <h3
-        className="mt-6 font-display text-ink leading-[1.15] tracking-[-0.012em]"
-        style={{ fontSize: 'clamp(1.375rem, 2vw, 1.625rem)' }}
-      >
-        {title}
-      </h3>
-      <div className="mt-4 w-8 h-px bg-gold/70" />
-      <p className="mt-5 text-[14px] text-ink-soft leading-[1.7] flex-1">
-        {body}
-      </p>
-      <span className="mt-8 inline-flex items-center gap-2 text-brown group-hover:text-brown-deep text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors">
-        Learn more
-        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-      </span>
+      {/* Photo top — fixed aspect for consistency */}
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+        <span className="absolute top-4 left-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-cream/95 backdrop-blur-sm font-display italic text-brown text-[16px] tracking-[-0.02em] shadow-[0_8px_20px_-8px_rgba(74,52,28,0.4)]">
+          {numeral}
+        </span>
+      </div>
+
+      {/* Copy */}
+      <div className="flex flex-col flex-1 px-6 py-7 lg:px-7 lg:py-8">
+        <h3
+          className="font-display text-ink leading-[1.15] tracking-[-0.012em]"
+          style={{ fontSize: 'clamp(1.375rem, 2vw, 1.625rem)' }}
+        >
+          {title}
+        </h3>
+        <div className="mt-4 w-8 h-px bg-gold/70" />
+        <p className="mt-4 text-[14px] text-ink-soft leading-[1.7] flex-1">
+          {body}
+        </p>
+        <span className="mt-7 inline-flex items-center gap-2 text-brown group-hover:text-brown-deep text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors">
+          Learn more
+          <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+        </span>
+      </div>
     </Link>
   )
 }
