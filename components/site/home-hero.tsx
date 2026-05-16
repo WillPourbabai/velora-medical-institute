@@ -44,8 +44,18 @@ export function HomeHero() {
           </div>
 
           <div className="max-w-[560px] w-full">
+            {/* Brand lockup — real Velora logo (mark + wordmark) */}
+            <Image
+              src="/velora-logo.png"
+              alt="Velora Medical Institute"
+              width={1184}
+              height={592}
+              priority
+              className="h-[76px] sm:h-[88px] lg:h-[100px] w-auto"
+            />
+
             {/* Eyebrow */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] sm:text-[11px] tracking-[0.26em] uppercase text-cream/90 font-semibold">
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] sm:text-[11px] tracking-[0.26em] uppercase text-cream/90 font-semibold">
               <span>Longevity Medicine</span>
               <span className="size-[3px] rounded-full bg-gold" aria-hidden />
               <span>Obesity Medicine</span>
