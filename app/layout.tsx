@@ -21,14 +21,16 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://veloramedical.com'),
   title: {
-    default: 'Velora Medical Institute — Physician-Guided Weight Management & Hormone Therapy',
+    default: 'Velora Medical Institute — Weight Management, Hormone Therapy & Longevity',
     template: '%s — Velora Medical Institute',
   },
   description:
-    'Physician-directed care in metabolic health, medical weight management, and bioidentical hormone therapy. Double board-certified physicians in Internal Medicine and Obesity Medicine.',
+    'Physician-directed care in medical weight management, bioidentical hormone therapy, and longevity & preventive medicine. Double board-certified physicians in Internal Medicine and Obesity Medicine.',
   keywords: [
     'medical weight management',
     'hormone therapy',
+    'longevity medicine',
+    'preventive medicine',
     'bioidentical hormones',
     'GLP-1',
     'semaglutide',
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Velora Medical Institute',
     description:
-      'Physician-guided weight management and hormone therapy. Direct-pay telemedicine practice.',
+      'Physician-guided weight management, hormone therapy, and longevity & preventive medicine. Direct-pay telemedicine practice.',
     siteName: 'Velora Medical Institute',
   },
   icons: {

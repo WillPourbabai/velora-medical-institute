@@ -51,12 +51,6 @@ const OPTIONS: ConsultOption[] = [
   },
 ]
 
-const STATES = [
-  'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
-  'MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC',
-  'SD','TN','TX','UT','VT','VA','WA','WV','WI','WY',
-]
-
 const TIMES = ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM']
 
 export function BookingClient() {
@@ -74,7 +68,6 @@ export function BookingClient() {
     lastName: '',
     email: '',
     phone: '',
-    state: '',
     notes: '',
     agree: false,
   })
@@ -96,7 +89,7 @@ export function BookingClient() {
   const canAdvance1 = !!type
   const canAdvance2 = !!date && !!time
   const canSubmit =
-    contact.firstName && contact.lastName && contact.email && contact.phone && contact.state && contact.agree
+    contact.firstName && contact.lastName && contact.email && contact.phone && contact.agree
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -339,22 +332,6 @@ export function BookingClient() {
                       />
                     </Field>
                   </div>
-                  <Field label="State of Residence" required>
-                    <select
-                      required
-                      value={contact.state}
-                      onChange={(e) => setContact({ ...contact, state: e.target.value })}
-                      className="input"
-                    >
-                      <option value="">Select…</option>
-                      {STATES.map((s) => (
-                        <option key={s} value={s}>{s}</option>
-                      ))}
-                    </select>
-                    <p className="mt-1.5 text-[12px] text-muted-foreground">
-                      Patients must be located in a state where our physicians are licensed.
-                    </p>
-                  </Field>
                   <Field label="Anything you would like the physician to know? (Optional)">
                     <textarea
                       rows={4}

@@ -9,7 +9,7 @@ import { VeloraMark } from '@/components/site/logo'
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions',
   description:
-    'Common questions about medical weight management, hormone therapy, telemedicine visits, GLP-1 medications, BHRT, and Velora Medical Institute care.',
+    'Common questions about medical weight management, hormone therapy, longevity & preventive medicine, telemedicine visits, GLP-1 medications, BHRT, and Velora Medical Institute care.',
 }
 
 const WEIGHT_FAQ = [
@@ -35,7 +35,6 @@ const HORMONE_FAQ = [
 const PRACTICE_FAQ = [
   { q: 'How does payment work?', a: 'Velora Medical Institute is a direct-pay practice. Payment is required prior to your appointment, which is confirmed once payment has been received. Services are not billed to insurance, and pricing is fully transparent.' },
   { q: 'Is insurance accepted?', a: 'No. Velora is a direct-pay practice. This allows our physicians to focus on personalized clinical care without insurance limitations on treatment plans, follow-up cadence, or laboratory ordering.' },
-  { q: 'In what states are physicians licensed?', a: 'Patients must be located in a state where our physicians are licensed at the time of the visit. Please contact us if you’d like to confirm coverage for your state before booking.' },
   { q: 'What happens if I need to cancel?', a: 'Appointments must be canceled or rescheduled at least 24 hours in advance to avoid a late cancellation fee. Patients enrolled in structured programs may cancel at any time, with applicable early termination fees as outlined in the program agreement.' },
   { q: 'Are medication and laboratory costs included?', a: 'No. Visit fees cover physician time and clinical care. Medication, pharmacy, and laboratory costs are billed separately by the respective provider. Your physician will discuss expected costs during your visit.' },
 ]
@@ -47,7 +46,7 @@ export default function FaqPage() {
       <section className="relative overflow-hidden">
         <div className="relative h-[70vh] min-h-[520px] max-h-[720px]">
           <Image
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80"
+            src="/photos/faq-mountain.png"
             alt="Mountain sunset"
             fill
             priority

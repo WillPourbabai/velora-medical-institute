@@ -262,79 +262,34 @@ export default function HomePage() {
       </section>
 
 
-      {/* ===== 05 · WHY VELORA — quiet editorial proof ===== */}
+      {/* ===== 05 · THE PHYSICIANS — matches /about ===== */}
       <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-16 xl:gap-20 items-center max-w-[1180px] mx-auto">
+        <div className="container-velora py-20 lg:py-28">
+          <div className="text-center max-w-2xl mx-auto">
+            <ChapterEyebrow number="05" label="The Physicians" />
+            <h2
+              className="mt-7 font-display text-ink leading-[1.04] tracking-[-0.018em]"
+              style={{ fontSize: 'clamp(1.625rem, 3.4vw, 2.375rem)' }}
+            >
+              Trained in Internal Medicine.
+              <br />
+              <em className="italic font-display text-brown">Specialized in Obesity Medicine.</em>
+            </h2>
+          </div>
 
-            {/* LEFT — physician diptych: two portraits as one unified element */}
-            <div>
-              <div className="grid grid-cols-2 gap-px bg-gold/60 rounded-2xl overflow-hidden shadow-[0_40px_80px_-30px_rgba(74,52,28,0.5)]">
-                <div className="relative aspect-[3/4]">
-                  <Image
-                    src="/dr-amini.png"
-                    alt="Dr. Afshin Amini"
-                    fill
-                    sizes="(min-width: 1024px) 22vw, 50vw"
-                    className="object-cover"
-                    style={{ objectPosition: 'center 14%' }}
-                  />
-                </div>
-                <div className="relative aspect-[3/4]">
-                  <Image
-                    src="/dr-tolebeyan.jpeg"
-                    alt="Dr. Amirseena Tolebeyan"
-                    fill
-                    sizes="(min-width: 1024px) 22vw, 50vw"
-                    className="object-cover"
-                    style={{ objectPosition: 'center 14%' }}
-                  />
-                </div>
-              </div>
-              <div className="mt-6 lg:text-left text-center">
-                <p
-                  className="font-display italic text-ink leading-none"
-                  style={{ fontSize: 'clamp(1.125rem, 1.6vw, 1.375rem)' }}
-                >
-                  Drs. Afshin Amini &amp; Amirseena Tolebeyan
-                </p>
-                <p className="mt-3 text-[10px] tracking-[0.32em] uppercase text-brown font-semibold">
-                  Double Board-Certified · Internal &amp; Obesity Medicine
-                </p>
-              </div>
-            </div>
-
-            {/* RIGHT — restrained editorial copy + concrete proofs */}
-            <div className="max-w-[500px]">
-              <ChapterEyebrow number="05" label="Why Velora" />
-
-              <h2
-                className="mt-7 font-display text-ink leading-[1.04] tracking-[-0.018em]"
-                style={{ fontSize: 'clamp(1.875rem, 3.6vw, 2.625rem)' }}
-              >
-                Medicine that&rsquo;s actually
-                <br />
-                <em className="italic font-display text-brown">made for you.</em>
-              </h2>
-
-              <div className="mt-6 w-10 h-px bg-gold/80" />
-
-              <p className="mt-6 text-[15px] text-ink-soft leading-[1.75]">
-                We built Velora to be the kind of medical care we&rsquo;d want for our own families
-                &mdash; unhurried, direct, and rooted in real clinical judgment.
-              </p>
-              <p className="mt-4 text-[15px] text-ink-soft leading-[1.75]">
-                Longer visits. A written plan in your inbox. The same physician, every time.
-              </p>
-
-              {/* Three concrete proof points */}
-              <div className="mt-10 grid grid-cols-3 gap-5 lg:gap-7">
-                <ProofStat value="60" unit="min" label="Initial physician visit" />
-                <ProofStat value="48" unit="hrs" label="Written care plan delivered" />
-                <ProofStat value="1:1" unit="" label="Same physician, every visit" />
-              </div>
-            </div>
-
+          <div className="mt-16 grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+            <PhysicianCard
+              src="/dr-amini.png"
+              name="Afshin Amini, MD"
+              credentials="Double Board-Certified · Internal Medicine · Obesity Medicine"
+              bio="Dr. Amini is a double board-certified physician with focused expertise in metabolic health, weight management, hormone optimization, and longevity & preventive medicine. His practice emphasizes thorough clinical assessment, evidence-based treatment, and continuous physician-guided refinement over time."
+            />
+            <PhysicianCard
+              src="/dr-tolebeyan.jpeg"
+              name="Amirseena Tolebeyan, MD"
+              credentials="Double Board-Certified · Internal Medicine · Obesity Medicine"
+              bio="Dr. Tolebeyan is a double board-certified physician focused on metabolic and hormonal health. His care model is rooted in individualized treatment planning, clinical rigor, and long-term continuity — the qualities he believes patients deserve and rarely receive."
+            />
           </div>
         </div>
       </section>
@@ -421,20 +376,35 @@ function ServiceCard({
   )
 }
 
-function ProofStat({ value, unit, label }: { value: string; unit: string; label: string }) {
+function PhysicianCard({
+  src, name, credentials, bio,
+}: {
+  src: string; name: string; credentials: string; bio: string
+}) {
   return (
-    <div className="border-t border-gold/60 pt-3.5">
-      <p className="font-display text-ink leading-none tracking-[-0.02em]">
-        <span style={{ fontSize: 'clamp(1.75rem, 2.6vw, 2.25rem)' }}>{value}</span>
-        {unit && (
-          <span className="ml-1 text-[12px] tracking-[0.16em] uppercase text-brown font-semibold align-baseline">
-            {unit}
-          </span>
-        )}
-      </p>
-      <p className="mt-2.5 text-[11px] tracking-[0.18em] uppercase text-ink-soft leading-[1.4]">
-        {label}
-      </p>
+    <div className="bg-paper rounded-2xl border border-line/60 p-6 lg:p-7 shadow-[0_28px_60px_-32px_rgba(74,52,28,0.35)] flex flex-col">
+      <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
+        <Image
+          src={src}
+          alt={name}
+          fill
+          sizes="(min-width: 1024px) 40vw, 100vw"
+          className="object-cover"
+          style={{ objectPosition: 'center 25%' }}
+        />
+      </div>
+      <div className="mt-6">
+        <h3 className="font-display text-[24px] md:text-[26px] leading-tight text-ink">
+          {name}
+        </h3>
+        <div className="mt-3 w-8 h-px bg-gold/70" />
+        <p className="mt-3 text-[10px] tracking-[0.26em] uppercase text-brown/85 font-semibold">
+          {credentials}
+        </p>
+        <p className="mt-5 text-[14px] text-ink-soft leading-[1.75]">
+          {bio}
+        </p>
+      </div>
     </div>
   )
 }

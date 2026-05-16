@@ -23,7 +23,7 @@ export default function TermsPage() {
         {
           heading: 'Telemedicine Care',
           body: (
-            <p>Care is delivered through secure telemedicine. You acknowledge that telemedicine has limitations compared to in-person evaluation, and that your physician may recommend in-person care when appropriate. You must be physically located in a state where our physicians are licensed at the time of your visit.</p>
+            <p>Care is delivered through secure telemedicine. You acknowledge that telemedicine has limitations compared to in-person evaluation, and that your physician may recommend in-person care when appropriate.</p>
           ),
         },
         {

@@ -20,11 +20,11 @@ export function HomeHero() {
   const BG = '#0B0907'
 
   return (
-    <section className="relative bg-[#0B0907] text-cream -mt-[78px]">
+    <section className="relative bg-[#0B0907] text-cream -mt-[84px]">
       <div className="lg:grid lg:grid-cols-[minmax(0,47fr)_minmax(0,53fr)] lg:items-stretch lg:min-h-[calc(100svh-58px)]">
 
         {/* ===== LEFT — text panel ===== */}
-        <div className="relative z-10 flex flex-col lg:justify-center px-6 sm:px-10 lg:pl-[max(3rem,calc((100vw-115rem)/2+4rem))] lg:pr-14 xl:pr-20 pt-[100px] sm:pt-[108px] lg:pt-[88px] pb-10 lg:pb-10">
+        <div className="relative z-10 flex flex-col lg:justify-center px-6 sm:px-10 lg:pl-[max(3rem,calc((100vw-115rem)/2+4rem))] lg:pr-14 xl:pr-20 pt-[106px] sm:pt-[114px] lg:pt-[94px] pb-10 lg:pb-10">
 
           {/* Mobile photo — leads at top */}
           <div className="lg:hidden -mx-6 sm:-mx-10 mb-10 relative aspect-[5/4] sm:aspect-[16/10]">

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Mail,
-  Phone,
   Clock,
   MapPin,
   Check,
@@ -57,7 +56,7 @@ export default function ContactPage() {
       setStatus('success')
     } catch {
       setStatus('error')
-      setErrorMsg('Could not send your message. Please try again or email info@velora-medical.com.')
+      setErrorMsg('Could not send your message. Please try again or email care@veloramedical.com.')
     }
   }
 
@@ -102,24 +101,18 @@ export default function ContactPage() {
                 <ContactRow
                   icon={<Mail className="size-4" strokeWidth={1.8} />}
                   label="Email"
-                  value="info@velora-medical.com"
-                  href="mailto:info@velora-medical.com"
-                />
-                <ContactRow
-                  icon={<Phone className="size-4" strokeWidth={1.8} />}
-                  label="Phone"
-                  value="(833) 583-5672"
-                  href="tel:+18335835672"
+                  value="care@veloramedical.com"
+                  href="mailto:care@veloramedical.com"
                 />
                 <ContactRow
                   icon={<Clock className="size-4" strokeWidth={1.8} />}
                   label="Hours"
-                  value="Mon – Fri · 8a – 5p PT"
+                  value="Monday – Friday"
                 />
                 <ContactRow
                   icon={<MapPin className="size-4" strokeWidth={1.8} />}
-                  label="Service Area"
-                  value="California telemedicine"
+                  label="Format"
+                  value="Secure telemedicine"
                 />
               </dl>
 
@@ -399,8 +392,7 @@ function SuccessPanel() {
       </h3>
       <div className="mt-7 mx-auto w-10 h-px bg-gold/70" />
       <p className="mt-7 text-[14px] text-ink-soft leading-[1.75] max-w-md mx-auto">
-        Replies are written personally and typically arrive within one business day. If your
-        inquiry is time-sensitive, you may also call (833) 583-5672.
+        Replies are written personally and typically arrive within one business day.
       </p>
     </div>
   )

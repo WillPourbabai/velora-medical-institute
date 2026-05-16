@@ -87,11 +87,11 @@ export function SiteHeader() {
         overHero
           ? 'bg-transparent'
           : scrolled
-            ? 'bg-bone/65 backdrop-blur-xl shadow-[0_4px_20px_-12px_rgba(74,52,28,0.18)]'
+            ? 'bg-bone shadow-[0_2px_16px_-10px_rgba(74,52,28,0.3)] border-b border-line/50'
             : 'bg-bone',
       )}
     >
-      <div className="container-velora flex items-center justify-between h-[78px] gap-6">
+      <div className="container-velora flex items-center justify-between h-[84px] gap-6">
         <Logo size="sm" />
 
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 xl:gap-9">
@@ -237,7 +237,7 @@ export function SiteHeader() {
             aria-hidden
           />
           <div className="absolute top-0 right-0 h-full w-[88%] max-w-sm bg-bone shadow-[-20px_0_60px_-10px_rgba(0,0,0,0.4)] flex flex-col animate-fade-in">
-            <div className="flex items-center justify-between h-[78px] px-6 border-b border-line">
+            <div className="flex items-center justify-between h-[84px] px-6 border-b border-line">
               <Logo size="sm" />
               <button
                 type="button"

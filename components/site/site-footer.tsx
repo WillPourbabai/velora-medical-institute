@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Phone, MapPin, Calendar, ArrowRight } from 'lucide-react'
+import { Mail, MapPin, Calendar, ArrowRight } from 'lucide-react'
 import { Logo } from './logo'
 
 const care = [
@@ -59,14 +59,8 @@ export function SiteFooter() {
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="size-3.5 text-brown shrink-0" strokeWidth={1.6} />
-                <a href="tel:+18335835672" className="hover:text-brown transition-colors">
-                  (833) 583-5672
-                </a>
-              </li>
-              <li className="flex items-center gap-2.5">
                 <MapPin className="size-3.5 text-brown shrink-0" strokeWidth={1.6} />
-                <span>Telemedicine &middot; California</span>
+                <span>Secure telemedicine</span>
               </li>
             </ul>
           </div>

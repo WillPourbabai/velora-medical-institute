@@ -17,7 +17,7 @@ export default function PhysiciansPage() {
       <PageHero
         eyebrow="Meet Our Physicians"
         title={<>Care directed by <em className="not-italic text-brown">double board-certified</em> physicians.</>}
-        subtitle="Internal Medicine and Obesity Medicine — focused on metabolic health, weight management, and hormone therapy. Each treatment plan is grounded in clinical assessment, evidence-based therapy, and continuous monitoring."
+        subtitle="Internal Medicine and Obesity Medicine — focused on metabolic health, weight management, hormone therapy, and longevity & preventive medicine. Each treatment plan is grounded in clinical assessment, evidence-based therapy, and continuous monitoring."
         primary={{ href: '/book', label: 'Book Initial Consultation' }}
       />
 
@@ -28,7 +28,7 @@ export default function PhysiciansPage() {
             photo="/dr-amini.png"
             credentials="Internal Medicine · Obesity Medicine"
             paragraphs={[
-              'Dr. Amini focuses on metabolic health, weight management, and hormone therapy, providing individualized, physician-directed care.',
+              'Dr. Amini focuses on metabolic health, weight management, hormone therapy, and longevity & preventive medicine, providing individualized, physician-directed care.',
               'His approach integrates thorough clinical assessment with evidence-based treatment and continuous monitoring to achieve precise, safe, and long-term optimization.',
               'He is committed to a structured approach to chronic metabolic conditions — one that recognizes the complexity of long-term weight regulation and the value of physician continuity.',
             ]}
@@ -48,7 +48,7 @@ export default function PhysiciansPage() {
             credentials="Internal Medicine · Obesity Medicine"
             reverse
             paragraphs={[
-              'Dr. Tolebeyan focuses on metabolic health, weight management, and hormone therapy, delivering structured, evidence-based care.',
+              'Dr. Tolebeyan focuses on metabolic health, weight management, hormone therapy, and longevity & preventive medicine, delivering structured, evidence-based care.',
               'His approach combines comprehensive clinical assessment with individualized treatment and continuous monitoring to ensure precise, safe, and long-term optimization.',
               'He believes in transparent, patient-centered care — explaining the clinical rationale behind every treatment decision and adjusting therapy in collaboration with each patient.',
             ]}

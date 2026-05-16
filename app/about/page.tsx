@@ -187,7 +187,7 @@ export default function AboutPage() {
               src="/dr-amini.png"
               name="Afshin Amini, MD"
               credentials="Double Board-Certified · Internal Medicine · Obesity Medicine"
-              bio="Dr. Amini is a double board-certified physician with focused expertise in metabolic health, weight management, and hormone optimization. His practice emphasizes thorough clinical assessment, evidence-based treatment, and continuous physician-guided refinement over time."
+              bio="Dr. Amini is a double board-certified physician with focused expertise in metabolic health, weight management, hormone optimization, and longevity & preventive medicine. His practice emphasizes thorough clinical assessment, evidence-based treatment, and continuous physician-guided refinement over time."
             />
             <PhysicianCard
               src="/dr-tolebeyan.jpeg"
@@ -325,7 +325,7 @@ export default function AboutPage() {
               </p>
             </div>
             <ul className="mt-5 grid md:grid-cols-2 gap-x-10 gap-y-2 text-[12.5px] text-ink-soft leading-[1.65]">
-              <li className="flex items-start gap-2"><span className="mt-1.5 size-1 rounded-full bg-brown/60 shrink-0" /><span>Telemedicine visits available throughout California.</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 size-1 rounded-full bg-brown/60 shrink-0" /><span>All care delivered through secure telemedicine.</span></li>
               <li className="flex items-start gap-2"><span className="mt-1.5 size-1 rounded-full bg-brown/60 shrink-0" /><span>Direct-pay practice — no insurance is billed.</span></li>
               <li className="flex items-start gap-2"><span className="mt-1.5 size-1 rounded-full bg-brown/60 shrink-0" /><span>Initial consultations are 60 minutes.</span></li>
               <li className="flex items-start gap-2"><span className="mt-1.5 size-1 rounded-full bg-brown/60 shrink-0" /><span>Laboratory and medication costs are billed separately.</span></li>
