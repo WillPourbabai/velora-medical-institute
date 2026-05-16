@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import {
   Calendar,
@@ -248,6 +249,16 @@ export default function ProgramsPage() {
                 Contact a physician
                 <ArrowRight className="size-3.5" />
               </Link>
+
+              <div className="mt-9 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+                <Image
+                  src="/photos/faq-cta.png"
+                  alt="Velora Medical Institute — Frequently Asked Questions"
+                  fill
+                  sizes="(min-width: 1024px) 35vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             <FaqAccordion

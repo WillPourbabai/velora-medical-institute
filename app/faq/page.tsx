@@ -104,6 +104,15 @@ export default function FaqPage() {
             <p className="mt-7 text-[15px] text-ink-soft leading-relaxed">
               GLP-1 medications, eligibility, individualized care, and results — explained by your physician.
             </p>
+            <div className="mt-8 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+              <Image
+                src="/photos/faq-cta.png"
+                alt="Velora Medical Institute — Frequently Asked Questions"
+                fill
+                sizes="(min-width: 1024px) 32vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
           <div className="lg:col-span-8">
             <FaqAccordion items={WEIGHT_FAQ} defaultOpen={0} />
@@ -121,6 +130,15 @@ export default function FaqPage() {
             <p className="mt-7 text-[15px] text-ink-soft leading-relaxed">
               BHRT for men and women — symptoms, safety, and what to expect.
             </p>
+            <div className="mt-8 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+              <Image
+                src="/photos/faq-cta.png"
+                alt="Velora Medical Institute — Frequently Asked Questions"
+                fill
+                sizes="(min-width: 1024px) 32vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
           <div className="lg:col-span-8">
             <FaqAccordion items={HORMONE_FAQ} defaultOpen={0} />
@@ -138,6 +156,15 @@ export default function FaqPage() {
             <p className="mt-7 text-[15px] text-ink-soft leading-relaxed">
               Direct-pay, telemedicine, scheduling, and policies.
             </p>
+            <div className="mt-8 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+              <Image
+                src="/photos/faq-cta.png"
+                alt="Velora Medical Institute — Frequently Asked Questions"
+                fill
+                sizes="(min-width: 1024px) 32vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
           <div className="lg:col-span-8">
             <FaqAccordion items={PRACTICE_FAQ} defaultOpen={0} />
