@@ -14,6 +14,7 @@ type NavItem = {
 }
 
 const NAV: NavItem[] = [
+  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   {
     href: '/programs',
@@ -249,14 +250,6 @@ export function SiteHeader() {
               </button>
             </div>
             <nav className="flex-1 overflow-y-auto px-6 py-6 flex flex-col">
-              {/* Home — always first on mobile */}
-              <Link
-                key="/"
-                href="/"
-                className="font-display text-[28px] py-3 text-ink hover:text-brown transition-colors border-b border-line/60"
-              >
-                Home
-              </Link>
               {NAV.flatMap((item) =>
                 item.children
                   ? [
