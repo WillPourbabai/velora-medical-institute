@@ -44,23 +44,19 @@ export function HomeHero() {
           </div>
 
           <div className="max-w-[560px] w-full">
-            {/* Brand lockup */}
-            <div className="flex flex-col items-start">
-              <VMonogram className="text-gold" />
-              <p
-                className="mt-2 font-display text-cream leading-none"
-                style={{ fontSize: 'clamp(1.875rem, 3.6vw, 2.75rem)', letterSpacing: '0.12em', fontWeight: 400 }}
-              >
-                VELORA
-              </p>
-              <p className="mt-2 text-[9.5px] sm:text-[10.5px] tracking-[0.44em] uppercase text-gold font-semibold">
-                Medical Institute
-              </p>
-            </div>
+            {/* Brand lockup — real Velora logo (mark + wordmark) */}
+            <Image
+              src="/velora-logo.png"
+              alt="Velora Medical Institute"
+              width={1184}
+              height={592}
+              priority
+              className="h-[76px] sm:h-[88px] lg:h-[100px] w-auto"
+            />
 
             {/* Eyebrow */}
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] sm:text-[11px] tracking-[0.26em] uppercase text-cream/90 font-semibold">
-              <span>Telemedicine Care</span>
+              <span>Longevity Medicine</span>
               <span className="size-[3px] rounded-full bg-gold" aria-hidden />
               <span>Obesity Medicine</span>
               <span className="size-[3px] rounded-full bg-gold" aria-hidden />
@@ -77,6 +73,8 @@ export function HomeHero() {
               <em className="not-italic font-display text-gold italic">Weight Loss &amp;</em>
               <br />
               <span className="text-cream">Hormone Optimization</span>
+              <br />
+              <span className="text-cream">Longevity &amp; Preventive Medicine</span>
             </h1>
 
             <div className="mt-5 w-16 h-px bg-gold" />
@@ -177,30 +175,6 @@ export function HomeHero() {
         </div>
       </div>
     </section>
-  )
-}
-
-/** Refined V monogram — Roman V with horizontal crossbar. */
-function VMonogram({ className }: { className?: string }) {
-  return (
-    <svg
-      width="58"
-      height="66"
-      viewBox="0 0 78 88"
-      fill="none"
-      className={className}
-      aria-hidden
-    >
-      <path d="M7 8 L71 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-      <path
-        d="M15 15 L39 78 L63 15"
-        stroke="currentColor"
-        strokeWidth="2.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
   )
 }
 
