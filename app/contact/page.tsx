@@ -5,8 +5,7 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Mail,
-  Clock,
-  MapPin,
+  Phone,
   Check,
   AlertCircle,
   Calendar,
@@ -56,7 +55,7 @@ export default function ContactPage() {
       setStatus('success')
     } catch {
       setStatus('error')
-      setErrorMsg('Could not send your message. Please try again or email care@veloramedical.com.')
+      setErrorMsg('Could not send your message. Please try again or email Care@veloramedicine.com.')
     }
   }
 
@@ -64,7 +63,7 @@ export default function ContactPage() {
     <>
       {/* ===== CONTACT — single focused section, form-first ===== */}
       <section className="bg-bone">
-        <div className="container-velora pt-12 lg:pt-16 pb-20 lg:pb-24">
+        <div className="container-velora pt-12 lg:pt-16 pb-12 sm:pb-16 lg:pb-24">
 
           {/* Header */}
           <div className="max-w-3xl">
@@ -88,42 +87,33 @@ export default function ContactPage() {
           </div>
 
           {/* Two-column grid: contact details left, form right */}
-          <div className="mt-14 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16 items-start">
+          <div className="mt-9 lg:mt-14 grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-10 lg:gap-16 items-start">
 
-            {/* LEFT — contact details, stacked */}
+            {/* LEFT — direct channels: phone + email only */}
             <div className="lg:sticky lg:top-24 lg:self-start">
               <p className="text-[10.5px] tracking-[0.32em] uppercase text-ink font-semibold">
                 Direct Channels
               </p>
               <div className="mt-5 w-8 h-px bg-gold/80" />
 
-              <dl className="mt-6 divide-y divide-line/70 border-y border-line/70">
-                <ContactRow
-                  icon={<Mail className="size-4" strokeWidth={1.8} />}
+              <div className="mt-7 space-y-4">
+                <ChannelCard
+                  icon={<Phone className="size-5" strokeWidth={1.7} />}
+                  label="Phone"
+                  value="(314) 271-8668"
+                  href="tel:+13142718668"
+                />
+                <ChannelCard
+                  icon={<Mail className="size-5" strokeWidth={1.7} />}
                   label="Email"
-                  value="care@veloramedical.com"
-                  href="mailto:care@veloramedical.com"
+                  value="Care@veloramedicine.com"
+                  href="mailto:Care@veloramedicine.com"
                 />
-                <ContactRow
-                  icon={<Clock className="size-4" strokeWidth={1.8} />}
-                  label="Hours"
-                  value="Monday – Friday"
-                />
-                <ContactRow
-                  icon={<MapPin className="size-4" strokeWidth={1.8} />}
-                  label="Format"
-                  value="Secure telemedicine"
-                />
-              </dl>
-
-              <p className="mt-7 text-[13px] text-ink-soft/85 leading-[1.7] italic font-display max-w-[360px]">
-                Velora is a direct-pay practice. Transparent pricing, no insurance billed.
-                Replies typically within one business day.
-              </p>
+              </div>
 
               <Link
                 href="/faq"
-                className="mt-7 inline-flex items-center gap-2 text-[10.5px] tracking-[0.28em] uppercase text-brown hover:text-brown-deep font-semibold border-b border-brown/40 hover:border-brown pb-1 transition-colors"
+                className="mt-8 inline-flex items-center gap-2 text-[10.5px] tracking-[0.28em] uppercase text-brown hover:text-brown-deep font-semibold border-b border-brown/40 hover:border-brown pb-1 transition-colors"
               >
                 Have a common question? View the FAQ
                 <ArrowRight className="size-3.5" />
@@ -308,7 +298,7 @@ export default function ContactPage() {
 
 /* ----- Helpers ----- */
 
-function ContactRow({
+function ChannelCard({
   icon,
   label,
   value,
@@ -317,34 +307,27 @@ function ContactRow({
   icon: React.ReactNode
   label: string
   value: string
-  href?: string
+  href: string
 }) {
-  const inner = (
-    <div className="flex items-center gap-4 py-4">
-      <span className="size-9 rounded-full bg-brown/10 text-brown flex items-center justify-center shrink-0">
+  return (
+    <a
+      href={href}
+      className="group flex items-center gap-5 rounded-2xl border border-line/60 bg-cream px-6 py-6 shadow-[0_20px_45px_-32px_rgba(74,52,28,0.4)] hover:border-brown/40 hover:shadow-[0_26px_55px_-30px_rgba(74,52,28,0.5)] transition-all"
+    >
+      <span className="size-12 rounded-full bg-brown/10 text-brown flex items-center justify-center shrink-0 group-hover:bg-brown group-hover:text-cream transition-colors">
         {icon}
       </span>
-      <div className="flex-1 min-w-0">
-        <p className="text-[9.5px] tracking-[0.32em] uppercase text-ink-soft font-semibold">
+      <div className="min-w-0">
+        <p className="text-[10px] tracking-[0.32em] uppercase text-ink-soft font-semibold">
           {label}
         </p>
-        <p className="mt-1 font-display text-ink text-[16px] md:text-[17px] leading-[1.25] truncate">
+        <p className="mt-1.5 font-display text-ink text-[19px] md:text-[21px] leading-[1.2] tracking-[-0.01em] group-hover:text-brown transition-colors">
           {value}
         </p>
       </div>
-    </div>
+      <ArrowRight className="size-4 text-brown/40 ml-auto shrink-0 group-hover:text-brown group-hover:translate-x-0.5 transition-all" strokeWidth={2} />
+    </a>
   )
-  if (href) {
-    return (
-      <a
-        href={href}
-        className="block group hover:bg-cream/60 transition-colors -mx-2 px-2 rounded-md"
-      >
-        {inner}
-      </a>
-    )
-  }
-  return <div>{inner}</div>
 }
 
 function FormField({

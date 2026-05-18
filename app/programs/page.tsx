@@ -18,62 +18,98 @@ export const metadata: Metadata = {
 export default function ProgramsPage() {
   return (
     <>
-      {/* ===== HERO — type-driven, no photo ===== */}
-      <section className="bg-bone">
-        <div className="container-velora pt-16 lg:pt-20 pb-12 lg:pb-16">
-          <div className="max-w-3xl">
-            <p className="text-[10.5px] tracking-[0.46em] uppercase text-brown font-semibold">
-              Pricing
-            </p>
-            <h1
-              className="mt-6 font-display text-ink leading-[0.98] tracking-[-0.022em]"
-              style={{ fontSize: 'clamp(2.25rem, 5vw, 4.25rem)' }}
-            >
-              Honest pricing.
-              <br />
-              <em className="italic font-display text-brown">No insurance.</em>
-            </h1>
-            <div className="mt-7 w-12 h-px bg-gold/80" />
-            <p className="mt-7 text-[15px] text-ink-soft leading-[1.75] max-w-[640px]">
-              Velora is a direct-pay practice. You pay only for the care you receive &mdash;
-              every visit, lab, and medication is itemized. No insurance billing, no
-              coverage gaps, no surprise fees.
-            </p>
+      {/* ===== HERO — split: editorial copy left, full-bleed photo right ===== */}
+      <section className="relative bg-bone">
+        <div className="lg:grid lg:grid-cols-[minmax(0,48fr)_minmax(0,52fr)] lg:items-stretch">
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-[10.5px] tracking-[0.32em] uppercase text-ink-soft font-semibold">
-              <span className="inline-flex items-center gap-2">
-                <span className="size-1 rounded-full bg-gold" />
-                Transparent &amp; itemized
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="size-1 rounded-full bg-gold" />
-                No insurance billed
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <span className="size-1 rounded-full bg-gold" />
-                No membership fees
-              </span>
+          {/* LEFT — copy panel */}
+          <div className="relative z-10 px-6 sm:px-10 lg:pl-[max(3rem,calc((100vw-115rem)/2+4rem))] lg:pr-16 pt-10 sm:pt-12 lg:pt-16 pb-12 sm:pb-14 lg:pb-20">
+            {/* Mobile photo — leads on top */}
+            <div className="lg:hidden -mx-6 sm:-mx-10 mb-9 relative aspect-[16/10]">
+              <Image
+                src="/photos/pricing-hero.png"
+                alt="A Velora physician helping a patient up a mountain trail at sunrise"
+                fill
+                sizes="100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            <div className="max-w-[620px]">
+              <p className="text-[11px] sm:text-[12px] tracking-[0.42em] uppercase text-brown font-semibold">
+                Pricing
+              </p>
+              <h1
+                className="mt-6 font-display text-ink leading-[0.98] tracking-[-0.022em]"
+                style={{ fontSize: 'clamp(2.25rem, 4vw, 3.5rem)' }}
+              >
+                Transparent pricing.
+                <br />
+                <em className="italic font-display text-brown">No insurance.</em>
+              </h1>
+
+              <div className="mt-7 w-12 h-px bg-gold/80" />
+
+              <p className="mt-6 text-[15px] sm:text-[16px] text-ink-soft leading-[1.7] max-w-[480px]">
+                Velora is a direct-pay practice. You pay only for the care you receive
+                &mdash; every visit, lab, and medication is itemized. No insurance billing,
+                no coverage gaps, no surprise fees.
+              </p>
+
+              <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3 text-[10.5px] sm:text-[11px] tracking-[0.28em] uppercase text-brown font-semibold">
+                <span className="inline-flex items-center gap-2">
+                  <span className="size-1 rounded-full bg-gold" />
+                  Transparent &amp; itemized
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <span className="size-1 rounded-full bg-gold" />
+                  No insurance billed
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <span className="size-1 rounded-full bg-gold" />
+                  No membership fees
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ===== STEP ONE — initial consultation feature ===== */}
-      <section className="bg-paper border-t border-line/40">
-        <div className="container-velora py-14 lg:py-16">
-          <div className="max-w-5xl mx-auto bg-cream border border-line/60 rounded-2xl px-8 md:px-12 py-10 md:py-12 shadow-[0_28px_60px_-30px_rgba(74,52,28,0.4)]">
-            <div className="grid md:grid-cols-[auto_1fr_auto] items-center gap-8 md:gap-10">
+          {/* RIGHT — full-bleed photo (desktop) */}
+          <div className="relative hidden lg:block">
+            <Image
+              src="/photos/pricing-hero.png"
+              alt="A Velora physician helping a patient up a mountain trail at sunrise"
+              fill
+              sizes="52vw"
+              className="object-cover object-center"
+              priority
+            />
+            {/* Left-edge fade so the photo melts into the bone panel */}
+            <div
+              className="absolute inset-y-0 left-0 w-40 pointer-events-none"
+              style={{ background: 'linear-gradient(to right, #F1E9D8 0%, rgba(241,233,216,0.45) 40%, rgba(241,233,216,0) 100%)' }}
+              aria-hidden
+            />
+          </div>
+        </div>
+
+        {/* ===== STEP ONE band — straddles the hero bottom edge ===== */}
+        <div className="container-velora relative z-20 -mb-8 lg:-mb-10">
+          <div className="-mt-10 sm:-mt-12 lg:-mt-16 bg-cream/95 backdrop-blur-sm border border-line/60 rounded-2xl px-7 sm:px-10 lg:px-12 py-7 lg:py-8 shadow-[0_32px_70px_-34px_rgba(74,52,28,0.45)]">
+            <div className="grid md:grid-cols-[auto_1fr_auto] items-center gap-8 md:gap-12">
 
               {/* Price block */}
-              <div className="text-center md:text-left">
-                <p className="text-[10px] tracking-[0.32em] uppercase text-brown font-semibold">
+              <div className="text-center md:text-left md:pr-12 md:border-r border-line/60">
+                <p className="text-[10px] tracking-[0.34em] uppercase text-brown font-semibold">
                   Step One
                 </p>
-                <p className="mt-3 font-display text-ink leading-none tracking-[-0.02em]"
-                   style={{ fontSize: 'clamp(3rem, 5vw, 4rem)' }}>
+                <p
+                  className="mt-2 font-display text-ink leading-none tracking-[-0.02em]"
+                  style={{ fontSize: 'clamp(2.5rem, 3.6vw, 3.25rem)' }}
+                >
                   $295
                 </p>
-                <p className="mt-2 text-[11px] tracking-[0.24em] uppercase text-ink-soft">
+                <p className="mt-2 text-[10.5px] tracking-[0.26em] uppercase text-ink-soft">
                   One-time visit
                 </p>
               </div>
@@ -81,12 +117,12 @@ export default function ProgramsPage() {
               {/* Description */}
               <div className="text-center md:text-left max-w-md mx-auto md:mx-0">
                 <h2
-                  className="font-display text-ink leading-[1.1] tracking-[-0.012em]"
-                  style={{ fontSize: 'clamp(1.375rem, 2.4vw, 1.875rem)' }}
+                  className="font-display text-ink leading-[1.12] tracking-[-0.012em]"
+                  style={{ fontSize: 'clamp(1.375rem, 2.2vw, 1.75rem)' }}
                 >
                   Initial physician consultation.
                 </h2>
-                <p className="mt-3 text-[14px] text-ink-soft leading-[1.7]">
+                <p className="mt-3 text-[13.5px] text-ink-soft leading-[1.65]">
                   60-minute video visit. Comprehensive review of your history and labs.
                   A written plan delivered to your inbox. Required before any program.
                 </p>
@@ -95,7 +131,7 @@ export default function ProgramsPage() {
               {/* CTA */}
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
+                className="inline-flex items-center justify-center gap-2.5 bg-brown text-cream hover:bg-brown-deep px-7 py-4 rounded-md text-[11px] sm:text-[10.5px] tracking-[0.24em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
               >
                 <Calendar className="size-4" strokeWidth={2} />
                 Book Consultation
@@ -105,26 +141,26 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ===== THE PROGRAMS — three equal tiers ===== */}
-      <section id="pricing" className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+      {/* ===== THE PROGRAMS — three flat-per-visit tiers ===== */}
+      <section id="pricing" className="bg-paper">
+        <div className="container-velora pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-14 lg:pb-20">
           <div className="text-center max-w-2xl mx-auto">
             <ChapterEyebrow number="01" label="Choose Your Program" />
             <h2
-              className="mt-7 font-display text-ink leading-[1.04] tracking-[-0.018em]"
-              style={{ fontSize: 'clamp(1.75rem, 3.6vw, 2.5rem)' }}
+              className="mt-6 font-display text-ink leading-[1.06] tracking-[-0.018em]"
+              style={{ fontSize: 'clamp(1.875rem, 3.6vw, 2.75rem)' }}
             >
               Three programs.
               <br />
               <em className="italic font-display text-brown">One standard of care.</em>
             </h2>
-            <p className="mt-7 text-[14px] text-ink-soft leading-[1.75] max-w-xl mx-auto">
+            <p className="mt-5 text-[14px] text-ink-soft leading-[1.7] max-w-xl mx-auto">
               Flat per-visit pricing. No prepayment required &mdash; you pay as you go,
               visit by visit.
             </p>
           </div>
 
-          <div className="mt-14 grid md:grid-cols-3 gap-5 lg:gap-6 items-stretch max-w-6xl mx-auto">
+          <div className="mt-10 lg:mt-14 grid md:grid-cols-3 gap-5 lg:gap-6 items-stretch max-w-6xl mx-auto">
             <ProgramTier
               numeral="01"
               title="Medical Weight Management"
@@ -134,8 +170,8 @@ export default function ProgramsPage() {
               bullets={[
                 'GLP-1 medication strategy',
                 'Nutrition and lifestyle guidance',
-                'Ongoing physician monitoring',
-                'Body composition tracking',
+                'Ongoing progress monitoring',
+                'Physician support',
               ]}
               cta="Explore program"
               href="/weight-management"
@@ -150,9 +186,9 @@ export default function ProgramsPage() {
                 'Bioidentical hormone therapy',
                 'Comprehensive lab panel',
                 'Protocol refinement',
-                'Symptom tracking',
+                'Ongoing physician support',
               ]}
-              cta="Explore program"
+              cta="Start program"
               href="/hormone-therapy"
               featured
             />
@@ -166,9 +202,9 @@ export default function ProgramsPage() {
                 'Longevity-focused care',
                 'Metabolic & hormone integration',
                 'Preventive wellness strategy',
-                'Long-term continuity',
+                'Long-term optimization',
               ]}
-              cta="Explore program"
+              cta="Start program"
               href="/longevity"
             />
           </div>
@@ -176,8 +212,8 @@ export default function ProgramsPage() {
       </section>
 
       {/* ===== ALSO BILLED SEPARATELY — transparency strip ===== */}
-      <section className="bg-paper border-t border-line/40">
-        <div className="container-velora py-12 lg:py-14">
+      <section className="bg-bone border-t border-line/40">
+        <div className="container-velora py-8 sm:py-10 lg:py-14">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center gap-3">
               <ShieldCheck className="size-4 text-brown" strokeWidth={1.8} />
@@ -200,8 +236,8 @@ export default function ProgramsPage() {
       </section>
 
       {/* ===== WHY DIRECT-PAY — single column statement ===== */}
-      <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+      <section className="bg-paper border-t border-line/40">
+        <div className="container-velora py-10 sm:py-12 lg:py-16">
           <div className="max-w-3xl mx-auto text-center">
             <ChapterEyebrow number="02" label="Why Direct-Pay" />
             <h2
@@ -225,8 +261,8 @@ export default function ProgramsPage() {
       </section>
 
       {/* ===== PRICING FAQ — scoped to pricing only ===== */}
-      <section className="bg-paper border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+      <section className="bg-bone border-t border-line/40">
+        <div className="container-velora py-10 sm:py-12 lg:py-16">
           <div className="grid lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] gap-12 lg:gap-20">
             <div className="lg:sticky lg:top-24 lg:self-start">
               <ChapterEyebrow number="03" label="Pricing FAQ" />
@@ -250,7 +286,7 @@ export default function ProgramsPage() {
                 <ArrowRight className="size-3.5" />
               </Link>
 
-              <div className="mt-9 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+              <div className="mt-6 lg:mt-9 relative aspect-[16/10] sm:aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
                 <Image
                   src="/photos/faq-cta.png"
                   alt="Velora Medical Institute — Frequently Asked Questions"
@@ -275,32 +311,6 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ===== Tight brown closer — single decisive action ===== */}
-      <section className="bg-brown text-cream">
-        <div className="container-velora py-12 lg:py-14">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-8">
-            <div className="text-center md:text-left">
-              <h2
-                className="font-display leading-[1.06] tracking-[-0.012em]"
-                style={{ fontSize: 'clamp(1.375rem, 2.4vw, 1.875rem)' }}
-              >
-                Begin with a consultation.
-              </h2>
-              <p className="mt-2 text-[12.5px] tracking-[0.18em] uppercase text-cream/70">
-                60-minute visit &middot; written plan &middot;{' '}
-                <span className="text-cream font-semibold">$295</span>
-              </p>
-            </div>
-            <Link
-              href="/book"
-              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.26em] sm:tracking-[0.3em] uppercase font-semibold transition-colors shrink-0 mx-auto md:mx-0"
-            >
-              <Calendar className="size-4" strokeWidth={2} />
-              Schedule Consultation
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   )
 }
@@ -346,74 +356,74 @@ function ProgramTier({
   return (
     <div
       className={[
-        'relative flex flex-col p-8 lg:p-10 rounded-2xl transition-all',
+        'relative flex flex-col bg-cream rounded-2xl px-7 lg:px-8 pt-9 pb-8 transition-all',
         featured
-          ? 'bg-brown text-cream ring-1 ring-brown shadow-[0_36px_70px_-28px_rgba(124,84,54,0.55)]'
-          : 'bg-cream border border-line/60 shadow-[0_28px_55px_-30px_rgba(74,52,28,0.4)]',
+          ? 'ring-1 ring-brown/40 shadow-[0_40px_80px_-32px_rgba(74,52,28,0.55)]'
+          : 'border border-line/60 shadow-[0_24px_55px_-32px_rgba(74,52,28,0.38)]',
       ].join(' ')}
     >
       {featured && (
-        <p className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-ink px-3.5 py-1 text-[9px] tracking-[0.32em] uppercase font-semibold rounded-md whitespace-nowrap">
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brown text-cream px-4 py-1.5 text-[9px] tracking-[0.3em] uppercase font-semibold rounded-md whitespace-nowrap shadow-[0_10px_22px_-12px_rgba(74,52,28,0.6)]">
           Most Chosen
-        </p>
+        </span>
       )}
 
-      <div className="flex items-baseline justify-between">
-        <p
-          className={[
-            'font-display italic leading-none tracking-[-0.02em]',
-            featured ? 'text-gold/85' : 'text-brown/65',
-          ].join(' ')}
-          style={{ fontSize: '40px' }}
+      {/* Numeral + rule */}
+      <div className="flex items-center justify-between">
+        <span
+          className="font-display italic leading-none tracking-[-0.02em] text-brown/55"
+          style={{ fontSize: '38px' }}
         >
           {numeral}
-        </p>
-        <div className={['w-8 h-px', featured ? 'bg-gold' : 'bg-gold/70'].join(' ')} />
+        </span>
+        <span className="w-8 h-px bg-gold/70" />
       </div>
 
+      {/* Title */}
       <h3
-        className={[
-          'mt-6 font-display leading-[1.15] tracking-[-0.012em]',
-          featured ? 'text-cream' : 'text-ink',
-        ].join(' ')}
+        className="mt-5 font-display text-ink leading-[1.15] tracking-[-0.012em]"
         style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)' }}
       >
         {title}
       </h3>
 
-      <div className="mt-7 flex items-baseline gap-2">
-        <span className={['font-display text-[48px] leading-none tracking-[-0.02em]', featured ? 'text-cream' : 'text-ink'].join(' ')}>
+      {/* Price */}
+      <div className="mt-5 flex items-baseline gap-2">
+        <span
+          className="font-display text-ink leading-none tracking-[-0.02em]"
+          style={{ fontSize: 'clamp(2.5rem, 3vw, 3rem)' }}
+        >
           {price}
         </span>
-        <span className={['text-[12px] italic', featured ? 'text-cream/70' : 'text-ink-soft'].join(' ')}>/ visit</span>
+        <span className="text-[13px] italic text-ink-soft">/ visit</span>
       </div>
-      <p className={['mt-2 text-[10px] tracking-[0.28em] uppercase font-semibold', featured ? 'text-gold' : 'text-brown'].join(' ')}>
+      <p className="mt-3 text-[10px] tracking-[0.24em] uppercase text-brown font-semibold">
         {cadenceTag}
       </p>
-      <p className={['mt-1 text-[11.5px]', featured ? 'text-cream/75' : 'text-ink-soft'].join(' ')}>
-        {total}
-      </p>
+      <p className="mt-1 text-[12px] text-ink-soft">{total}</p>
 
-      <div className={['mt-7 w-full h-px', featured ? 'bg-cream/20' : 'bg-line/70'].join(' ')} />
+      <div className="mt-6 w-full h-px bg-line/70" />
 
-      <ul className={['mt-6 space-y-3 text-[13.5px] flex-1', featured ? 'text-cream/85' : 'text-ink-soft'].join(' ')}>
+      {/* Bullets */}
+      <ul className="mt-6 space-y-3.5 text-[13.5px] text-ink-soft flex-1">
         {bullets.map((b) => (
-          <li key={b} className="flex items-start gap-2.5">
-            <span className={['mt-0.5 size-[18px] rounded-full flex items-center justify-center shrink-0', featured ? 'bg-cream/15 text-gold' : 'bg-brown/10 text-brown'].join(' ')}>
-              <Check className="size-2.5" strokeWidth={2.6} />
+          <li key={b} className="flex items-start gap-3">
+            <span className="mt-0.5 size-[18px] rounded-full bg-brown/10 text-brown flex items-center justify-center shrink-0">
+              <Check className="size-2.5" strokeWidth={3} />
             </span>
-            <span className="leading-[1.55]">{b}</span>
+            <span className="leading-[1.5]">{b}</span>
           </li>
         ))}
       </ul>
 
+      {/* CTA */}
       <Link
         href={href}
         className={[
-          'group/cta mt-8 inline-flex items-center justify-center gap-2 w-full px-5 py-4 sm:py-3.5 rounded-md text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors',
+          'group/cta mt-8 inline-flex items-center justify-center gap-2 w-full px-5 py-4 rounded-md text-[11px] sm:text-[10.5px] tracking-[0.22em] sm:tracking-[0.26em] uppercase font-semibold transition-colors',
           featured
-            ? 'bg-cream text-ink hover:bg-paper'
-            : 'border border-brown text-brown hover:bg-brown hover:text-cream',
+            ? 'bg-brown text-cream hover:bg-brown-deep'
+            : 'border border-brown/70 text-brown hover:bg-brown hover:text-cream',
         ].join(' ')}
       >
         {cta}

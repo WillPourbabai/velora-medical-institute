@@ -1,17 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  Activity,
   Calendar,
   ArrowRight,
-  HeartPulse,
   ShieldCheck,
-  Target,
-  TrendingUp,
-  Check,
 } from 'lucide-react'
 import { HomeHero } from '@/components/site/home-hero'
-import { VeloraMark } from '@/components/site/logo'
 
 export default function HomePage() {
   return (
@@ -37,7 +31,7 @@ export default function HomePage() {
 
       {/* ===== 02 · OUR SERVICE AREAS — 3 photo-forward cards ===== */}
       <section className="bg-paper">
-        <div className="container-velora py-16 lg:py-24">
+        <div className="container-velora py-10 sm:py-14 lg:py-24">
           <div className="text-center max-w-3xl mx-auto">
             <p className="text-[10px] sm:text-[11px] tracking-[0.34em] uppercase text-brown font-semibold">
               Our Service Areas
@@ -50,22 +44,22 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="mt-14 lg:mt-16 grid md:grid-cols-3 gap-7 lg:gap-9 max-w-6xl mx-auto">
+          <div className="mt-9 sm:mt-12 lg:mt-16 grid md:grid-cols-3 gap-7 lg:gap-9 max-w-6xl mx-auto">
             <ServiceCard
               href="/weight-management"
-              image="/photos/card-weight.png"
+              image="/photos/card-weight-glp1.png"
               title="Weight Management"
               body="Physician-guided GLP-1 therapy and medical weight management programs to help you lose weight, improve metabolism, and sustain long-term results."
             />
             <ServiceCard
               href="/hormone-therapy"
-              image="/photos/card-hormone.png"
+              image="/photos/card-hormone-therapy.png"
               title="Hormone Optimization"
               body="Restore balance, improve energy, enhance mood, and support overall hormonal health through personalized hormone therapy."
             />
             <ServiceCard
               href="/longevity"
-              image="/photos/card-longevity.png"
+              image="/photos/card-longevity-coast.png"
               title="Longevity & Preventive Medicine"
               body="Proactive, personalized strategies to optimize health, prevent disease, and support long-term vitality."
             />
@@ -75,8 +69,8 @@ export default function HomePage() {
 
       {/* ===== YOUR PATH — Step 1: Begin with a conversation ===== */}
       <section className="bg-bone">
-        <div className="container-velora pt-20 lg:pt-24 pb-16 lg:pb-20">
-          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-14 xl:gap-20 items-center">
+        <div className="container-velora pt-12 sm:pt-16 lg:pt-24 pb-10 sm:pb-14 lg:pb-20">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-14 xl:gap-20 items-center">
             {/* LEFT — copy */}
             <div className="max-w-[560px]">
               <p className="text-[10.5px] tracking-[0.42em] uppercase text-brown font-semibold">
@@ -150,126 +144,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== YOUR PATH — Step 2: Choose your care path (forked road) ===== */}
-      <section className="bg-bone">
-        <div className="container-velora text-center pt-12 sm:pt-16 lg:pt-4">
-          <div className="inline-flex items-center gap-3.5">
-            <span className="size-11 rounded-full bg-brown text-cream flex items-center justify-center font-display text-[18px]">
-              2
-            </span>
-            <span className="text-[12px] sm:text-[11px] tracking-[0.28em] sm:tracking-[0.36em] uppercase text-ink font-semibold">
-              Choose Your Care Path
-            </span>
-          </div>
-          <p className="mt-5 mx-auto max-w-xl text-[14.5px] sm:text-[14px] text-ink-soft leading-[1.65] px-2">
-            After your consultation, we&rsquo;ll recommend the best path forward for you.
-          </p>
-        </div>
-
-        <div className="relative mt-10 lg:mt-12">
-          <div className="relative aspect-[3/2] md:aspect-[16/7] lg:aspect-[2/1] max-h-[88vh] overflow-hidden">
-            <Image
-              src="/photos/carepath-fork-final.png"
-              alt="A woman pausing at a forked road between a small cottage and a larger home — choosing her care direction"
-              fill
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-bone/40 pointer-events-none" />
-
-            {/* "Which path is right for me?" — centered italic overlay in sky */}
-            <div className="absolute top-[6%] md:top-[8%] left-1/2 -translate-x-1/2 text-center pointer-events-none">
-              <p
-                className="font-display italic text-ink leading-[1.1] drop-shadow-[0_2px_8px_rgba(244,235,211,0.6)]"
-                style={{ fontSize: 'clamp(1.25rem, 2.4vw, 1.875rem)' }}
-              >
-                Which path
-                <br />
-                is right for me?
-              </p>
-              <div className="mt-2.5 flex items-center justify-center gap-1.5">
-                <span className="size-1.5 rounded-full bg-brown/80" />
-                <span className="size-1.5 rounded-full bg-brown/80" />
-                <span className="size-1.5 rounded-full bg-brown/80" />
-              </div>
-            </div>
-          </div>
-
-          {/* Path Cards — flow below image on mobile, float over image bottom on md+ */}
-          <div className="md:absolute md:inset-x-0 md:bottom-6 mt-6 md:mt-0">
-            <div className="container-velora">
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_minmax(0,0.4fr)_1fr] gap-5 md:gap-3 items-end">
-                <PathCard
-                  letter="A"
-                  title="Individual Follow-Up Visits"
-                  subtitle="Flexible, as-needed care on your terms."
-                  bullets={[
-                    ['Flexible', 'One visit at a time'],
-                    ['As-needed care', 'We’re here when you need us'],
-                    ['Short-term focus', 'Address immediate needs'],
-                  ]}
-                  cta="View Individual Visits"
-                  ctaHref="/individual-visits"
-                />
-                <div className="hidden md:block" aria-hidden />
-                <PathCard
-                  letter="B"
-                  recommended
-                  title="Structured Programs"
-                  subtitle="Comprehensive, physician-guided care for lasting results."
-                  bullets={[
-                    ['Comprehensive', 'Whole-body, root-cause approach'],
-                    ['Root-cause approach', 'Addresses the underlying issues'],
-                    ['Long-term results', 'Sustainable results and accountability'],
-                  ]}
-                  cta="View Programs"
-                  ctaHref="/programs"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* THE DIFFERENCE strip */}
-        <div className="container-velora mt-16 lg:mt-20 pb-16 lg:pb-20">
-          <div className="bg-paper rounded-2xl border border-line/60 px-6 md:px-10 py-7 md:py-8 shadow-[0_24px_50px_-32px_rgba(74,52,28,0.3)]">
-            <div className="grid lg:grid-cols-[280px_1fr] gap-6 lg:gap-12 items-center">
-              <div className="flex items-center gap-3.5">
-                <span className="size-11 rounded-full bg-brown/10 text-brown flex items-center justify-center shrink-0">
-                  <Activity className="size-5" strokeWidth={1.8} />
-                </span>
-                <div>
-                  <p className="text-[11px] tracking-[0.3em] uppercase text-ink font-semibold">
-                    The Difference:
-                  </p>
-                  <p className="mt-1.5 text-[12.5px] text-ink-soft leading-[1.55]">
-                    Individual visits treat pieces.
-                    <br />
-                    Program-based care builds the whole foundation.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 lg:border-l lg:border-line/60 lg:pl-12">
-                <DiffTile icon={<ShieldCheck className="size-4" />} title="Evidence-Based" body="Care grounded in science and clinical expertise." />
-                <DiffTile icon={<Target className="size-4" />} title="Personalized" body="Tailored to your goals, biology, and lifestyle." />
-                <DiffTile icon={<TrendingUp className="size-4" />} title="Measurable Results" body="Track progress and optimize over time." />
-                <DiffTile icon={<HeartPulse className="size-4" />} title="Long-Term Approach" body="Sustainable strategies for lasting transformation." />
-              </div>
-            </div>
-          </div>
+      {/* ===== YOUR PATH — Step 2: Choose your care path (composite) ===== */}
+      <section className="bg-bone" aria-label="Choose your care path">
+        <div className="relative w-full">
+          <Image
+            src="/photos/carepath-section.png"
+            alt="Choose your care path — after your consultation we recommend the best path forward: Individual Follow-Up Visits (flexible, as-needed care) or Structured Programs (recommended; physician-guided weight management for lasting results). The difference: individual visits treat pieces, program-based care builds the whole foundation."
+            width={1536}
+            height={1024}
+            sizes="100vw"
+            className="w-full h-auto"
+          />
+          {/* Clickable hotspots over the in-image CTA buttons */}
+          <Link
+            href="/individual-visits"
+            aria-label="View Individual Visits"
+            className="absolute left-[15.5%] top-[70.5%] w-[17%] h-[6.5%] rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brown"
+          />
+          <Link
+            href="/programs"
+            aria-label="View Programs"
+            className="absolute left-[67%] top-[70.5%] w-[17%] h-[6.5%] rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brown"
+          />
         </div>
       </section>
 
 
       {/* ===== 05 · THE PHYSICIANS — matches /about ===== */}
       <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-28">
+        <div className="container-velora py-12 sm:py-14 lg:py-16">
           <div className="text-center max-w-2xl mx-auto">
             <ChapterEyebrow number="05" label="The Physicians" />
             <h2
-              className="mt-7 font-display text-ink leading-[1.04] tracking-[-0.018em]"
-              style={{ fontSize: 'clamp(1.625rem, 3.4vw, 2.375rem)' }}
+              className="mt-5 font-display text-ink leading-[1.04] tracking-[-0.018em]"
+              style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
             >
               Trained in Internal Medicine.
               <br />
@@ -277,7 +185,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="mt-16 grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          <div className="mt-9 lg:mt-11 grid lg:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
             <PhysicianCard
               src="/dr-amini.png"
               name="Afshin Amini, MD"
@@ -296,18 +204,17 @@ export default function HomePage() {
 
       {/* ===== 06 · BEGIN YOUR CARE — tight brown band ===== */}
       <section className="bg-brown text-cream">
-        <div className="container-velora py-12 lg:py-14">
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-center gap-8 md:gap-10">
-            <VeloraMark size={44} monochrome className="mx-auto md:mx-0 text-cream opacity-90" />
-
-            <div className="text-center md:text-left">
+        <div className="container-velora py-5 sm:py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-8 text-center sm:text-left">
+            <div className="flex flex-wrap items-baseline justify-center sm:justify-start gap-x-3 gap-y-1">
               <h2
-                className="font-display leading-[1.06] tracking-[-0.012em]"
-                style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2rem)' }}
+                className="font-display text-cream leading-none tracking-[-0.012em]"
+                style={{ fontSize: 'clamp(1.125rem, 1.7vw, 1.5rem)' }}
               >
                 Begin physician-guided care today.
               </h2>
-              <p className="mt-2 text-[12.5px] tracking-[0.18em] uppercase text-cream/70">
+              <span className="hidden sm:inline text-cream/40" aria-hidden>&mdash;</span>
+              <p className="text-[10.5px] tracking-[0.2em] uppercase text-cream/65">
                 60-minute visit &middot; Written plan &middot;{' '}
                 <span className="text-cream font-semibold">$295</span>
               </p>
@@ -315,7 +222,7 @@ export default function HomePage() {
 
             <Link
               href="/book"
-              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-7 py-4 sm:py-3.5 rounded-md text-[12.5px] sm:text-[11px] tracking-[0.26em] sm:tracking-[0.3em] uppercase font-semibold transition-colors shrink-0"
+              className="inline-flex items-center justify-center gap-2.5 bg-cream text-brown hover:bg-paper px-6 py-3 rounded-full text-[11px] tracking-[0.22em] uppercase font-semibold transition-colors shrink-0"
             >
               <Calendar className="size-4" strokeWidth={2} />
               Schedule Consultation
@@ -382,26 +289,26 @@ function PhysicianCard({
   src: string; name: string; credentials: string; bio: string
 }) {
   return (
-    <div className="bg-paper rounded-2xl border border-line/60 p-6 lg:p-7 shadow-[0_28px_60px_-32px_rgba(74,52,28,0.35)] flex flex-col">
-      <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
+    <div className="bg-paper rounded-2xl border border-line/60 p-5 lg:p-6 shadow-[0_28px_60px_-32px_rgba(74,52,28,0.35)] flex flex-col sm:flex-row gap-5 sm:gap-6">
+      <div className="relative w-full sm:w-40 lg:w-48 shrink-0 aspect-[3/4] rounded-xl overflow-hidden">
         <Image
           src={src}
           alt={name}
           fill
-          sizes="(min-width: 1024px) 40vw, 100vw"
+          sizes="(min-width: 1024px) 12rem, (min-width: 640px) 10rem, 100vw"
           className="object-cover"
-          style={{ objectPosition: 'center 25%' }}
+          style={{ objectPosition: 'center 20%' }}
         />
       </div>
-      <div className="mt-6">
-        <h3 className="font-display text-[24px] md:text-[26px] leading-tight text-ink">
+      <div className="flex-1 min-w-0">
+        <h3 className="font-display text-[20px] md:text-[22px] leading-tight text-ink">
           {name}
         </h3>
-        <div className="mt-3 w-8 h-px bg-gold/70" />
-        <p className="mt-3 text-[10px] tracking-[0.26em] uppercase text-brown/85 font-semibold">
+        <div className="mt-2.5 w-8 h-px bg-gold/70" />
+        <p className="mt-2.5 text-[9.5px] tracking-[0.24em] uppercase text-brown/85 font-semibold">
           {credentials}
         </p>
-        <p className="mt-5 text-[14px] text-ink-soft leading-[1.75]">
+        <p className="mt-3.5 text-[13px] text-ink-soft leading-[1.65]">
           {bio}
         </p>
       </div>
@@ -409,96 +316,3 @@ function PhysicianCard({
   )
 }
 
-function DiffTile({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <span className="mt-0.5 size-8 rounded-full bg-brown/10 text-brown flex items-center justify-center shrink-0">
-        {icon}
-      </span>
-      <div>
-        <p className="text-[11px] tracking-[0.22em] uppercase text-ink font-semibold">{title}</p>
-        <p className="mt-1 text-[12px] text-ink-soft leading-[1.5]">{body}</p>
-      </div>
-    </div>
-  )
-}
-
-function PathCard({
-  letter, title, subtitle, bullets, cta, ctaHref, recommended,
-}: {
-  letter: string
-  title: string
-  subtitle: string
-  bullets: [string, string][]
-  cta: string
-  ctaHref: string
-  recommended?: boolean
-}) {
-  return (
-    <div
-      className={[
-        'relative bg-cream rounded-2xl p-6 md:p-7 flex flex-col overflow-hidden',
-        recommended
-          ? 'ring-1 ring-brown/30 shadow-[0_36px_70px_-28px_rgba(74,52,28,0.6)]'
-          : 'border border-line/60 shadow-[0_28px_60px_-30px_rgba(74,52,28,0.45)]',
-      ].join(' ')}
-    >
-      {recommended && (
-        <span className="absolute top-0 right-0 bg-brown text-cream px-4 py-1.5 text-[9px] tracking-[0.32em] uppercase font-semibold rounded-bl-xl rounded-tr-2xl">
-          Recommended
-        </span>
-      )}
-
-      <div className={['w-10 h-px', recommended ? 'bg-gold' : 'bg-gold/60'].join(' ')} />
-
-      <div className="mt-4 flex items-start gap-3.5">
-        <span
-          className={[
-            'size-10 rounded-full flex items-center justify-center font-display text-[16px] shrink-0',
-            recommended
-              ? 'bg-brown text-cream shadow-[0_10px_22px_-10px_rgba(124,84,54,0.6)]'
-              : 'bg-bone text-brown border border-brown/40',
-          ].join(' ')}
-        >
-          {letter}
-        </span>
-        <div className="leading-tight pt-1.5">
-          <p className="text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.32em] uppercase text-ink font-semibold leading-[1.35]">
-            {title}
-          </p>
-        </div>
-      </div>
-
-      <p className="mt-4 font-display italic text-[14px] text-ink leading-[1.5]">
-        {subtitle}
-      </p>
-
-      <ul className="mt-5 space-y-3 text-[12.5px] text-ink-soft flex-1">
-        {bullets.map(([strong, body]) => (
-          <li key={strong} className="flex items-start gap-2.5">
-            <span className="mt-0.5 size-[18px] rounded-full bg-brown/10 text-brown flex items-center justify-center shrink-0">
-              <Check className="size-2.5" strokeWidth={2.8} />
-            </span>
-            <span className="leading-[1.55]">
-              <strong className="text-ink font-semibold">{strong}</strong>
-              <span className="text-ink-soft"> &mdash; {body}</span>
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      <Link
-        href={ctaHref}
-        className={[
-          'group/cta mt-6 inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-3 rounded-md text-[12px] sm:text-[10.5px] tracking-[0.24em] sm:tracking-[0.28em] uppercase font-semibold transition-colors',
-          recommended
-            ? 'bg-brown text-cream hover:bg-brown-deep'
-            : 'border border-brown text-brown hover:bg-brown hover:text-cream',
-        ].join(' ')}
-      >
-        {cta}
-        <ArrowRight className="size-3.5 transition-transform group-hover/cta:translate-x-0.5" />
-      </Link>
-    </div>
-  )
-}

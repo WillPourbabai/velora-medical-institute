@@ -44,7 +44,7 @@ export default function FaqPage() {
     <>
       {/* HERO — clean mountain sunset, V leaf + headline overlay */}
       <section className="relative overflow-hidden">
-        <div className="relative h-[70vh] min-h-[520px] max-h-[720px]">
+        <div className="relative h-[52vh] min-h-[390px] lg:h-[70vh] lg:min-h-[520px] max-h-[720px]">
           <Image
             src="/photos/faq-mountain.png"
             alt="Mountain sunset"
@@ -104,7 +104,7 @@ export default function FaqPage() {
             <p className="mt-7 text-[15px] text-ink-soft leading-relaxed">
               GLP-1 medications, eligibility, individualized care, and results — explained by your physician.
             </p>
-            <div className="mt-8 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+            <div className="mt-6 lg:mt-8 relative aspect-[16/10] lg:aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
               <Image
                 src="/photos/faq-cta.png"
                 alt="Velora Medical Institute — Frequently Asked Questions"
@@ -130,7 +130,7 @@ export default function FaqPage() {
             <p className="mt-7 text-[15px] text-ink-soft leading-relaxed">
               BHRT for men and women — symptoms, safety, and what to expect.
             </p>
-            <div className="mt-8 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+            <div className="mt-6 lg:mt-8 relative aspect-[16/10] lg:aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
               <Image
                 src="/photos/faq-cta.png"
                 alt="Velora Medical Institute — Frequently Asked Questions"
@@ -156,7 +156,7 @@ export default function FaqPage() {
             <p className="mt-7 text-[15px] text-ink-soft leading-relaxed">
               Direct-pay, telemedicine, scheduling, and policies.
             </p>
-            <div className="mt-8 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+            <div className="mt-6 lg:mt-8 relative aspect-[16/10] lg:aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
               <Image
                 src="/photos/faq-cta.png"
                 alt="Velora Medical Institute — Frequently Asked Questions"

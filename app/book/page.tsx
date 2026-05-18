@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function BookPage() {
   return (
     <section className="bg-bone">
-      <div className="container-velora pt-10 lg:pt-14 pb-20 lg:pb-24">
+      <div className="container-velora pt-10 lg:pt-14 pb-12 sm:pb-16 lg:pb-24">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto">
           <p className="text-[10px] sm:text-[10.5px] tracking-[0.46em] uppercase text-brown font-semibold">
@@ -40,7 +40,7 @@ export default function BookPage() {
         </div>
 
         {/* CharmHealth booking iframe */}
-        <div className="mt-10 lg:mt-12 mx-auto max-w-[980px]">
+        <div className="mt-7 lg:mt-12 mx-auto max-w-[980px]">
           <div className="bg-cream rounded-2xl ring-1 ring-line/60 shadow-[0_36px_70px_-32px_rgba(74,52,28,0.4)] overflow-hidden">
             <iframe
               title="Velora Medical Institute — schedule a consultation"
@@ -54,7 +54,7 @@ export default function BookPage() {
         </div>
 
         {/* Trouble fallback */}
-        <p className="mt-8 text-center text-[12px] text-ink-soft">
+        <p className="mt-6 lg:mt-8 text-center text-[12px] text-ink-soft">
           Calendar not loading?{' '}
           <Link
             href="/contact"

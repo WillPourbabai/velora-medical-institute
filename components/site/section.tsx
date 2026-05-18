@@ -19,7 +19,7 @@ export function Section({
     'sage-soft': 'bg-sage-soft',
   }
   return (
-    <section id={id} className={cn('py-14 md:py-16 lg:py-20', bgs[bg], className)}>
+    <section id={id} className={cn('py-10 sm:py-14 md:py-16 lg:py-20', bgs[bg], className)}>
       <div className="container-velora">{children}</div>
     </section>
   )

@@ -24,7 +24,7 @@ export default function AboutPage() {
     <>
       {/* ===== HERO — split: editorial left, twin portraits right ===== */}
       <section className="relative bg-bone overflow-hidden">
-        <div className="container-velora pt-12 lg:pt-16 pb-16 lg:pb-20">
+        <div className="container-velora pt-8 sm:pt-10 lg:pt-16 pb-10 sm:pb-14 lg:pb-20">
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-10 lg:gap-16 xl:gap-20 items-center lg:min-h-[calc(100vh-78px-160px)]">
             {/* LEFT — editorial */}
             <div className="max-w-[560px]">
@@ -82,7 +82,7 @@ export default function AboutPage() {
             {/* RIGHT — twin portraits, offset for editorial rhythm */}
             <div className="relative grid grid-cols-2 gap-4 lg:gap-6">
               <figure className="relative">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_30px_60px_-26px_rgba(74,52,28,0.55)] ring-1 ring-line/40">
+                <div className="relative aspect-[16/10] sm:aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_30px_60px_-26px_rgba(74,52,28,0.55)] ring-1 ring-line/40">
                   <Image
                     src="/dr-amini.png"
                     alt="Dr. Afshin Amini, Internal and Obesity Medicine"
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 </figcaption>
               </figure>
               <figure className="relative lg:translate-y-10">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_30px_60px_-26px_rgba(74,52,28,0.55)] ring-1 ring-line/40">
+                <div className="relative aspect-[16/10] sm:aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_30px_60px_-26px_rgba(74,52,28,0.55)] ring-1 ring-line/40">
                   <Image
                     src="/dr-tolebeyan.jpeg"
                     alt="Dr. Amirseena Tolebeyan, Internal and Obesity Medicine"
@@ -132,7 +132,7 @@ export default function AboutPage() {
 
       {/* ===== 01 · OUR STORY ===== */}
       <section className="bg-paper">
-        <div className="container-velora py-20 lg:py-28">
+        <div className="container-velora py-12 sm:py-16 lg:py-28">
           <div className="grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] gap-12 lg:gap-20 xl:gap-28 items-start">
             <div>
               <ChapterEyebrow number="01" label="Our Story" />
@@ -169,7 +169,7 @@ export default function AboutPage() {
 
       {/* ===== 02 · THE PHYSICIANS ===== */}
       <section id="physicians" className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-28">
+        <div className="container-velora py-12 sm:py-16 lg:py-28">
           <div className="text-center max-w-2xl mx-auto">
             <ChapterEyebrow number="02" label="The Physicians" />
             <h2
@@ -182,7 +182,7 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="mt-16 grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          <div className="mt-10 lg:mt-16 grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
             <PhysicianCard
               src="/dr-amini.png"
               name="Afshin Amini, MD"
@@ -201,7 +201,7 @@ export default function AboutPage() {
 
       {/* ===== 03 · HOW WE PRACTICE ===== */}
       <section className="bg-paper border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+        <div className="container-velora py-12 sm:py-16 lg:py-24">
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-20 items-start">
             <div>
               <ChapterEyebrow number="03" label="How We Practice" />
@@ -249,7 +249,7 @@ export default function AboutPage() {
 
       {/* ===== 04 · WHAT WE TREAT ===== */}
       <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+        <div className="container-velora py-12 sm:py-16 lg:py-24">
           <div className="text-center max-w-2xl mx-auto">
             <ChapterEyebrow number="04" label="What We Treat" />
             <h2
@@ -262,7 +262,7 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="mt-14 grid md:grid-cols-3 gap-px bg-line/40 border-y border-line/40 max-w-6xl mx-auto">
+          <div className="mt-9 lg:mt-14 grid md:grid-cols-3 gap-px bg-line/40 border-y border-line/40 max-w-6xl mx-auto">
             <ServiceCell
               numeral="01"
               title="Weight Management"
@@ -287,7 +287,7 @@ export default function AboutPage() {
 
       {/* ===== 05 · FROM THE PHYSICIANS — letter ===== */}
       <section className="bg-paper border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+        <div className="container-velora py-12 sm:py-16 lg:py-24">
           <div className="max-w-3xl mx-auto text-center">
             <ChapterEyebrow number="05" label="From the Physicians" />
             <h2
@@ -314,7 +314,7 @@ export default function AboutPage() {
 
       {/* ===== IMPORTANT INFORMATION ===== */}
       <section className="bg-bone">
-        <div className="container-velora py-12 lg:py-14">
+        <div className="container-velora py-8 sm:py-10 lg:py-14">
           <div className="max-w-5xl mx-auto bg-paper border border-line/60 rounded-2xl px-6 md:px-10 py-7">
             <div className="flex items-center gap-3">
               <span className="size-8 rounded-full bg-brown/10 text-brown flex items-center justify-center">
@@ -336,7 +336,7 @@ export default function AboutPage() {
 
       {/* ===== 06 · BEGIN YOUR CARE — final CTA ===== */}
       <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-16 lg:py-20">
+        <div className="container-velora py-10 sm:py-14 lg:py-20">
           <div className="max-w-[1120px] xl:max-w-[1280px] mx-auto">
             <div className="text-center">
               <ChapterEyebrow number="06" label="Begin Your Care" />
@@ -351,7 +351,7 @@ export default function AboutPage() {
               <div className="mt-6 mx-auto w-10 h-px bg-gold/70" />
             </div>
 
-            <div className="mt-12 grid md:grid-cols-2 gap-5 md:gap-6">
+            <div className="mt-8 lg:mt-12 grid md:grid-cols-2 gap-5 md:gap-6">
               <Link
                 href="/book"
                 className="group relative bg-brown text-cream rounded-2xl p-7 md:p-8 flex flex-col justify-between min-h-[200px] transition-all hover:bg-brown-deep shadow-[0_28px_55px_-25px_rgba(74,52,28,0.55)] overflow-hidden"
@@ -446,7 +446,7 @@ function PhysicianCard({
 }) {
   return (
     <div className="bg-paper rounded-2xl border border-line/60 p-6 lg:p-7 shadow-[0_28px_60px_-32px_rgba(74,52,28,0.35)] flex flex-col">
-      <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
+      <div className="relative aspect-[16/10] sm:aspect-[4/5] rounded-xl overflow-hidden">
         <Image
           src={src}
           alt={name}

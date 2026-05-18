@@ -17,7 +17,7 @@ export function LegalPage({
   return (
     <>
       <section className="bg-cream border-b border-line">
-        <div className="container-velora pt-14 md:pt-20 pb-12">
+        <div className="container-velora pt-10 sm:pt-14 md:pt-20 pb-8 sm:pb-12">
           <p className="eyebrow">{eyebrow}</p>
           <h1
             className="mt-4 font-display leading-[1.04] tracking-[-0.018em] text-ink max-w-3xl"
@@ -33,7 +33,7 @@ export function LegalPage({
           <div className="prose-velora">
             <p className="text-[16.5px] leading-relaxed text-ink-soft">{intro}</p>
             {sections.map((s) => (
-              <section key={s.heading} className="mt-12">
+              <section key={s.heading} className="mt-8 sm:mt-12">
                 <h2 className="font-display text-[26px] md:text-[32px] leading-tight text-ink">{s.heading}</h2>
                 <div className="mt-5 text-[15.5px] leading-relaxed text-ink-soft space-y-4">{s.body}</div>
               </section>

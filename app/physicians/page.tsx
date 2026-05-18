@@ -77,7 +77,7 @@ export default function PhysiciansPage() {
 
       {/* CTA */}
       <section className="bg-ink text-cream">
-        <div className="container-velora py-24 md:py-28 text-center">
+        <div className="container-velora py-14 sm:py-20 md:py-28 text-center">
           <span className="eyebrow text-gold">Begin Your Care</span>
           <h2
             className="mt-6 font-display leading-[1.04] tracking-[-0.02em] text-cream max-w-3xl mx-auto"
@@ -85,7 +85,7 @@ export default function PhysiciansPage() {
           >
             Schedule your <em className="not-italic text-gold">initial consultation</em>.
           </h2>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-7 lg:mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link href="/book" className="inline-flex items-center justify-center gap-2 bg-cream text-brown hover:bg-paper px-6 py-3.5 rounded-md text-[11px] tracking-[0.24em] uppercase font-semibold transition-colors">
               Book Consultation
               <ArrowUpRight className="size-3.5" />
@@ -115,7 +115,7 @@ function PhysicianProfile({
     <article className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
       {/* Portrait */}
       <div className={`lg:col-span-5 ${reverse ? 'lg:order-2' : ''}`}>
-        <div className="aspect-[4/5] bg-paper border border-line relative overflow-hidden rounded-md">
+        <div className="aspect-[16/10] sm:aspect-[4/5] bg-paper border border-line relative overflow-hidden rounded-md">
           <Image
             src={photo}
             alt={name}
@@ -150,13 +150,13 @@ function PhysicianProfile({
         >
           {name}
         </h2>
-        <div className="mt-7 space-y-5 text-[16px] leading-relaxed text-ink-soft max-w-prose">
+        <div className="mt-5 lg:mt-7 space-y-5 text-[16px] leading-relaxed text-ink-soft max-w-prose">
           {paragraphs.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
         </div>
 
-        <div className="mt-9 pt-7 border-t border-line">
+        <div className="mt-6 lg:mt-9 pt-5 lg:pt-7 border-t border-line">
           <p className="eyebrow">Areas of Focus</p>
           <ul className="mt-5 grid sm:grid-cols-2 gap-2.5">
             {focus.map((f) => (
@@ -168,7 +168,7 @@ function PhysicianProfile({
           </ul>
         </div>
 
-        <div className="mt-9">
+        <div className="mt-6 lg:mt-9">
           <Link
             href="/book"
             className="inline-flex items-center gap-2 bg-brown text-cream hover:bg-brown-deep px-6 py-3.5 rounded-md text-[11px] tracking-[0.24em] uppercase font-semibold transition-colors"

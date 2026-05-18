@@ -24,10 +24,10 @@ export function HomeHero() {
       <div className="lg:grid lg:grid-cols-[minmax(0,47fr)_minmax(0,53fr)] lg:items-stretch lg:min-h-[calc(100svh-58px)]">
 
         {/* ===== LEFT — text panel ===== */}
-        <div className="relative z-10 flex flex-col lg:justify-center px-6 sm:px-10 lg:pl-[max(3rem,calc((100vw-115rem)/2+4rem))] lg:pr-14 xl:pr-20 pt-[106px] sm:pt-[114px] lg:pt-[94px] pb-10 lg:pb-10">
+        <div className="relative z-10 flex flex-col lg:justify-center px-6 sm:px-10 lg:pl-[max(3rem,calc((100vw-115rem)/2+4rem))] lg:pr-14 xl:pr-20 pt-[106px] sm:pt-[114px] lg:pt-[94px] pb-7 lg:pb-10">
 
           {/* Mobile photo — leads at top */}
-          <div className="lg:hidden -mx-6 sm:-mx-10 mb-10 relative aspect-[5/4] sm:aspect-[16/10]">
+          <div className="lg:hidden -mx-6 sm:-mx-10 mb-7 relative aspect-[16/10] sm:aspect-[16/9]">
             <Image
               src="/photos/hero-telehealth-main.png"
               alt="A patient on a Velora telemedicine visit with a physician"
@@ -77,7 +77,7 @@ export function HomeHero() {
             </p>
 
             {/* CTAs */}
-            <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
                 href="/book"
                 className="inline-flex items-center justify-center gap-2.5 bg-gold text-ink hover:bg-gold/90 px-7 py-4 rounded-md text-[11.5px] tracking-[0.2em] uppercase font-semibold transition-colors"
@@ -95,7 +95,7 @@ export function HomeHero() {
             </div>
 
             {/* Trust row */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3">
+            <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3">
               <TrustItem
                 icon={<Monitor className="size-5" strokeWidth={1.4} />}
                 title="Telemedicine Visits"
@@ -144,7 +144,7 @@ export function HomeHero() {
 
       {/* ===== Bottom utility strip — full width ===== */}
       <div className="relative border-t border-cream/12">
-        <div className="container-velora py-4 sm:py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div className="container-velora py-3 sm:py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-3 text-[10px] sm:text-[11px] tracking-[0.28em] uppercase text-cream/80 font-semibold">
             <ShieldCheck className="size-4 text-gold shrink-0" strokeWidth={1.6} />
             <span className="inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
@@ -182,7 +182,7 @@ function TrustItem({
   return (
     <div
       className={[
-        'flex items-start gap-3 py-3 sm:py-0',
+        'flex items-start gap-3 py-1.5 sm:py-0',
         divider ? 'sm:pl-6 sm:border-l border-cream/15' : 'sm:pr-6',
       ].join(' ')}
     >

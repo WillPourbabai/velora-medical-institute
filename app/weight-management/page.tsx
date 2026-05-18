@@ -26,7 +26,7 @@ export default function WeightManagementPage() {
     <>
       {/* ===== HERO — split: editorial copy left, GLP-1 program photo right ===== */}
       <section className="relative bg-bone overflow-hidden">
-        <div className="container-velora pt-12 lg:pt-16 pb-16 lg:pb-20">
+        <div className="container-velora pt-12 lg:pt-16 pb-10 sm:pb-14 lg:pb-20">
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-10 lg:gap-16 xl:gap-20 items-center lg:min-h-[calc(100vh-78px-160px)]">
             {/* LEFT — editorial copy */}
             <div className="max-w-[560px]">
@@ -72,7 +72,7 @@ export default function WeightManagementPage() {
                 </Link>
               </div>
 
-              <div className="mt-10 pt-7 border-t border-line/60 grid grid-cols-3 gap-4 sm:gap-6 max-w-[480px]">
+              <div className="mt-7 lg:mt-10 pt-5 lg:pt-7 border-t border-line/60 grid grid-cols-3 gap-4 sm:gap-6 max-w-[480px]">
                 <MiniPillar label="GLP-1 Therapy" />
                 <MiniPillar label="Metabolic Optimization" />
                 <MiniPillar label="Telemedicine" />
@@ -101,7 +101,7 @@ export default function WeightManagementPage() {
 
       {/* ===== 01 · OVERVIEW — medicine, not dieting ===== */}
       <section className="bg-paper">
-        <div className="container-velora py-20 lg:py-28">
+        <div className="container-velora py-12 sm:py-16 lg:py-28">
           <div className="grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] gap-12 lg:gap-20 xl:gap-28 items-start">
             <div>
               <ChapterEyebrow number="01" label="Overview" />
@@ -157,7 +157,7 @@ export default function WeightManagementPage() {
 
       {/* ===== 02 · WHAT WE EVALUATE / WHAT'S INCLUDED ===== */}
       <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+        <div className="container-velora py-12 sm:py-16 lg:py-24">
           <div className="text-center max-w-2xl mx-auto">
             <ChapterEyebrow number="02" label="The Evaluation" />
             <h2
@@ -170,7 +170,7 @@ export default function WeightManagementPage() {
             </h2>
           </div>
 
-          <div className="mt-14 grid lg:grid-cols-2 gap-6 lg:gap-8">
+          <div className="mt-10 lg:mt-14 grid lg:grid-cols-2 gap-6 lg:gap-8">
             {/* What We Evaluate */}
             <div className="bg-paper rounded-2xl border border-line/60 p-8 lg:p-10 shadow-[0_28px_60px_-32px_rgba(74,52,28,0.35)]">
               <div className="flex items-center gap-3">
@@ -248,7 +248,7 @@ export default function WeightManagementPage() {
 
       {/* ===== 03 · CARE OPTIONS — pricing cards ===== */}
       <section id="program" className="bg-paper border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+        <div className="container-velora py-12 sm:py-16 lg:py-24">
           <div className="text-center max-w-2xl mx-auto">
             <ChapterEyebrow number="03" label="Care Options" />
             <h2
@@ -261,7 +261,7 @@ export default function WeightManagementPage() {
             </h2>
           </div>
 
-          <div className="mt-14 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6 lg:gap-8 items-stretch max-w-6xl mx-auto">
+          <div className="mt-10 lg:mt-14 grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-6 lg:gap-8 items-stretch max-w-6xl mx-auto">
             {/* Initial Consultation */}
             <div className="relative bg-cream rounded-2xl border border-line/60 p-8 lg:p-10 flex flex-col shadow-[0_28px_60px_-30px_rgba(74,52,28,0.4)]">
               <div className="w-10 h-px bg-gold/70" />
@@ -368,7 +368,7 @@ export default function WeightManagementPage() {
 
       {/* ===== 04 · YOUR OPTIMIZATION JOURNEY ===== */}
       <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-20 lg:py-28">
+        <div className="container-velora py-12 sm:py-16 lg:py-28">
           <div className="text-center max-w-2xl mx-auto">
             <ChapterEyebrow number="04" label="Your Optimization Journey" />
             <h2
@@ -381,7 +381,7 @@ export default function WeightManagementPage() {
             </h2>
           </div>
 
-          <div className="mt-16 grid lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="mt-10 lg:mt-16 grid lg:grid-cols-3 gap-6 lg:gap-8">
             <PhaseCard
               phase="Phase 1"
               title="Initial Optimization"
@@ -415,7 +415,7 @@ export default function WeightManagementPage() {
 
       {/* ===== 05 · WHY PHYSICIAN-GUIDED ===== */}
       <section className="bg-paper border-t border-line/40">
-        <div className="container-velora py-20 lg:py-24">
+        <div className="container-velora py-12 sm:py-16 lg:py-24">
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-12 lg:gap-20 items-start">
             <div>
               <ChapterEyebrow number="05" label="Why Physician-Guided" />
@@ -460,7 +460,7 @@ export default function WeightManagementPage() {
 
       {/* ===== IMPORTANT INFORMATION ===== */}
       <section className="bg-bone">
-        <div className="container-velora py-12 lg:py-14">
+        <div className="container-velora py-10 sm:py-12 lg:py-14">
           <div className="max-w-5xl mx-auto bg-paper border border-line/60 rounded-2xl px-6 md:px-10 py-7">
             <div className="flex items-center gap-3">
               <span className="size-8 rounded-full bg-brown/10 text-brown flex items-center justify-center">
@@ -483,7 +483,7 @@ export default function WeightManagementPage() {
 
       {/* ===== 06 · START YOUR CARE — final CTA ===== */}
       <section className="bg-bone border-t border-line/40">
-        <div className="container-velora py-16 lg:py-20">
+        <div className="container-velora py-10 sm:py-14 lg:py-20">
           <div className="max-w-[1120px] xl:max-w-[1280px] mx-auto">
             <div className="text-center">
               <ChapterEyebrow number="06" label="Start Your Care" />
@@ -498,7 +498,7 @@ export default function WeightManagementPage() {
               <div className="mt-6 mx-auto w-10 h-px bg-gold/70" />
             </div>
 
-            <div className="mt-12 grid md:grid-cols-2 gap-5 md:gap-6">
+            <div className="mt-8 lg:mt-12 grid md:grid-cols-2 gap-5 md:gap-6">
               <Link
                 href="/book?type=weight"
                 className="group relative bg-cream rounded-2xl p-7 md:p-8 flex flex-col justify-between min-h-[200px] transition-all border border-line/70 hover:border-brown/60 shadow-[0_22px_45px_-25px_rgba(74,52,28,0.35)]"
@@ -561,7 +561,7 @@ export default function WeightManagementPage() {
 
       {/* ===== 07 · FAQ ===== */}
       <section className="bg-paper border-t border-line/40">
-        <div className="container-velora py-20 lg:py-28">
+        <div className="container-velora py-12 sm:py-16 lg:py-28">
           <div className="grid lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] gap-12 lg:gap-20 xl:gap-28">
             <div className="lg:sticky lg:top-24 lg:self-start">
               <ChapterEyebrow number="07" label="FAQ" />
@@ -585,7 +585,7 @@ export default function WeightManagementPage() {
                 <ArrowRight className="size-3.5" />
               </Link>
 
-              <div className="mt-9 relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
+              <div className="mt-9 relative aspect-[16/10] rounded-xl overflow-hidden ring-1 ring-line/50 shadow-[0_24px_50px_-30px_rgba(74,52,28,0.45)]">
                 <Image
                   src="/photos/faq-cta.png"
                   alt="Velora Medical Institute — Frequently Asked Questions"
@@ -666,13 +666,17 @@ function PhaseCard({
         {subtitle}
       </p>
       <div className="mt-6 w-8 h-px bg-gold/70" />
-      <ul className="mt-6 space-y-5 text-[13px] text-ink-soft leading-[1.6] flex-1">
+      <div className="mt-6 flex items-baseline gap-2">
+        <span className="font-display text-ink text-[40px] leading-none">{visits.length}</span>
+        <span className="text-[11px] tracking-[0.26em] uppercase text-brown font-semibold">
+          {visits.length === 1 ? 'visit' : 'visits'}
+        </span>
+      </div>
+      <ul className="mt-5 space-y-2.5 text-[13px] text-ink-soft flex-1">
         {visits.map((v) => (
-          <li key={v.label}>
-            <p className="text-[10.5px] tracking-[0.28em] uppercase text-ink font-semibold">
-              {v.label}
-            </p>
-            <p className="mt-1.5">{v.body}</p>
+          <li key={v.label} className="flex items-center gap-2.5">
+            <span className="size-1.5 rounded-full bg-gold shrink-0" />
+            <span className="tracking-[0.02em]">{v.label}</span>
           </li>
         ))}
       </ul>
